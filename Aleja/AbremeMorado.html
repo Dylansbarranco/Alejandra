@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morado Como Tú</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a0033, #3a015c);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #d8b4ff;
+            text-shadow: 0 0 10px rgba(216, 180, 255, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #b68edb;
+            margin-bottom: 20px;
+        }
+        
+        .chat-container {
+            background-color: rgba(30, 0, 60, 0.6);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+        
+        .message {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            position: relative;
+            max-width: 80%;
+        }
+        
+        .her-message {
+            background-color: #4a1a6e;
+            margin-left: auto;
+            border-top-right-radius: 0;
+        }
+        
+        .my-message {
+            background-color: #7928ca;
+            margin-right: auto;
+            border-top-left-radius: 0;
+        }
+        
+        .message-label {
+            position: absolute;
+            top: -20px;
+            font-size: 12px;
+            color: #b68edb;
+        }
+        
+        .her-message .message-label {
+            right: 10px;
+        }
+        
+        .my-message .message-label {
+            left: 10px;
+        }
+        
+        .ai-response {
+            background-color: rgba(40, 0, 80, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .ai-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .ai-icon {
+            width: 30px;
+            height: 30px;
+            background-color: #b68edb;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1a0033;
+        }
+        
+        .ai-title {
+            font-size: 18px;
+            color: #d8b4ff;
+        }
+        
+        .compatibility {
+            height: 20px;
+            background: linear-gradient(90deg, #ff66c4, #c840e9, #7928ca);
+            border-radius: 10px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .compatibility::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(255, 255, 255, 0.2) 20%, 
+                rgba(255, 255, 255, 0.1) 40%);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .compatibility-text {
+            text-align: center;
+            font-size: 14px;
+            color: #b68edb;
+            margin-bottom: 15px;
+        }
+        
+        .flirt-response {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-left: 3px solid #b68edb;
+        }
+        
+        .action-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #7928ca, #ff0080);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(121, 40, 202, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .action-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(121, 40, 202, 0.7);
+        }
+        
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b68edb' width='24px' height='24px'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center center;
+            opacity: 0;
+            animation: float 4s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 20px 0;
+            color: #b68edb;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Morado Como Tú</h1>
+            <p class="subtitle">Una conexión especial basada en colores y sentimientos</p>
+        </header>
+        
+        <div class="chat-container">
+            <div class="message my-message">
+                <span class="message-label">Yo</span>
+                Me encanta el color morado, es mi favorito 💜
+            </div>
+            
+            <div class="message her-message">
+                <span class="message-label">Ella</span>
+                A mí me encanta también 💜
+            </div>
+            
+            <div class="message my-message">
+                <span class="message-label">Yo</span>
+                Ya hasta en eso me quieres copiar 😏
+            </div>
+            
+            <div class="message her-message">
+                <span class="message-label">Ella</span>
+                Es parte del proceso 😉
+            </div>
+        </div>
+        
+        <div class="ai-response">
+            <div class="ai-header">
+                <div class="ai-icon">❤</div>
+                <div class="ai-title">Sistema de Compatibilidad Romántica</div>
+            </div>
+            
+            <p class="compatibility-text">Analizando compatibilidad basada en preferencias cromáticas...</p>
+            <div class="compatibility"></div>
+            <p class="compatibility-text">¡Compatibilidad del 95.8%! Resultado: Altamente favorable</p>
+            
+            <div class="flirt-response">
+                "Cuando dos almas comparten la misma pasión por el morado, no es simple coincidencia. El morado representa la transformación y la magia, justo como lo que está sucediendo entre ustedes. Quizás no sea una copia, sino el universo conspirando para unir dos corazones que vibran en la misma frecuencia violeta."
+            </div>
+        </div>
+        
+        <a href="https://wa.me/573162402680?text=Me%20encantó%20tu%20página%20morada%20💜" class="action-button">Volver a hablar contigo</a>
+    </div>
+    
+    <div class="hearts" id="hearts"></div>
+    
+    <footer>
+        Creado con 💜 para Alejandra la chica taekwondo
+    </footer>
+    
+    <script>
+       
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const numberOfHearts = 15;
+            
+            for (let i = 0; i < numberOfHearts; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+            
+                const left = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const size = Math.random() * 15 + 10;
+                
+                heart.style.left = left + 'vw';
+                heart.style.animationDelay = delay + 's';
+                heart.style.width = size + 'px';
+                heart.style.height = size + 'px';
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+       
+        window.addEventListener('load', createHearts);
+        
+      
+        document.querySelector('.action-button').addEventListener('click', function() {
+            this.textContent = 'Enviando mensaje...';
+            setTimeout(() => {
+                this.textContent = 'Volver a hablar contigo';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
