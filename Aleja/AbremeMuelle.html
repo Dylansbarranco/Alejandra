@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Especial</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #8e2de2, #4a00e0);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 90%;
+            width: 500px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin: 20px 0;
+        }
+        h1 {
+            margin-top: 0;
+            font-size: 28px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .story {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+            font-style: italic;
+        }
+        .story p {
+            margin-bottom: 15px;
+        }
+        .story .title {
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: normal;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #1DB954;
+            color: white;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        .music-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.7;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .divider {
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.7), transparent);
+            margin: 30px auto;
+        }
+        .poem {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    <div class="container">
+        <div class="music-icon">🎵</div>
+        <h1>¡Te invito a escuchar "Los Locos de San Blas"!</h1>
+        <p>Quiero compartir contigo esta playlist especial que he creado pensando en nosotros.</p>
+        
+        <div class="divider"></div>
+        
+        <h2>La Historia Detrás de Esta Playlist</h2>
+        <div class="story">
+            <p class="title">"Le diste besito al piso hoy o no" — El inicio de ella y yo</p>
+            
+            <p>Todo comenzó con un estado.<br>
+            Uno más, de esos que se suben sin pensar demasiado.<br>
+            Pero ella,<br>
+            ella lo vio.</p>
+
+            <p>Y no respondió con un emoji,<br>
+            ni con un "jajaja" de compromiso.<br>
+            Respondió con la frase que lo cambió todo:</p>
+
+            <p>"Le diste besito al piso hoy o no"</p>
+
+            <p>Así, de la nada,<br>
+            con la seguridad de quien no necesita permiso para entrar en tu historia.</p>
+
+            <p>Él se rió. Mucho.<br>
+            Y también supo —sin entender por qué—<br>
+            que esa respuesta iba a marcar un antes y un después.</p>
+
+            <p>Desde entonces no fue lo mismo.<br>
+            Las conversaciones se volvieron parte de la rutina.<br>
+            Ella se convirtió en el mensaje esperado,<br>
+            en la notificación favorita,<br>
+            en la pausa bonita entre tanta locura diaria.</p>
+
+            <p>Y él, sin pensarlo demasiado,<br>
+            empezó a sentir eso que no tiene nombre exacto,<br>
+            pero que se reconoce cuando alguien te gusta de verdad.</p>
+
+            <p>No fue solo risa.<br>
+            Fue conexión.<br>
+            Y ahora, él lo dice sin vergüenza:</p>
+
+            <p>"Me encanta. Me gusta. Me fascina."<br>
+            Y si hace falta esperar, va a esperar.<br>
+            Como la loca del muelle de San Blas,<br>
+            pero versión digital, con esperanza y estilo propio.</p>
+
+            <p>Porque cuando alguien te llega así,<br>
+            sin avisar,<br>
+            con una frase que parece chiste<br>
+            pero se queda en el alma…<br>
+            vale la pena esperarla.</p>
+
+            <p>Esta es mi historia con ella</p>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <p>La música tiene el poder de conectar almas y crear momentos inolvidables. Esta playlist representa lo que siento por ti y los momentos que quiero seguir viviendo juntos.</p>
+        <p>¿Te gustaría acompañarme en este viaje musical?</p>
+        <a href="https://open.spotify.com/playlist/79qdyHZoLw3P1uZMpVBYUy?si=kaMRhFG5Tdm91iAl_fAAKA" class="btn">¡Acepto la invitación! 💚</a>
+    </div>
+
+    <script>
+       
+        const heartsContainer = document.getElementById('hearts');
+        const colors = ['#ff6b6b', '#f06595', '#cc5de8', '#5c7cfa', '#339af0'];
+        const symbols = ['♪', '♫', '🎵', '🎶', '🎼'];
+        
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 6 + 3) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        createHearts();
+        
+   
+        document.querySelector('.btn').addEventListener('mousedown', function() {
+            this.style.transform = 'scale(0.95)';
+        });
+        
+        document.querySelector('.btn').addEventListener('mouseup', function() {
+            this.style.transform = 'scale(1.05)';
+        });
+    </script>
+</body>
+</html>
