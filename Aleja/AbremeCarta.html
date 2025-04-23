@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta Especial Para Aleja</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f3e7ff, #ffe6f2, #fff0f0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0;
+      z-index: 0;
+      animation: float 10s ease-out forwards;
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(255, 105, 180, 0.7);
+      z-index: 0;
+      animation: floatHeart 15s linear infinite;
+      font-size: 20px;
+    }
+
+    .card {
+      max-width: 90%;
+      width: 350px;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      opacity: 0;
+      transform: scale(0.8) translateY(50px);
+      animation: showCard 1s ease-out 1s forwards;
+      z-index: 10;
+      backdrop-filter: blur(5px);
+    }
+
+    .card-header {
+      height: 120px;
+      background: linear-gradient(to right, #ff6b9d, #a155db);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .header-heart {
+      font-size: 60px;
+      color: white;
+      animation: pulse 2s infinite alternate;
+    }
+
+    .card-content {
+      padding: 24px;
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      color: #ff6b9d;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 2.5s forwards;
+    }
+
+    .message-container {
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .message {
+      text-align: center;
+      color: #444;
+      font-size: 18px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: showMessage 0.5s ease-out forwards;
+      display: none;
+    }
+
+    .message.active {
+      display: block;
+    }
+
+    .buttons {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .yes-button {
+      background-color: #ff6b9d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      opacity: 0;
+      display: none;
+    }
+
+    .yes-button.show {
+      display: block;
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    .yes-button:hover {
+      background-color: #e84c82;
+    }
+
+    .signature {
+      margin-top: 32px;
+      text-align: right;
+      opacity: 0;
+      color: #666;
+    }
+
+    .signature.show {
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    .restart {
+      margin-top: 16px;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      color: #666;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .restart:hover {
+      background-color: #f5f5f5;
+      border-color: #999;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(110vh);
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-10vh);
+        opacity: 0.3;
+      }
+    }
+
+    @keyframes showCard {
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.2);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes showMessage {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="card">
+
+    <div class="card-header">
+      <div class="header-heart">❤️</div>
+    </div>
+
+ 
+    <div class="card-content">
+      <h1 class="card-title">Para mi chica aleja</h1>
+
+      <div class="message-container">
+        <p class="message" data-index="0">Cada dia que pasa....</p>
+        <p class="message" data-index="1">Me doy cuenta de lo especial que eres.</p>
+        <p class="message" data-index="2">Aunque no la veo, tu sonrisa ilumina mi mundo.</p>
+        <p class="message" data-index="3">Y tu forma de ser me encanta.</p>
+        <p class="message" data-index="4">Especialemente cuando me dices "Es to".</p>
+        <p class="message" data-index="5">Me haces sentir algo unico.</p>
+        <p class="message" data-index="6">Y queria decirte</p>
+        <p class="message" data-index="7">Que me gustas y me encatas mucho.</p>
+        <p class="message" data-index="8">¿Quieres pasar el resto de tu vida conmigo?</p>
+      </div>
+
+
+      <div class="buttons">
+        <button class="yes-button">¡Sí, me encantaria ❤️!</button>
+      </div>
+
+
+      <div class="signature">
+        <p>Con amor, tu chico programador Dilan</p>
+      </div>
+    </div>
+  </div>
+
+
+  <button class="restart" onclick="restartAnimation()">Reproducir de nuevo</button>
+
+  <script>
+
+    function createHearts() {
+      for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.innerHTML = '❤️';
+          heart.className = 'heart';
+          heart.style.left = `${Math.random() * 100}%`;
+          heart.style.fontSize = `${10 + Math.random() * 20}px`;
+          heart.style.animationDuration = `${15 + Math.random() * 10}s`;
+          heart.style.animationDelay = `${Math.random() * 5}s`;
+          document.body.appendChild(heart);
+          
+        
+          setTimeout(() => {
+            heart.remove();
+          }, 25000);
+        }, i * 1000);
+      }
+    }
+
+ 
+    function createParticles() {
+      const particleInterval = setInterval(() => {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = Math.random() * 15 + 5;
+        const hue = Math.random() * 60 + 330; 
+        const lightness = Math.random() * 30 + 60;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.backgroundColor = `hsl(${hue}, 100%, ${lightness}%)`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        document.body.appendChild(particle);
+        
+
+        setTimeout(() => {
+          particle.remove();
+        }, 10000);
+      }, 400);
+      
+      return particleInterval;
+    }
+
+
+    function showMessages() {
+      const messages = document.querySelectorAll('.message');
+      let currentIndex = 0;
+      
+
+      setTimeout(() => {
+        messages[0].classList.add('active');
+      }, 2500);
+      
+
+      const messageInterval = setInterval(() => {
+        if (currentIndex < messages.length - 1) {
+          messages[currentIndex].classList.remove('active');
+          currentIndex++;
+          messages[currentIndex].classList.add('active');
+          
+       
+          if (currentIndex === messages.length - 1) {
+            setTimeout(() => {
+              document.querySelector('.yes-button').classList.add('show');
+              document.querySelector('.signature').classList.add('show');
+            }, 1000);
+          }
+        } else {
+          clearInterval(messageInterval);
+        }
+      }, 3000);
+      
+      return messageInterval;
+    }
+
+   
+    let particleInterval;
+    let messageInterval;
+    
+    function startAnimation() {
+    
+      createHearts();
+      
+  
+      particleInterval = createParticles();
+      
+     
+      messageInterval = showMessages();
+      
+      
+      document.querySelector('.yes-button').addEventListener('click', function() {
+        alert('"Es to" ¡Qué felicidad! 💖');
+      });
+    }
+   
+    function restartAnimation() {
+      clearInterval(particleInterval);
+      clearInterval(messageInterval);
+      
+      const messages = document.querySelectorAll('.message');
+      messages.forEach(msg => msg.classList.remove('active'));
+      
+      document.querySelector('.yes-button').classList.remove('show');
+      document.querySelector('.signature').classList.remove('show');
+      
+      document.querySelectorAll('.heart, .particle').forEach(el => el.remove());
+      
+      setTimeout(startAnimation, 500);
+    }
+    
+    window.addEventListener('load', startAnimation);
+  </script>
+</body>
+</html>
