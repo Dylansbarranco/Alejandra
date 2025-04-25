@@ -315,52 +315,50 @@
             const heartsContainer = document.getElementById('hearts');
             const celebrateButton = document.getElementById('celebrateButton');
             
-            // Función para crear estrellas
+       
             function createSparkle() {
                 const sparkle = document.createElement('div');
                 sparkle.classList.add('sparkle');
                 
-                // Posición aleatoria
+             
                 const x = Math.random() * 100;
                 const y = Math.random() * 100;
                 
                 sparkle.style.left = `${x}%`;
                 sparkle.style.top = `${y}%`;
                 
-                // Tamaño aleatorio
+         
                 const size = 10 + Math.random() * 15;
                 sparkle.style.width = `${size}px`;
                 sparkle.style.height = `${size}px`;
                 
-                // Animación
+                
                 sparkle.style.animation = `sparkle ${1 + Math.random()}s forwards`;
                 
                 sparklesContainer.appendChild(sparkle);
                 
-                // Eliminar después de la animación
+                
                 setTimeout(() => {
                     sparkle.remove();
                 }, 2000);
             }
             
-            // Función para crear corazones
+        
             function createHeart() {
                 const heart = document.createElement('div');
                 heart.classList.add('heart');
                 
-                // Posición aleatoria
                 const x = Math.random() * 100;
                 const y = Math.random() * 100;
                 
                 heart.style.left = `${x}%`;
                 heart.style.top = `${y}%`;
                 
-                // Tamaño aleatorio
                 const size = 15 + Math.random() * 20;
                 heart.style.width = `${size}px`;
                 heart.style.height = `${size}px`;
                 
-                // Animación
+                
                 heart.style.animation = `heartBeat ${1 + Math.random()}s infinite`;
                 heart.style.opacity = '0';
                 
@@ -370,7 +368,6 @@
                 
                 heartsContainer.appendChild(heart);
                 
-                // Eliminar después de un tiempo
                 setTimeout(() => {
                     heart.style.opacity = '0';
                     setTimeout(() => {
@@ -379,19 +376,15 @@
                 }, 3000 + Math.random() * 2000);
             }
             
-            // Crear estrellas periódicamente
             setInterval(createSparkle, 300);
             
-            // Evento para el botón de celebración
             celebrateButton.addEventListener('click', function() {
-                // Crear muchos corazones
                 for (let i = 0; i < 20; i++) {
                     setTimeout(() => {
                         createHeart();
                     }, i * 100);
                 }
                 
-                // Efecto de rotación de la tarjeta
                 card.style.transition = 'transform 1s ease';
                 card.style.transform = 'rotateY(360deg)';
                 
@@ -400,7 +393,6 @@
                 }, 1000);
             });
             
-            // Efecto al pasar el mouse sobre la tarjeta
             card.addEventListener('mousemove', function(e) {
                 const x = e.clientX - card.getBoundingClientRect().left;
                 const y = e.clientY - card.getBoundingClientRect().top;
