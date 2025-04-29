@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Historia Digital de Amor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f9f3e9;
+            color: #333;
+            line-height: 1.6;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .book-container {
+            flex: 1;
+            display: flex;
+            perspective: 1500px;
+            margin: 20px auto;
+            max-width: 100%;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .book {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            transition: transform 0.5s;
+        }
+        
+        .page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            padding: 20px;
+            background: linear-gradient(to right, #fff 0%, #f9f7f1 100%);
+            transform-origin: left center;
+            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
+            border-radius: 0 5px 5px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        
+        .page-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 60px;
+        }
+        
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
+        }
+        
+        .page.active {
+            z-index: 1;
+        }
+        
+        .page.flipped {
+            transform: rotateY(-180deg);
+        }
+        
+        .page.flipped::before {
+            background: linear-gradient(to left, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
+        }
+        
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-style: italic;
+            color: #888;
+            left: 0;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #f0e6d2;
+            border-top: 1px solid #e0d6c2;
+        }
+        
+        .nav-button {
+            background-color: #8e6d5e;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-button:hover {
+            background-color: #6d5348;
+        }
+        
+        .nav-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .page-indicator {
+            display: flex;
+            align-items: center;
+            color: #8e6d5e;
+            font-style: italic;
+        }
+        
+        h1, h2, h3 {
+            color: #8e6d5e;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Georgia', serif;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #8e6d5e, transparent);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 30px;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            font-style: italic;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .first-letter {
+            float: left;
+            font-size: 3.5rem;
+            line-height: 1;
+            font-weight: bold;
+            margin-right: 10px;
+            color: #8e6d5e;
+            font-family: 'Georgia', serif;
+        }
+        
+        .chapter-title {
+            text-align: center;
+            margin: 40px 0 30px;
+            font-size: 1.5rem;
+            color: #8e6d5e;
+            font-style: italic;
+        }
+        
+        .date {
+            text-align: center;
+            font-style: italic;
+            color: #8e6d5e;
+            margin-bottom: 30px;
+        }
+        
+        .quote {
+            font-style: italic;
+            padding: 20px;
+            background-color: #f9f3e9;
+            border-left: 3px solid #8e6d5e;
+            margin: 20px 0;
+            position: relative;
+            text-align: center;
+        }
+        
+        .quote::before, .quote::after {
+            content: '"';
+            font-size: 2.5rem;
+            color: #d1c3b6;
+            position: absolute;
+        }
+        
+        .quote::before {
+            top: -10px;
+            left: 5px;
+        }
+        
+        .quote::after {
+            bottom: -30px;
+            right: 5px;
+        }
+        
+        .reasons-list {
+            column-count: 2;
+            column-gap: 30px;
+            margin: 20px 0;
+            list-style-type: none;
+        }
+        
+        .reasons-list li {
+            margin-bottom: 10px;
+            break-inside: avoid;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .reasons-list li::before {
+            content: '♥';
+            color: #8e6d5e;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+        
+        .book-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #6d5348;
+            margin: 50px 0 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .book-subtitle {
+            text-align: center;
+            font-style: italic;
+            color: #8e6d5e;
+            margin-bottom: 50px;
+            font-size: 1.3rem;
+        }
+        
+        .dedication {
+            text-align: center;
+            font-style: italic;
+            margin: 50px 0;
+            color: #8e6d5e;
+        }
+        
+        .cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background: linear-gradient(135deg, #f9f3e9, #e6d7c3);
+        }
+        
+        .cover-decoration {
+            font-size: 3rem;
+            color: #8e6d5e;
+            margin: 20px 0;
+        }
+        
+        .page-break {
+            page-break-after: always;
+            margin: 40px 0;
+            text-align: center;
+            color: #8e6d5e;
+        }
+        
+        .page-break::before {
+            content: '• • •';
+            letter-spacing: 10px;
+        }
+        
+        .chapter-number {
+            font-size: 1.2rem;
+            text-align: center;
+            color: #8e6d5e;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .page-content {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .reasons-list {
+                column-count: 1;
+            }
+            
+            .first-letter {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <div class="book" id="book">
+         
+            <div class="page active" id="page-0">
+                <div class="page-content cover">
+                    <div class="cover-decoration">❦</div>
+                    <h1 class="book-title">Nuestra Historia Digital</h1>
+                    <p class="book-subtitle">Un viaje a través de nuestro amor</p>
+                    <div class="dedication">Para ti Alejandra, que iluminas mi vida con cada mensaje</div>
+                    <div class="cover-decoration">❦</div>
+                    <div class="page-number">Portada</div>
+                </div>
+            </div>
+            
+          
+            <div class="page" id="page-1">
+                <div class="page-content">
+                    <div class="chapter-number">Capítulo I</div>
+                    <h1>Cómo Comenzó Todo</h1>
+                    <div class="date">13 de abril de 2025</div>
+                    
+                    <p><span class="first-letter">N</span>os conocimos en un grupo de WhatsApp de la universidad. Al principio nos ignorábamos mutuamente, como dos estrellas distantes en el mismo cielo digital. Nuestras palabras se cruzaban en el grupo, pero nunca se encontraban realmente, hasta que un día todo cambió.</p>
+                    
+                    <p>Fue un mensaje inesperado, simple pero que cambiaría el curso de nuestras vidas. "Tu futuro corazón 123", me escribió ella. Con la ligereza de quien no sospecha el destino, respondí: "JAJAJAJ si". Ella, con esa seguridad que ahora tanto admiro, me desafió: "Checa y verás".</p>
+                    
+                    <p>Intrigado pero escéptico, le dije: "Ya veré". Ella, sabiendo quizás lo que el destino nos deparaba, me pidió: "Recuerda este día". Y así lo hice, respondiendo: "13 de abril de 2025 a las 14:38, Alejandra salió retadora".</p>
+                    
+                    <div class="quote">
+                        Hay momentos que marcan un antes y un después. Ese intercambio de mensajes fue uno de ellos, aunque yo aún no lo sabía.
+                    </div>
+                    
+                    <p>Después de ese día, comenzó a responder a mis historias de WhatsApp. Lo que parecía una simple conversación casual se transformó en el inicio de algo maravilloso. Las palabras fluían entre nosotros como si nos conociéramos de toda la vida.</p>
+                    
+                    <p>Con el tiempo, las conversaciones por chat evolucionaron a largas video llamadas. Hablábamos durante horas, descubriendo cada rincón del alma del otro. No había tema prohibido, no había secreto que no pudiéramos compartir. Ella se abrió a mí como un libro abierto, y yo hice lo mismo.</p>
+                    
+                    <p>Creamos playlists de música que expresaban lo que sentíamos, compartiendo canciones que nos recordaban el uno al otro. Cada melodía se convirtió en un capítulo de nuestra historia, en un puente que acortaba la distancia entre nosotros.</p>
+                    
+                    <p>También compartimos momentos divertidos en TikTok, creando una racha de videos que mostraban nuestra complicidad. Esos pequeños clips capturaban la esencia de nuestra conexión, la forma en que nos entendíamos sin necesidad de muchas palabras.</p>
+                    
+                    <p>Y cada noche, como un ritual sagrado, dormíamos con el móvil en llamada. El sonido de su respiración se convirtió en mi nana favorita, en la melodía que me acompañaba hasta el mundo de los sueños.</p>
+                    
+                    <div class="quote">
+                        Nos volvimos locos el uno por el otro, construyendo un universo digital donde la distancia no existía.
+                    </div>
+                    
+                    <p>Esta es la historia de cómo un simple mensaje en un grupo de WhatsApp universitario se convirtió en el primer capítulo de nuestra historia de amor. Una historia que continúa escribiéndose cada día, con cada mensaje, con cada llamada, con cada latido.</p>
+                    
+                    <div class="page-number">1</div>
+                </div>
+            </div>
+            
+           
+            <div class="page" id="page-2">
+                <div class="page-content">
+                    <div class="chapter-number">Capítulo II</div>
+                    <h1>Cartas Digitales: Nuestro Lenguaje de Amor</h1>
+                    
+                    <p><span class="first-letter">A</span> lo largo de nuestro tiempo juntos, he intentado expresar mis sentimientos de diversas formas. Las cartas digitales se convirtieron en mi manera favorita de decirte cuánto significas para mí. Cada una de ellas, un pedazo de mi corazón convertido en píxeles y palabras.</p>
+                    
+                    <h2>La Primera Carta: Morado Como Tú</h2>
+                    
+                    <p>Recuerdo la primera carta digital que te envié. Creé un pequeño sitio web donde el color morado representaba un momento especial que habíamos compartido. Al abril, la página HTML, aparecía una barra de compatibilidad cromática, donde resaltaba lo compatible que éramos y la conexión que estábamos forjando. Amor, tus mensajes me inspiran a lo largo de mis días.</p>
+                    
+                    <div class="quote">
+                        "Eres la constelación que ilumina mi cielo más oscuro. Cada mensaje tuyo, una estrella que me guía hacia ti."
+                    </div>
+                    
+                    <h2>Cancion Amor mio</h2>
+                    
+                    <p>Para nuestros primeros días juntos,
+                        te escribí una canción.
+                        Y esta es la canción:
+                        Vida mía, amor mío
+                        tú me encantas, lo confieso,
+                        pa' toda la vida,
+                        sin final, sin regreso.
+                        Tu mirada es mi destino,
+                        tu sonrisa, mi universo,
+                        y aunque estemos tan distantes,
+                        yo te siento en cada verso.
+                        Tus palabras me acarician,
+                        aunque no estés en mis brazos,
+                        y tu amor me da la fuerza
+                        pa' cruzar todos los lazos.
+                        Eres calma, eres fuego,
+                        eres todo lo que anhelo,
+                        mi razón, mi poesía,
+                        mi presente y mi anhelo.
+                        Y no importa la distancia,
+                        ni el silencio de los días,
+                        porque amarte es resistencia,
+                        es mi fe, mi melodía.
+                        </p>
+                    
+                    <h2>El Girazol </h2>
+                    
+                    <p>En otra ocasión, te diseñé un girasol. acompañado de unas frases bonitas </p>
+                    <p>"Como este girasol que siempre busca la luz, mis pensamientos se dirigen hacia ti en esta noche."
+                        🌻 🌻 🌻
+                        "Que esta flor amarilla te saque una sonrisa… o mínimo, un mensaje tuyo diciendo '¡qué linda!'" 😏
+                        Que tengas una noche tranquila y llena de paz.</p>
+                    
+                    <h2>Chica adrenalina</h2>
+                    
+                    <p>Una de mis creaciones favoritas, fue un sitio web que la detallaba como una chica amante a la adrenalina con frases, corazones saliendo de todos lados.</p>
+                    <p>Una de las frases: Para una chica maravillosa que ilumina cada espacio con su presencia. Tu belleza, inteligencia y calidez hacen del mundo un lugar mejor. </p>
+                    
+                    <div class="quote">
+                        "Contigo estoy escribiendo el libro más hermoso de mi vida, página a página, mensaje a mensaje."
+                    </div>
+                    
+                    <h2>Ella se convirtió en programadora.</h2>
+                    
+                    <p>Una tarde, como tantas otras, la invité a programar conmigo.
+                        No era nada fuera de lo común… hasta que, entre líneas de código y risas, surgió una idea inesperada:
+                        crear una carta especial, pero esta vez… para mí.</p>
+                        
+                    <p>Ella, que hasta entonces no era programadora,
+                        tomó el teclado con una mezcla de curiosidad y ternura,
+                        y en ese momento, algo cambió.
+                        Se convirtió en desarrolladora de palabras bonitas,
+                        en ingeniera de emociones.</p> 
+                        
+                    <p>La carta que escribió no hablaba de bucles ni funciones,
+                        sino de frases que acariciaban el alma,
+                        de mensajes llenos de amor y fuerza.
+                        Cada línea era como un abrazo disfrazado de texto,
+                        una promesa escrita en código abierto.</p>
+                        
+                    <p> Y así, entre compilaciones del corazón y una pantalla iluminada,
+                        descubrí que el lenguaje más poderoso…
+                        es el que nace del amor.</p>
+                    
+                    <h2>La Carta que Estás Leyendo Ahora</h2>
+                    
+                    <p>Y ahora, esta carta digital en forma de libro, otro intento de capturar en palabras lo inconmensurable de mis sentimientos por ti. Cada página que pasas es un latido de mi corazón, cada palabra una promesa de que seguiré buscando formas creativas de decirte lo mucho que significas para mí.</p>
+                    
+                    <p>Porque en este mundo digital que nos unió, he encontrado infinitas formas de amarte y de decírtelo. Y seguiré inventando nuevas cartas, nuevos mensajes, nuevas formas de decirte que eres el código que da sentido a mi programa, la señal que siempre buscaré entre todo el ruido.</p>
+                    
+                    <div class="page-number">2</div>
+                </div>
+            </div>
+            
+       
+            <div class="page" id="page-3">
+                <div class="page-content">
+                    <div class="chapter-number">Capítulo III</div>
+                    <h1>Las Mil Razones Por Las Que Me Gustas</h1>
+                    
+                    <p><span class="first-letter">H</span>ay tantas cosas que me gustan de ti que podría llenar bibliotecas enteras intentando enumerarlas todas. Cada día descubro una nueva faceta tuya que me enamora, un nuevo detalle que me hace caer rendido a tus pies. Aquí intento capturar algunas de esas innumerables razones:</p>
+                    
+                    <h2>Tu Esencia</h2>
+                    
+                    <p>Me gusta la forma en que te abres conmigo, como un libro cuyas páginas solo yo tengo el privilegio de leer. La honestidad con la que compartes tus pensamientos, sin filtros ni pretensiones. La vulnerabilidad que me muestras, confiando en que cuidaré de tu corazón como del tesoro más preciado.</p>
+                    
+                    <p>Me encanta tu risa, ese sonido que podría reconocer entre mil voces. La forma en que tus ojos se iluminan cuando hablas de algo que te apasiona. La manera en que pronuncias mi nombre, como si fuera la palabra más importante de tu vocabulario.</p>
+                    
+                    <div class="quote">
+                        Tu alma es un universo que nunca me cansaré de explorar, con galaxias de bondad y estrellas de compasión.
+                    </div>
+                    
+                    <h2>Tu Mente</h2>
+                    
+                    <p>Me fascina tu inteligencia, la forma en que tu mente trabaja, conectando ideas que para otros pasarían desapercibidas. Tu creatividad sin límites, capaz de transformar lo ordinario en extraordinario. La profundidad de tus reflexiones, que me invitan a ver el mundo desde perspectivas que nunca había considerado.</p>
+                    
+                    <p>Admiro cómo ves el mundo.
+                        Tu forma de encontrar belleza en lo cotidiano,
+                        de detenerte en los detalles que otros pasan por alto.
+                        Me encanta cómo te emocionas con las pequeñas cosas,
+                        como si tu alma tuviera el don de convertir lo simple en mágico.
+                        
+                        Tu presencia no solo se nota… se siente.
+                        Tienes esa manera tan tuya de llenar espacios con calma,
+                        de hacer que todo parezca más claro, más liviano, más tú.
+                        
+                        No es solo lo que haces,
+                        es cómo lo haces.
+                        Con intención, con pasión, con corazón..</p>
+                    
+                    <h2>Tu Corazón</h2>
+                    
+                    <p>Me conmueve tu empatía, esa capacidad tuya para ponerte en el lugar del otro y sentir su dolor como propio. La generosidad con la que ofreces tu tiempo, tu atención, tu cariño. La compasión que muestras hacia quienes sufren, sin juzgar, solo acompañando.</p>
+                    
+                    <p>Valoro tu lealtad inquebrantable, la forma en que defiendes a quienes amas. Tu paciencia para escuchar, para entender, para esperar. La fortaleza con la que enfrentas las adversidades, convirtiendo los obstáculos en oportunidades de crecimiento.</p>
+                    
+                    <h2>Nuestra Conexión</h2>
+                    
+                    <p>Me encanta cómo podemos pasar horas hablando sin aburrirnos, saltando de tema en tema como si cada conversación fuera una aventura compartida. La forma en que terminamos las frases del otro, como si nuestras mentes estuvieran sincronizadas en una danza perfecta.</p>
+                    
+                    <p>Atesoro esos momentos de silencio cómodo,
+                        donde no hacen falta palabras para sentirnos cerca.
+                        La manera en que me entiendes con solo una mirada,
+                        con solo un gesto.
+                        Cómo me acompañas sin decir mucho,
+                        estando ahí en mis días de enfermito,
+                        haciéndome sentir cuidado, abrigado, querido.
+                        Tu presencia, en esos días,
+                        es el mejor remedio que conozco.</p>
+                    
+                    <div class="quote">
+                        Contigo he aprendido que la verdadera conexión trasciende la distancia física; nuestras almas se encuentran en cada mensaje, en cada llamada.
+                    </div>
+                    
+                    <h2>Los Pequeños Detalles</h2>
+                    
+                    <p>Me enamora cómo agregas canciones a nuestra playlist de Locos de San Blas,
+                        esas que, sin decirlo, te recuerdan a mí.
+                        Cada vez que las escucho,
+                        es como si me abrazaras con música.
+                        Como si en cada verso me dijeras:
+                        "Aquí estoy, pensé en ti."
+                        Y entonces, hasta la distancia se acorta,
+                        porque estamos sonando al mismo ritmo.</p>
+                    
+                    <p>Adoro cómo te emocionas por las cosas simples, encontrando belleza donde otros solo ven lo cotidiano. La manera en que cuidas las palabras que usas, sabiendo el poder que tienen para construir o destruir.</p>
+                    
+                    <p>Y sobre todo, me gusta cómo me haces sentir: valioso, comprendido, aceptado en mi totalidad. A tu lado, soy la mejor versión de mí mismo, no porque intente impresionarte, sino porque tu amor me inspira a crecer cada día.</p>
+                    
+                    <div class="page-number">3</div>
+                </div>
+            </div>
+            
+            <div class="page" id="page-4">
+                <div class="page-content">
+                    <div class="chapter-number">Capítulo IV</div>
+                    <h1>200 Razones Por Las Que Me Encantas</h1>
+                    
+                    <p><span class="first-letter">C</span>ada día encuentro nuevas razones para enamorarme de ti. Aquí hay 200 de ellas, aunque sé que seguiré descubriendo más con cada amanecer que compartimos:</p>
+                    
+                    <ul class="reasons-list">
+                        <li>Me encanta cómo sonríes cuando estás feliz.</li>
+                        <li>Me encanta cómo tus ojos brillan cuando hablas de tus pasiones.</li>
+                        <li>Me encanta la forma en que dices mi nombre.</li>
+                        <li>Me encanta tu honestidad, incluso cuando es difícil.</li>
+                        <li>Me encanta tu risa contagiosa.</li>
+                        <li>Me encanta cómo me escuchas de verdad.</li>
+                        <li>Me encanta tu inteligencia que me desafía.</li>
+                        <li>Me encanta tu compasión hacia los demás.</li>
+                        <li>Me encanta tu fortaleza ante las dificultades.</li>
+                        <li>Me encanta tu vulnerabilidad cuando te abres conmigo.</li>
+                        <li>Me encanta cómo defiendes tus convicciones.</li>
+                        <li>Me encanta tu creatividad sin límites.</li>
+                        <li>Me encanta tu forma única de ver el mundo.</li>
+                        <li>Me encanta cómo me haces sentir seguro.</li>
+                        <li>Me encanta tu voz, especialmente cuando estás adormilada.</li>
+                        <li>Me encanta cómo recuerdas los pequeños detalles.</li>
+                        <li>Me encanta tu paciencia conmigo.</li>
+                        <li>Me encanta tu determinación para alcanzar tus metas.</li>
+                        <li>Me encanta cómo me inspiras a ser mejor.</li>
+                        <li>Me encanta tu generosidad desinteresada.</li>
+                        <li>Me conmueve cómo me acompañaste en mis días de agonía, siempre ahí, sin pedir nada a cambio..</li>
+                        <li>Me encanta tu capacidad para perdonar.</li>
+                        <li>Me encanta tu autenticidad, nunca pretendes ser quien no eres.</li>
+                        <li>Me encanta tu carita tan perfecta.</li>
+                        <li>Me encanta cómo te emocionas por las cosas pequeñas.</li>
+                        <li>Me encanta tu lealtad inquebrantable.</li>
+                        <li>Me encanta cómo me apoyas en mis sueños.</li>
+                        <li>Me encanta tu optimismo.</li>
+                        <li>Me encanta tu sensibilidad hacia la belleza.</li>
+                        <li>Me encanta cómo me entiendes sin necesidad de palabras.</li>
+                        <li>Me encanta tu capacidad para adaptarte a los cambios.</li>
+                        <li>Me encanta tu valentía para enfrentar tus miedos.</li>
+                        <li>Me encanta cómo me aceptas con todos mis defectos.</li>
+                        <li>Me encanta tu sentido del humor único.</li>
+                        <li>Me encanta tu empatía hacia el sufrimiento ajeno.</li>
+                        <li>Me encanta cómo me sorprendes constantemente.</li>
+                        <li>Me encanta tu sinceridad, incluso cuando duele.</li>
+                        <li>Me encanta tu capacidad para ver lo bueno en todos.</li>
+                        <li>Me encanta cómo haces que contigo todo sea especial.</li>
+                        <li>Me encanta tu pasión por aprender cosas nuevas.</li>
+                        <li>Me encanta cómo respetas mis espacios y tiempos.</li>
+                        <li>Me encanta tu forma de expresar tus sentimientos.</li>
+                        <li>Me encanta tu capacidad para escuchar sin juzgar.</li>
+                        <li>Me encanta cómo me haces sentir valorado.</li>
+                        <li>Me encanta tu intuición que tantas veces acierta.</li>
+                        <li>Me encanta tu forma de cuidar a quienes amas.</li>
+                        <li>Me encanta tus ojos que brillan con el sol.</li>
+                        <li>Me encanta tu capacidad para disfrutar el presente.</li>
+                        <li>Me encanta tu forma de ver posibilidades donde otros ven problemas.</li>
+                        <li>Me encanta cómo me has enseñado a amar mejor.</li>
+                        <li>Me encanta tu forma de expresar cariño en los detalles.</li>
+                        <li>Me encanta tu capacidad para perdonarte a ti misma.</li>
+                        <li>Me encanta cómo me haces sentir en casa, estés donde estés.</li>
+                        <li>Me encanta que me hables de ti.</li>
+                        <li>Me encanta tu capacidad para encontrar soluciones creativas.</li>
+                        <li>Me encanta escucharte cantar.</li>
+                        <li>Me encanta tu forma de escuchar nuestras canciones favoritas.</li>
+                        <li>Me encanta cómo te brillan los ojos cuando hablamos de nuestro futuro.</li>
+                        <li>Me encanta tu capacidad para hacerme sentir especial.</li>
+                        <li>Me encanta cómo te despiertas cada mañana.</li>
+                        <li>Me encanta tu forma de recordar nuestros momentos especiales.</li>
+                        <li>Me encanta cómo me haces reír con tus ocurrencias.</li>
+                        <li>Me encanta tu manera de ver belleza en lo cotidiano.</li>
+                        <li>Me encanta tu forma de expresar tus ideas.</li>
+                        <li>Me encanta cómo me has enseñado a ser más paciente.</li>
+                        <li>Me encanta tu capacidad para perdonar errores.</li>
+                        <li>Me encanta cómo me siento contigo.</li>
+                        <li>Me encanta tu forma de soñar en grande.</li>
+                        <li>Me encanta cómo me haces sentir comprendido.</li>
+                        <li>Me encanta tu manera de resolver conflictos.</li>
+                        <li>Me encanta cómo me has enseñado a comunicarme mejor.</li>
+                        <li>Me encanta tu forma de mostrar cariño.</li>
+                        <li>Me encanta cómo me haces sentir importante.</li>
+                        <li>Me encanta tu capacidad para disfrutar los pequeños momentos.</li>
+                        <li>Me encanta cómo me has ayudado a crecer como persona.</li>
+                        <li>Me encanta tu forma de expresar tus emociones.</li>
+                        <li>Me encanta cómo me haces sentir amado cada día.</li>
+                        <li>Me encanta tu manera de ver lo positivo en cada situación.</li>
+                        <li>Me encanta cómo me has enseñado a valorar lo importante.</li>
+                        <li>Me encanta tu forma de escuchar mis problemas.</li>
+                        <li>Me encanta cómo me das consejos sin imponerlos.</li>
+                        <li>Me encanta tu capacidad para hacerme sonreír.</li>
+                        <li>Me encanta cómo me has enseñado a amar sin condiciones.</li>
+                        <li>Me encanta tu forma de compartir tus sueños conmigo.</li>
+                        <li>Me encanta cómo me haces sentir que puedo lograr cualquier cosa.</li>
+                        <li>Me encanta tu manera de apoyarme en mis decisiones.</li>
+                        <li>Me encanta cómo me has enseñado a ser más fuerte.</li>
+                        <li>Me encanta tu forma de expresar tu amor en cada video llamada.</li>
+                        <li>Me encanta cómo me haces sentir que soy suficiente.</li>
+                        <li>Me encanta tu manera de escuchar sin interrumpir.</li>
+                        <li>Me encanta cómo me has enseñado a disfrutar más la vida.</li>
+                        <li>Me encanta tu forma de recordarme lo que valgo.</li>
+                        <li>Me encanta cómo me haces sentir seguro de mí mismo.</li>
+                        <li>Me encanta tu manera de compartir tus logros conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más empático.</li>
+                        <li>Me encanta tu forma de expresar orgullo por mí.</li>
+                        <li>Me encanta cómo me haces sentir que pertenezco a tu vida.</li>
+                        <li>Me encanta tu manera de respetar mis opiniones.</li>
+                        <li>Me encanta cómo me has enseñado a escuchar mejor.</li>
+                        <li>Me encanta tu forma de compartir tus miedos conmigo.</li>
+                        <li>Me encanta cómo me haces sentir que juntos podemos con todo.</li>
+                        <li>Me encanta tu manera de mostrar interés en mis pasiones.</li>
+                        <li>Me encanta tu amor por Dios.</li>
+                        <li>Me encanta tu forma de expresar tu admiración.</li>
+                        <li>Me encanta cómo me haces sentir que soy parte de algo especial.</li>
+                        <li>Me encanta tu manera de compartir tu tiempo conmigo.</li>
+                        <li>Me encanta escuchar tus anécdotas.</li>
+                        <li>Me encanta tu forma de expresar tu confianza en mí.</li>
+                        <li>Me encanta cómo me haces sentir que nunca estoy solo.</li>
+                        <li>Me encanta tu manera de compartir tus alegrías conmigo.</li>
+                        <li>Me encanta cómo te sonrojas.</li>
+                        <li>Me encanta tu forma de expresar tu preocupación por mí.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu prioridad.</li>
+                        <li>Me encanta tu manera de compartir tus tristezas conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más resiliente.</li>
+                        <li>Me encanta tu forma de expresar tu gratitud.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu confidente.</li>
+                        <li>Me encanta tu manera de compartir tus esperanzas conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más reflexivo.</li>
+                        <li>Me encanta tu forma de expresar tu felicidad cuando hablamos.</li>
+                        <li>Me encanta cómo me haces sentir que soy importante en tu vida.</li>
+                        <li>Me encanta tu manera de compartir tus pensamientos más profundos.</li>
+                        <li>Me encanta cómo me has enseñado a ser más auténtico.</li>
+                        <li>Me encanta tu forma de expresar tu entusiasmo.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu persona favorita.</li>
+                        <li>Me encanta tu manera de compartir tus victorias conmigo.</li>
+                        <li>Me encanta todos los recuerdos que me hacen escribir esto.</li>
+                        <li>Me encanta tu forma de expresar tu apoyo incondicional.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu mejor amigo.</li>
+                        <li>Me encanta tu manera de compartir tus descubrimientos conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a valorar cada momento juntos.</li>
+                        <li>Me encanta tu forma de expresar tu cariño en cada mensaje.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu compañero de vida.</li>
+                        <li>Me encanta tu manera de compartir tus reflexiones conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más comprometido.</li>
+                        <li>Me encanta tu forma de expresar tu ilusión por vernos.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu refugio.</li>
+                        <li>Me encanta tu manera de compartir tus secretos conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más detallista.</li>
+                        <li>Me encanta tu forma de expresar tu ternura.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu inspiración.</li>
+                        <li>Me encanta tu manera de compartir tus anhelos conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más considerado.</li>
+                        <li>Me encanta tu forma de expresar tu complicidad conmigo.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu puerto seguro.</li>
+                        <li>Me encanta tu manera de compartir tu día a día conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más atento.</li>
+                        <li>Me encanta tu forma de expresar tu fascinación por nuestras conversaciones.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu cómplice.</li>
+                        <li>Me encanta tu manera de compartir tus proyectos conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más dedicado.</li>
+                        <li>Me encanta tu forma de expresar tu alegría cuando me escuchas.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu confidente perfecto.</li>
+                        <li>Me encanta tu manera de compartir tus ideas conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más amoroso.</li>
+                        <li>Me encanta tu forma de expresar tu entrega.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu persona especial.</li>
+                        <li>Me encanta tu manera de compartir tus lecturas conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más constante.</li>
+                        <li>Me encanta tu forma de expresar tu interés por mi bienestar.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu favorito.</li>
+                        <li>Me encanta tu manera de compartir tus canciones favoritas conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más expresivo.</li>
+                        <li>Me encanta tu forma de expresar tu devoción.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu todo.</li>
+                        <li>Me encanta tu manera de compartir tus experiencias conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más cariñoso.</li>
+                        <li>Me encanta tu forma de expresar tu fascinación por nuestra conexión.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu alma gemela.</li>
+                        <li>Me encanta tu manera de compartir tus fotografías conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más romántico.</li>
+                        <li>Me encanta tu forma de expresar tu admiración por mis esfuerzos.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu destino.</li>
+                        <li>Me encanta tu manera de compartir tus recuerdos conmigo.</li>
+                        <li>Me encanta cómo me has enseñado a ser más sincero.</li>
+                        <li>Me encanta tu forma de expresar tu fascinación por nuestro futuro.</li>
+                        <li>Me encanta cómo me haces sentir que soy tu presente y tu futuro.</li>
+                        <li>Me encanta tu manera de compartir tu corazón conmigo cada día.</li>
+                        <li>Me encanta cómo me has enseñado que el amor verdadero existe.</li>
+                        <li>Me encanta tu forma de expresar tu amor en cada buenas noches.</li>
+                        <li>Me encanta, simplemente, todo lo que eres.</li>
+                    </ul>
+                    
+                    <div class="quote">
+                        Podría seguir escribiendo razones por las que me encantas hasta que se acaben las estrellas en el cielo, porque cada día descubro una nueva faceta tuya que me enamora.
+                    </div>
+                    
+                    <p>Y la razón número 201, la más importante de todas: me encanta cómo me has enseñado a amar de una forma que nunca creí posible, profunda, sincera y completamente.</p>
+                    
+                    <div class="page-number">4</div>
+                </div>
+            </div>
+            
+
+            <div class="page" id="page-5">
+                <div class="page-content">
+                    <div class="chapter-number">Epílogo</div>
+                    <h1>Nuestro Capítulo Continúa</h1>
+                    
+                    <p><span class="first-letter">E</span>ste libro digital es solo un pequeño fragmento de nuestra historia. Una historia que comenzó con un mensaje inesperado y que continúa escribiéndose cada día, con cada palabra compartida, con cada video llamada, con cada noche que dormimos conectados a pesar de la distancia.</p>
+                    
+                    <p>Lo que tenemos es especial, una conexión que trasciende lo físico y se ancla en lo más profundo de nuestras almas. Hemos creado nuestro propio universo digital, un espacio donde la distancia no existe, donde nuestros corazones laten al mismo ritmo aunque estén separados por kilómetros.</p>
+                    
+                    <div class="quote">
+                        "El amor verdadero no es encontrar a alguien con quien vivir, sino encontrar a alguien sin quien no puedes vivir."
+                    </div>
+                    
+                    <p>Y yo he encontrado eso contigo. Has transformado mi mundo, has llenado de color días que antes eran grises, has dado sentido a momentos que antes parecían vacíos. Cada mensaje tuyo es un regalo, cada llamada un tesoro, cada momento compartido un recuerdo que atesoro.</p>
+                    
+                    <p>Este libro no tiene un final, porque nuestra historia continúa escribiéndose. Cada día añadimos un nuevo capítulo, una nueva aventura, un nuevo motivo para amarnos más. Y espero con ansias todos los capítulos que nos quedan por escribir juntos.</p>
+                    
+                    <p>Gracias por ser exactamente quien eres. Gracias por permitirme ser parte de tu vida. Gracias por cada sonrisa, por cada lágrima compartida, por cada secreto confiado.</p>
+                    
+                    <p>Te quiero hoy, te amaré mañana, y todos los días que vengan después.</p>
+                    
+                    <div class="dedication" style="margin-top: 50px;">
+                        Con todo mi amor,<br>
+                        Para ti, mi amor digital, mi amor real, mi amor eterno.
+                    </div>
+                    
+                    <div class="page-number">5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <button id="prev-btn" class="nav-button" disabled>Página Anterior</button>
+        <div class="page-indicator">Página <span id="current-page">1</span> de <span id="total-pages">6</span></div>
+        <button id="next-btn" class="nav-button">Página Siguiente</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const book = document.getElementById('book');
+            const pages = document.querySelectorAll('.page');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const currentPageSpan = document.getElementById('current-page');
+            const totalPagesSpan = document.getElementById('total-pages');
+            
+            let currentPage = 0;
+            const totalPages = pages.length;
+            
+            totalPagesSpan.textContent = totalPages;
+            
+            function updatePage() {
+                pages.forEach((page, index) => {
+                    page.classList.remove('active');
+                    page.classList.remove('flipped');
+                    
+                    if (index < currentPage) {
+                        page.classList.add('flipped');
+                    } else if (index === currentPage) {
+                        page.classList.add('active');
+                    }
+                });
+                
+                currentPageSpan.textContent = currentPage + 1;
+                
+                prevBtn.disabled = currentPage === 0;
+                nextBtn.disabled = currentPage === totalPages - 1;
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentPage > 0) {
+                    currentPage--;
+                    updatePage();
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentPage < totalPages - 1) {
+                    currentPage++;
+                    updatePage();
+                }
+            });
+            
+        
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' && currentPage > 0) {
+                    currentPage--;
+                    updatePage();
+                } else if (e.key === 'ArrowRight' && currentPage < totalPages - 1) {
+                    currentPage++;
+                    updatePage();
+                }
+            });
+            
+       
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            document.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+            
+            document.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                if (touchEndX + swipeThreshold < touchStartX && currentPage < totalPages - 1) {
+                
+                    currentPage++;
+                    updatePage();
+                } else if (touchEndX > touchStartX + swipeThreshold && currentPage > 0) {
+                   
+                    currentPage--;
+                    updatePage();
+                }
+            }
+            
+          
+            updatePage();
+        });
+    </script>
+</body>
+</html>
