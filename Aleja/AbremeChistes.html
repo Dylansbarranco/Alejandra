@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Hacerte Sonreír 😊</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8bbd0 0%, #bbdefb 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #e83e8c;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+        
+        p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .message-box {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.3rem;
+            color: #e83e8c;
+            border: 2px dashed #f8bbd0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: float-up 4s linear forwards;
+            z-index: 1;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(100%) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .emoji-rain {
+            position: fixed;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            display: none;
+        }
+        
+        .emoji {
+            position: absolute;
+            font-size: 2rem;
+            animation: fall linear forwards;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .category-btn {
+            background: linear-gradient(45deg, #a1c4fd 0%, #c2e9fb 100%);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .category-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .surprise-box {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+        
+        .surprise-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 80%;
+            text-align: center;
+            position: relative;
+        }
+        
+        .close-surprise {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #e83e8c;
+        }
+        
+        .surprise-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .special-message {
+            font-size: 1.2rem;
+            color: #e83e8c;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f8bbd0;
+            animation: confetti-fall linear forwards;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Para Hacerte Sonreír</h1>
+        <p>Hola Alejandra, sé que estás aburrida, así que hice esto para sacarte una sonrisa 😊</p>
+        
+        <div class="message-box" id="messageBox">
+            Haz clic en un botón para ver un mensaje especial...
+        </div>
+        
+        <div class="button-container">
+            <button class="category-btn" data-category="cumplidos">Cumplidos</button>
+            <button class="category-btn" data-category="chistes">Chistes</button>
+            <button class="category-btn" data-category="razones">Razones</button>
+            <button class="category-btn" data-category="recuerdos">Recuerdos</button>
+        </div>
+        
+        <button class="btn" id="surpriseBtn">¡SORPRESA ESPECIAL!</button>
+    </div>
+    
+    <div class="emoji-rain" id="emojiRain"></div>
+    
+    <div class="surprise-box" id="surpriseBox">
+        <div class="surprise-content">
+            <span class="close-surprise" id="closeSurprise">&times;</span>
+            <h2>¡Una Sorpresa Para Ti!</h2>
+            <p>Porque mereces todo lo bonito del mundo...</p>
+            <div class="surprise-image">
+                <img src="https://i.pinimg.com/736x/72/18/d6/7218d690e4616bf25873178080a8b725.jpg" alt="Corazón" width="300">
+            </div>
+            <div class="special-message">
+                Nunca olvides lo especial que eres y cuánto significas para mí. ¡Te quiero muchísimo! ❤️😍
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Elementos del DOM
+        const messageBox = document.getElementById('messageBox');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const surpriseBtn = document.getElementById('surpriseBtn');
+        const surpriseBox = document.getElementById('surpriseBox');
+        const closeSurprise = document.getElementById('closeSurprise');
+        const emojiRain = document.getElementById('emojiRain');
+        
+        // Mensajes por categoría
+        const messages = {
+            cumplidos: [
+                "Tu sonrisa ilumina hasta el día más oscuro. ¡Es mi favorita en todo el mundo!",
+                "Eres tan hermosa por dentro como por fuera, y eso te hace única.",
+                "Tu forma de ver el mundo me inspira a ser mejor persona cada día.",
+                "Admiro tu fortaleza y cómo enfrentas los desafíos con tanta valentía.",
+                "Tu inteligencia, forma de pensar me deja sin palabras.",
+                "Tienes el don de hacer sentir especial a cualquiera que esté a tu lado.",
+                "Eres el pensamiento más bonito que tengo cada mañana al despertar y claro, al irme a dormir.",
+                "Tu risa es mi sonido favorito en todo el universo.",
+                "Me distraigo muy facil viendote cuando estamos en video llamada.",
+                "Eres el sueño que nunca supe que tenía hasta que te conocí.",
+                "Eres esa oracion que nunca hice, pero aqui estas, te quiero mucho ❤️"
+            ],
+            chistes: [
+                "¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter 🐦",
+                "¿Qué le dice un pez a otro? Nada 🐠",
+                "¿Sabes por qué no se puede confiar en los árboles? Porque tienen muchas ramas 🌳",
+                "¿Qué hace una abeja en el gimnasio? ¡Zum-ba! 🐝",
+                "¿Por qué las focas del circo miran hacia arriba? Porque es donde están los focos 🎪",
+                "¿Cómo se llama el campeón de buceo japonés? Tokofondo 🏊‍♂️",
+                "¿Qué le dice un semáforo a otro? No me mires que me estoy cambiando 🚦",
+                "¿Por qué los esqueletos no pelean entre ellos? Porque no tienen agallas ☠️",
+                "¿Qué hace una vaca cuando se ríe? Leche con chocolate, porque se le sacude el Nesquik 🐄",
+                "¿Qué le dice un jaguar a otro jaguar? Jaguar you 🐆"
+            ],
+            razones: [
+                "Me encanta cómo sonríes cuando estás feliz.",
+                "Me encanta cómo tus ojos brillan cuando me miras.",
+                "Me encanta la forma en que dices mi nombre.",
+                "Me encanta tu honestidad, incluso cuando es difícil.",
+                "Me encanta tu risa contagiosa.",
+                "Me encanta cómo me escuchas de verdad.",
+                "Me encanta tu inteligencia que me desafía.",
+                "Me encanta tu y solo  tu.",
+                "Me encanta como me hacer ser.",
+                "Me encanta tu vulnerabilidad cuando te abres conmigo."
+            ],
+            recuerdos: [
+                "¿Recuerdas nuestra primera conversación? Yo la guardo como un tesoro.",
+                "Nunca olvidare ese 22 de abril cuando hicimos llamada por primera vez.",
+                "Pienso mucho en ese dia que nos abrimos por primera vez.",
+                "Atesoro cada mensaje que me has enviado, especialmente cuando más lo necesitaba.",
+                "Siempre sonrío al recordar cómo nos empezamos a conocer",
+                "Ese dia que hicismo racha por tick tock.",
+                "Las horas hablando contigo pasan volando, y cada una es un recuerdo precioso.",
+                "Cuando pienso en momentos felices, tú estás en la mayoría de ellos.",
+                "Nunca olvidare que eres un tomate.",
+                "Cada recuerdo contigo es como una estrella en mi cielo personal."
+            ]
+        };
+        
+        // Emojis para la lluvia
+        const emojis = ["❤️", "😊", "🥰", "💕", "💖", "✨", "🌟", "💫", "🎵", "🎶", "🦋", "🌈", "🌺", "🌸", "🍭"];
+        
+        // Colores para los confetis
+        const confettiColors = [
+            "#ff9a9e", "#fad0c4", "#e83e8c", "#ff5e94", "#f8bbd0", 
+            "#a1c4fd", "#c2e9fb", "#ffecd2", "#fcb69f", "#fd868c"
+        ];
+        
+        // Evento para los botones de categoría
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.dataset.category;
+                const messageList = messages[category];
+                const randomMessage = messageList[Math.floor(Math.random() * messageList.length)];
+                
+                // Mostrar el mensaje
+                messageBox.innerHTML = randomMessage;
+                
+                // Crear corazones flotantes
+                createFloatingHearts();
+                
+                // Cambiar color del mensaje según la categoría
+                switch(category) {
+                    case 'cumplidos':
+                        messageBox.style.color = '#e83e8c';
+                        break;
+                    case 'chistes':
+                        messageBox.style.color = '#4a148c';
+                        break;
+                    case 'razones':
+                        messageBox.style.color = '#0277bd';
+                        break;
+                    case 'recuerdos':
+                        messageBox.style.color = '#00695c';
+                        break;
+                }
+            });
+        });
+        
+        // Evento para el botón de sorpresa
+        surpriseBtn.addEventListener('click', function() {
+            surpriseBox.style.opacity = 1;
+            surpriseBox.style.pointerEvents = 'auto';
+            
+            // Crear lluvia de emojis
+            startEmojiRain();
+            
+            // Crear confeti
+            createConfetti();
+        });
+        
+        // Cerrar la sorpresa
+        closeSurprise.addEventListener('click', function() {
+            surpriseBox.style.opacity = 0;
+            surpriseBox.style.pointerEvents = 'none';
+            
+            // Detener lluvia de emojis
+            emojiRain.style.display = 'none';
+            emojiRain.innerHTML = '';
+        });
+        
+        // Función para crear corazones flotantes
+        function createFloatingHearts() {
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('floating-heart');
+                    heart.innerHTML = '❤️';
+                    
+                    // Posición aleatoria
+                    const leftPos = Math.random() * 100;
+                    heart.style.left = leftPos + '%';
+                    
+                    // Tamaño aleatorio
+                    const size = Math.random() * 1 + 0.5;
+                    heart.style.fontSize = size + 'rem';
+                    
+                    // Duración aleatoria
+                    const duration = Math.random() * 3 + 2;
+                    heart.style.animationDuration = duration + 's';
+                    
+                    messageBox.appendChild(heart);
+                    
+                    // Eliminar después de la animación
+                    setTimeout(() => {
+                        if (heart.parentNode === messageBox) {
+                            messageBox.removeChild(heart);
+                        }
+                    }, duration * 1000);
+                }, i * 300);
+            }
+        }
+        
+        // Función para iniciar la lluvia de emojis
+        function startEmojiRain() {
+            emojiRain.style.display = 'block';
+            emojiRain.innerHTML = '';
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createEmojiDrop();
+                }, i * 200);
+            }
+        }
+        
+        // Función para crear una gota de emoji
+        function createEmojiDrop() {
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            
+            // Emoji aleatorio
+            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.innerHTML = randomEmoji;
+            
+            // Posición aleatoria
+            const leftPos = Math.random() * 100;
+            emoji.style.left = leftPos + '%';
+            
+            // Tamaño aleatorio
+            const size = Math.random() * 1 + 1;
+            emoji.style.fontSize = size + 'rem';
+            
+            // Duración aleatoria
+            const duration = Math.random() * 3 + 3;
+            emoji.style.animationDuration = duration + 's';
+            
+            // Retraso aleatorio
+            const delay = Math.random() * 5;
+            emoji.style.animationDelay = delay + 's';
+            
+            emojiRain.appendChild(emoji);
+            
+            // Eliminar después de la animación
+            setTimeout(() => {
+                if (emoji.parentNode === emojiRain) {
+                    emojiRain.removeChild(emoji);
+                }
+            }, (duration + delay) * 1000);
+        }
+        
+        // Función para crear confeti
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    
+                    // Posición aleatoria
+                    const leftPos = Math.random() * 100;
+                    confetti.style.left = leftPos + '%';
+                    
+                    // Tamaño aleatorio
+                    const size = Math.random() * 8 + 5;
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    
+                    // Color aleatorio
+                    const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                    confetti.style.backgroundColor = color;
+                    
+                    // Forma aleatoria
+                    const shapes = ['circle', 'square', 'rectangle'];
+                    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                    
+                    if (shape === 'circle') {
+                        confetti.style.borderRadius = '50%';
+                    } else if (shape === 'rectangle') {
+                        confetti.style.width = size * 2 + 'px';
+                    }
+                    
+                    // Duración aleatoria
+                    const duration = Math.random() * 3 + 2;
+                    confetti.style.animationDuration = duration + 's';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    // Eliminar después de la animación
+                    setTimeout(() => {
+                        if (confetti.parentNode === document.body) {
+                            document.body.removeChild(confetti);
+                        }
+                    }, duration * 1000);
+                }, i * 50);
+            }
+        }
+        
+        // Crear algunos corazones flotantes al cargar la página
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                createFloatingHearts();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Primer Mes Juntos ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #e94057;
+            --secondary: #8a2387;
+            --light: #f9f9f9;
+            --dark: #333;
+            --accent: #f27121;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background: linear-gradient(to right, #8a2387, #e94057, #f27121);
+            color: white;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .counter {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .counter-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .counter-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .counter-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .counter-value {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .counter-label {
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(to bottom, #8a2387, #e94057, #f27121);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.5s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .timeline-text {
+            line-height: 1.6;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -12px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+        
+        .timeline-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .letter {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .letter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f27121' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+            border-radius: 15px;
+            z-index: -1;
+        }
+        
+        .letter-content {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: var(--dark);
+            text-align: center;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            text-align: right;
+            margin-top: 30px;
+            color: var(--primary);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .heart-animation {
+            position: fixed;
+            font-size: 2rem;
+            animation: float-up 4s ease-in-out forwards;
+            z-index: 100;
+            pointer-events: none;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            z-index: 100;
+            font-size: 1.5rem;
+        }
+        
+        .special-moments {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .moments-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .moments-list li {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 40px;
+            line-height: 1.6;
+        }
+        
+        .moments-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .moments-list li::before {
+            content: '❤️';
+            position: absolute;
+            left: 10px;
+            top: 15px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+        
+        .heart-icon {
+            color: var(--primary);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .distance-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .distance-map {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .location {
+            text-align: center;
+            width: 150px;
+        }
+        
+        .location-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .location-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .distance-line {
+            flex-grow: 1;
+            height: 3px;
+            background: linear-gradient(to right, #8a2387, #e94057, #f27121);
+            position: relative;
+            margin: 0 20px;
+        }
+        
+        .distance-line::before {
+            content: '❤️';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .distance-text {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .connection-ways {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .connection-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            width: 150px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .connection-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .connection-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .connection-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .connection-text {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .promises-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .promises-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .promise-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .promise-item::before {
+            content: '🤙';
+            position: absolute;
+            left: 15px;
+            top: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .promise-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .promise-text {
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd)::after,
+            .timeline-item:nth-child(even)::after {
+                left: 18px;
+            }
+            
+            .distance-map {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .distance-line {
+                width: 3px;
+                height: 100px;
+                margin: 20px 0;
+            }
+            
+            .distance-text {
+                bottom: auto;
+                left: 100%;
+                top: 50%;
+                transform: translateY(-50%);
+                margin-left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Nuestro Primer Mes Juntos</h1>
+            <p class="subtitle">Celebrando 30 días de amor, a pesar de la distancia</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="counter">
+            <h3 class="counter-title">Hemos estado juntos exactamente:</h3>
+            <div class="counter-numbers">
+                <div class="counter-item">
+                    <span class="counter-value" id="days">30</span>
+                    <span class="counter-label">Días</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-value" id="hours">0</span>
+                    <span class="counter-label">Horas</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-value" id="minutes">0</span>
+                    <span class="counter-label">Minutos</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-value" id="seconds">0</span>
+                    <span class="counter-label">Segundos</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="distance-section">
+            <h2>Amor a Distancia</h2>
+            <p>La distancia es solo un número, nuestro amor no conoce límites.</p>
+            
+            <div class="distance-map">
+                <div class="location">
+                    <div class="location-icon">📍</div>
+                    <div class="location-name">Mi Ciudad</div>
+                    <div class="location-detail">Valledupaar</div>
+                </div>
+                
+                <div class="distance-line">
+                    <div class="distance-text"> 449 Kilómetros de distancia, pero 0 cm entre corazones</div>
+                </div>
+                
+                <div class="location">
+                    <div class="location-icon">📍</div>
+                    <div class="location-name">Tu Ciudad</div>
+                    <div class="location-detail">Bucaramanga</div>
+                </div>
+            </div>
+            
+            <p>Aunque estemos separados físicamente, nuestros corazones están más cerca que nunca.</p>
+            
+            <div class="connection-ways">
+                <div class="connection-item">
+                    <div class="connection-icon">📱</div>
+                    <div class="connection-title">Llamadas</div>
+                    <div class="connection-text">Escuchar tu voz hace que la distancia desaparezca</div>
+                </div>
+                
+                <div class="connection-item">
+                    <div class="connection-icon">💌</div>
+                    <div class="connection-title">Mensajes</div>
+                    <div class="connection-text">Cada mensaje tuyo ilumina mi día</div>
+                </div>
+                
+                <div class="connection-item">
+                    <div class="connection-icon">📹</div>
+                    <div class="connection-title">Videollamadas</div>
+                    <div class="connection-text">Ver tu sonrisa es mi momento favorito</div>
+                </div>
+                
+                <div class="connection-item">
+                    <div class="connection-icon">💭</div>
+                    <div class="connection-title">Pensamientos</div>
+                    <div class="connection-text">Siempre estás en mi mente</div>
+                </div>
+            </div>
+        </div>
+        
+        <h2>Nuestro Viaje Juntos</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">13 de Abril, 2025</div>
+                    <h3 class="timeline-title">El día que comenzamos</h3>
+                    <img src="/placeholder.svg?height=200&width=400" alt="Primer día juntos" class="timeline-image">
+                    <p class="timeline-text">El día que oficialmente comenzamos nuestra relación a distancia. Recuerdo cada palabra, cada promesa y cómo mi corazón latía tan fuerte que pensé que podías escucharlo a través de la pantalla.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">20 de Abril, 2025</div>
+                    <h3 class="timeline-title">Nuestra primera semana</h3>
+                    <img src="/placeholder.svg?height=200&width=400" alt="Primera semana" class="timeline-image">
+                    <p class="timeline-text">Una semana llena de videollamadas, mensajes y sonrisas. Cada día descubriendo algo nuevo que me encanta de ti, a pesar de los kilómetros que nos separan.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">27 de Abril, 2025</div>
+                    <h3 class="timeline-title">Dos semanas de amor</h3>
+                    <img src="/placeholder.svg?height=200&width=400" alt="Dos semanas juntos" class="timeline-image">
+                    <p class="timeline-text">Cada día contigo, aunque sea a través de una pantalla, es una aventura. Me encanta cómo nos reímos juntos, cómo compartimos nuestros sueños y cómo nos apoyamos mutuamente.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">4 de Mayo, 2025</div>
+                    <h3 class="timeline-title">Tres semanas de felicidad</h3>
+                    <img src="/placeholder.svg?height=200&width=400" alt="Tres semanas juntos" class="timeline-image">
+                    <p class="timeline-text">Cada día me enamoro más de ti. De tu forma de ser, de tu sonrisa, de cómo me haces sentir. La distancia solo ha fortalecido lo que sentimos.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">13 de Mayo, 2025</div>
+                    <h3 class="timeline-title">¡Nuestro primer mes!</h3>
+                    <img src="/placeholder.svg?height=200&width=400" alt="Primer mes juntos" class="timeline-image">
+                    <p class="timeline-text">Un mes que ha pasado volando pero que ha estado lleno de momentos inolvidables, a pesar de la distancia. Este es solo el comienzo de nuestra hermosa historia juntos.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="letter">
+            <h2>Para Mi Amor en la Distancia</h2>
+            <div class="letter-content">
+                <p>Querida Alejandra,</p>
+                <p>Hoy celebramos nuestro primer mes juntos, y aunque nos separan kilómetros, quiero que sepas que nunca te he sentido tan cerca de mi corazón.</p>
+                <p>Estos 30 días han sido los más felices de mi vida. Cada videollamada, cada mensaje, cada momento compartido aunque sea a través de una pantalla, es un tesoro que guardo en mi corazón.</p>
+                <p>La distancia nos ha enseñado a valorar cada segundo juntos, a comunicarnos mejor, y a fortalecer nuestro amor de maneras que nunca imaginé.</p>
+                <p>Me encanta descubrir cada día algo nuevo de ti, compartir nuestros sueños, reírnos juntos, y construir poco a poco nuestra historia de amor que trasciende fronteras.</p>
+                <p>Gracias por elegirme, por tu paciencia, por tu cariño, y por hacer que cada día valga la pena a pesar de la distancia. No cambiaría nada de ti ni de lo que tenemos.</p>
+                <p>Este es solo el primero de muchos meses que celebraremos juntos. Te prometo que la distancia será solo temporal, y que nuestro amor seguirá creciendo cada día.</p>
+                <p>Te quiero más de lo que las palabras pueden expresar, sin importar cuántos kilómetros nos separen.</p>
+                <div class="signature">Con todo mi amor</div>
+            </div>
+        </div>
+        
+        <div class="promises-section">
+            <h2>Mis Promesas Para Ti</h2>
+            <p>A pesar de la distancia, estas son mis promesas para nuestro futuro juntos:</p>
+            
+            <ul class="promises-list">
+                <li class="promise-item">
+                    <div class="promise-title">Siempre estaré para ti</div>
+                    <div class="promise-text">Sin importar la hora o el día, siempre estaré disponible cuando me necesites. La distancia no será un obstáculo para estar presente en tu vida.</div>
+                </li>
+                <li class="promise-item">
+                    <div class="promise-title">Comunicación honesta</div>
+                    <div class="promise-text">Prometo siempre ser honesto y abierto contigo, compartir mis sentimientos y escuchar los tuyos con atención y respeto.</div>
+                </li>
+                <li class="promise-item">
+                    <div class="promise-title">Trabajar por nuestro futuro</div>
+                    <div class="promise-text">Prometo trabajar cada día para construir un futuro donde la distancia sea solo un recuerdo y podamos estar juntos físicamente.</div>
+                </li>
+                <li class="promise-item">
+                    <div class="promise-title">Paciencia y comprensión</div>
+                    <div class="promise-text">Prometo ser paciente con los desafíos de la distancia y comprender que a veces será difícil, pero siempre valdrá la pena.</div>
+                </li>
+                <li class="promise-item">
+                    <div class="promise-title">Hacerte sonreír cada día</div>
+                    <div class="promise-text">Prometo encontrar formas de hacerte sonreír y sentir especial cada día, sin importar cuántos kilómetros nos separen.</div>
+                </li>
+            </ul>
+        </div>
+        
+        <h2>Momentos Especiales a Distancia</h2>
+        
+        <div class="special-moments">
+            <ul class="moments-list">
+                <li>Nuestra primera videollamada como novios y cómo no podíamos dejar de sonreír.</li>
+                <li>Esa vez que hablamos por teléfono hasta las 3 de la mañana sin darnos cuenta del tiempo.</li>
+                <li>Cuando te envié ese mensaje sorpresa que te hizo sonreír en un día difícil.</li>
+                <li>Nuestro primer "te quiero" a través de la pantalla y cómo sentí que mi corazón iba a explotar de felicidad.</li>
+                <li>Las largas conversaciones donde compartimos nuestros sueños y planes para cuando estemos juntos físicamente.</li>
+                <li>Esos mensajes de buenos días y buenas noches que nunca faltan, sin importar lo ocupados que estemos.</li>
+                <li>Cuando vimos esa película "juntos" a la distancia, comentando cada escena como si estuviéramos en la misma habitación.</li>
+                <li>Nuestras risas incontrolables por las tonterías que decimos en nuestras videollamadas.</li>
+                <li>Los pequeños detalles virtuales que nos enviamos para demostrar cuánto nos importamos.</li>
+                <li>Cada "te extraño" que, aunque duele, nos recuerda lo especial que es lo que tenemos y lo que valdrá la pena cuando finalmente estemos juntos.</li>
+            </ul>
+        </div>
+        
+        <h2>Nuestra Galería Virtual</h2>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="/placeholder.svg?height=200&width=250" alt="Captura de pantalla de videollamada" class="gallery-image">
+            </div>
+            <div class="gallery-item">
+                <img src="/placeholder.svg?height=200&width=250" alt="Selfie enviada por mensaje" class="gallery-image">
+            </div>
+            <div class="gallery-item">
+                <img src="/placeholder.svg?height=200&width=250" alt="Momento especial virtual" class="gallery-image">
+            </div>
+            <div class="gallery-item">
+                <img src="/placeholder.svg?height=200&width=250" alt="Mensaje especial" class="gallery-image">
+            </div>
+            <div class="gallery-item">
+                <img src="/placeholder.svg?height=200&width=250" alt="Collage de momentos" class="gallery-image">
+            </div>
+            <div class="gallery-item">
+                <img src="/placeholder.svg?height=200&width=250" alt="Recuerdo virtual" class="gallery-image">
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Con amor, para el amor de mi vida <span class="heart-icon">❤️</span></p>
+            <p>Feliz primer mes juntos. La distancia es temporal, nuestro amor es eterno.</p>
+            <p>13 de abril - 13 de mayo, 2025</p>
+        </div>
+    </div>
+    
+    <div class="music-control" id="musicControl">🎵</div>
+    
+    <script>
+        // Fecha de inicio de la relación: 13 de abril de 2025
+        const startDate = new Date(2025, 3, 13); // Meses en JavaScript son 0-indexados (0=enero, 3=abril)
+        
+        // Actualizar contador
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        
+        // Actualizar cada segundo
+        setInterval(updateCounter, 1000);
+        updateCounter(); // Actualizar inmediatamente
+        
+        // Animación de la línea de tiempo
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        function checkIfInView() {
+            timelineItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const isInView = (
+                    rect.top >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+                );
+                
+                if (isInView) {
+                    item.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkIfInView);
+        window.addEventListener('resize', checkIfInView);
+        window.addEventListener('load', checkIfInView);
+        
+        // Crear corazones flotantes
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-animation');
+            heart.innerHTML = '❤️';
+            
+            // Posición aleatoria
+            const leftPos = Math.random() * 100;
+            heart.style.left = leftPos + 'vw';
+            
+            // Tamaño aleatorio
+            const size = Math.random() * 1 + 0.5;
+            heart.style.fontSize = size + 'rem';
+            
+            // Duración aleatoria
+            const duration = Math.random() * 3 + 3;
+            heart.style.animationDuration = duration + 's';
+            
+            document.body.appendChild(heart);
+            
+            // Eliminar después de la animación
+            setTimeout(() => {
+                if (heart.parentNode === document.body) {
+                    document.body.removeChild(heart);
+                }
+            }, duration * 1000);
+        }
+        
+        // Crear corazones periódicamente
+        setInterval(createFloatingHeart, 1000);
+        
+        // Crear varios corazones al cargar la página
+        window.addEventListener('load', () => {
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createFloatingHeart, i * 300);
+            }
+        });
+        
+        // Control de música
+        const musicControl = document.getElementById('musicControl');
+        let audio = null;
+        let isPlaying = false;
+        
+        musicControl.addEventListener('click', () => {
+            if (!audio) {
+                audio = new Audio();
+                // Aquí puedes poner la URL de una canción romántica
+                // Por ejemplo: audio.src = "https://example.com/romantic-song.mp3";
+                audio.loop = true;
+            }
+            
+            if (isPlaying) {
+                audio.pause();
+                musicControl.textContent = '🎵';
+            } else {
+                audio.play().catch(e => {
+                    // Manejar error si el navegador bloquea la reproducción automática
+                    console.log('Reproducción automática bloqueada por el navegador');
+                });
+                musicControl.textContent = '🔇';
+            }
+            
+            isPlaying = !isPlaying;
+        });
+        
+        // Efecto al hacer clic en las imágenes de la galería
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Crear varios corazones al hacer clic
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(createFloatingHeart, i * 200);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
