@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Razones Cósmicas Por Las Que Me Gustas</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@400;600&display=swap">
+    <style>
+        :root {
+            --primary-color: #8a2be2; /* Morado */
+            --secondary-color: #6a0dad; /* Morado más oscuro */
+            --accent-color: #9370db; /* Morado más claro */
+            --text-color: #fff;
+            --card-bg: rgba(26, 13, 41, 0.8);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        .star {
+            position: fixed;
+            background-color: white;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: linear-gradient(to bottom, #0a0220, #1a0347, #2a0463);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.3) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.3) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(106, 13, 173, 0.2) 0%, transparent 30%);
+            z-index: -2;
+        }
+        
+        .astronaut {
+            position: fixed;
+            width: 120px;
+            height: auto;
+            z-index: -1;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .astronaut-1 {
+            top: 15%;
+            right: 10%;
+        }
+        
+        .astronaut-2 {
+            bottom: 15%;
+            left: 5%;
+            transform: rotate(15deg);
+        }
+        
+        header {
+            background-color: var(--card-bg);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 0 0 20px 20px;
+            border-bottom: 3px solid var(--accent-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 30% 30%, rgba(138, 43, 226, 0.4) 0%, transparent 30%),
+                radial-gradient(circle at 70% 70%, rgba(138, 43, 226, 0.4) 0%, transparent 30%);
+            z-index: -1;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .gallery-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        .photo-container {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .photo-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.4);
+        }
+        
+        .photo-frame {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 75%;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 0;
+        }
+        
+        .photo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Cambiado de cover a contain */
+            transition: transform 0.5s ease;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para fotos con transparencia */
+        }
+        
+        .message-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(26, 13, 41, 0.9), rgba(26, 13, 41, 0.7) 50%, transparent);
+            padding: 3rem 1rem 1rem;
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            text-align: center;
+            opacity: 1; /* Siempre visible */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Sombra para mejor legibilidad */
+        }
+        
+        .photo-container:hover .photo {
+            transform: scale(1.05);
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+        
+        .nav-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(138, 43, 226, 0.5);
+        }
+        
+        .nav-button:disabled {
+            background-color: #444;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .counter {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            color: var(--accent-color);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 2rem 0;
+        }
+        
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            background-color: rgba(0, 0, 0, 0.3); /* Fondo para miniaturas */
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
+        }
+        
+        .letter-section {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 800px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .letter-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .letter-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+            white-space: pre-line;
+        }
+        
+        .letter-signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            text-align: right;
+            margin-top: 2rem;
+            color: var(--accent-color);
+        }
+        
+        /* Nueva sección para las 100 razones */
+        .reasons-section {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 800px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .reasons-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .reasons-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            list-style-type: none;
+        }
+        
+        .reason-item {
+            background: rgba(138, 43, 226, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            border-left: 3px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+        
+        .reason-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+            background: rgba(138, 43, 226, 0.3);
+        }
+        
+        .reason-number {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+        }
+        
+        /* Botones de control adicionales */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .control-button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .control-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .control-button svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        /* Modo presentación */
+        .presentation-active {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 2, 32, 0.95);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .presentation-photo-container {
+            width: 80%;
+            max-width: 1000px;
+            height: 70vh;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 3px solid var(--accent-color);
+        }
+        
+        .presentation-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .presentation-message {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(26, 13, 41, 0.95), rgba(26, 13, 41, 0.8) 50%, transparent);
+            padding: 4rem 2rem 2rem;
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .presentation-controls {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .presentation-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .presentation-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .presentation-counter {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: rgba(26, 13, 41, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            color: white;
+        }
+        
+        .presentation-exit {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: rgba(255, 107, 107, 0.8);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .presentation-exit:hover {
+            background-color: rgba(255, 107, 107, 1);
+            transform: scale(1.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: var(--card-bg);
+            color: white;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 30% 30%, rgba(138, 43, 226, 0.4) 0%, transparent 30%),
+                radial-gradient(circle at 70% 70%, rgba(138, 43, 226, 0.4) 0%, transparent 30%);
+            z-index: -1;
+        }
+        
+        .heart {
+            color: #ff6b6b;
+            font-size: 1.5rem;
+            animation: heartbeat 1.5s infinite;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.8);
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Botón para subir */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .message-overlay {
+                font-size: 1.3rem;
+                padding: 1.5rem 1rem 0.8rem;
+            }
+            
+            .thumbnail {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .astronaut {
+                width: 80px;
+            }
+            
+            .letter-title, .reasons-title {
+                font-size: 2rem;
+            }
+            
+            .reasons-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .presentation-message {
+                font-size: 1.8rem;
+                padding: 3rem 1.5rem 1.5rem;
+            }
+            
+            .presentation-photo-container {
+                width: 95%;
+                height: 60vh;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .message-overlay {
+                font-size: 1.1rem;
+                padding: 1rem 0.8rem 0.6rem;
+            }
+            
+            .thumbnail-container {
+                gap: 5px;
+            }
+            
+            .thumbnail {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .astronaut {
+                width: 60px;
+            }
+            
+            .letter-title, .reasons-title {
+                font-size: 1.8rem;
+            }
+            
+            .presentation-message {
+                font-size: 1.5rem;
+                padding: 2rem 1rem 1rem;
+            }
+            
+            .presentation-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="stars-container"></div>
+    <img src="https://images.vexels.com/media/users/3/152639/isolated/preview/506b575739e90613428cdb399175e2c8-dibujos-animados-de-astronauta-espacial.png" alt="Astronauta" class="astronaut astronaut-1">
+    <img src="https://png.pngtree.com/png-clipart/20250122/original/pngtree-cartoon-astronaut-vector-png-image_20042674.png" alt="Astronauta" class="astronaut astronaut-2">
+    
+    <header>
+        <h1>100 Razones Cósmicas Por Las Que Me Gustas</h1>
+        <p class="subtitle">Un viaje interestelar por mi amor hacia ti</p>
+    </header>
+    
+    <div class="container">
+        <div class="gallery-container">
+            <div class="photo-container">
+                <div class="photo-frame">
+                    <img id="current-photo" class="photo" src="placeholder.jpg" alt="Foto de mi novia">
+                    <div id="current-message" class="message-overlay">Mensaje personalizado sobre por qué me gustas</div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button id="presentation-button" class="control-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                    Modo Presentación
+                </button>
+                <button id="autoplay-button" class="control-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Reproducción Automática
+                </button>
+            </div>
+            
+            <div class="navigation">
+                <button id="prev-button" class="nav-button" disabled>Anterior</button>
+                <button id="next-button" class="nav-button">Siguiente</button>
+            </div>
+            
+            <div id="counter" class="counter">Foto 1 de 54</div>
+            
+            <div class="thumbnail-container" id="thumbnails">
+                <!-- Las miniaturas se generarán con JavaScript -->
+            </div>
+        </div>
+        
+        <div class="letter-section">
+            <h2 class="letter-title">Carta Estelar: Nuestro Tiempo de Calidad</h2>
+            <div class="letter-content">
+                Querida astronauta de mi corazón:
+
+                En este vasto universo, tuve la suerte de que nuestras órbitas se cruzaran. Cada momento contigo es como descubrir una nueva galaxia - brillante, hermosa y llena de misterios por explorar.
+
+                ¿Sabes por qué me encanta pasar tiempo contigo? Porque eres como la gravedad: siempre me atraes hacia ti. 😉 Dicen que el espacio es infinito, pero estoy seguro que mi amor por ti lo es aún más.
+
+                Cuando estamos juntos, el tiempo parece comportarse de manera extraña, como cerca de un agujero negro - pasan horas que se sienten como minutos. Supongo que Einstein tenía razón sobre la relatividad del tiempo cuando estás con alguien especial.
+
+                ¿Por qué los astronautas son malos en las relaciones? ¡Porque siempre necesitan su espacio! Pero contigo, quiero estar en la misma nave espacial para siempre.
+
+                Nuestro tiempo juntos es como una lluvia de estrellas - hermoso, mágico y algo que quiero contemplar por siempre. Cada minuto contigo vale más que todos los tesoros de la Vía Láctea.
+
+                ¿Sabías que en el espacio nadie puede oírte reír? Por eso prefiero estar aquí contigo, donde puedo escuchar tu risa que suena como la música más hermosa del cosmos.
+
+                Gracias por compartir tu tiempo conmigo, por todas esas conversaciones hasta altas horas de la noche donde parecía que estábamos solos en el universo, por esos momentos de silencio donde solo necesitábamos la presencia del otro.
+
+                Como diría un astronauta: "Houston, tenemos un problema... ¡Me he enamorado perdidamente!"
+
+                Con todo mi amor intergaláctico,
+            </div>
+            <div class="letter-signature">Tu astronauta favorito</div>
+        </div>
+        
+        <div class="reasons-section" id="all-reasons">
+            <h2 class="reasons-title">100 Razones Cósmicas Por Las Que Me Gustas</h2>
+            <div class="reasons-list" id="reasons-list">
+                <!-- Las razones se generarán con JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modo presentación (oculto por defecto) -->
+    <div id="presentation-mode" style="display: none;">
+        <div class="presentation-photo-container">
+            <img id="presentation-photo" class="presentation-photo" src="/placeholder.svg" alt="Foto de presentación">
+            <div id="presentation-message" class="presentation-message"></div>
+            <div id="presentation-counter" class="presentation-counter"></div>
+        </div>
+        <div class="presentation-controls">
+            <button id="presentation-prev" class="presentation-button">Anterior</button>
+            <button id="presentation-next" class="presentation-button">Siguiente</button>
+        </div>
+        <button id="presentation-exit" class="presentation-exit">×</button>
+    </div>
+    
+    <!-- Botón para volver arriba -->
+    <div id="back-to-top" class="back-to-top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </div>
+    
+    <footer>
+        <p>Hecho con <span class="heart">❤</span> para la estrella más brillante de mi galaxia</p>
+    </footer>
+    
+    <script>
+        // Crear estrellas
+        function createStars() {
+            const starsContainer = document.getElementById('stars-container');
+            const numberOfStars = 200;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Posición aleatoria
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                star.style.left = `${posX}%`;
+                star.style.top = `${posY}%`;
+                
+                // Animación con retraso aleatorio
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 3 + 2;
+                star.style.animation = `twinkle ${duration}s ease-in-out ${delay}s infinite`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Array con tus fotos y mensajes (las primeras 54 razones)
+        const photosAndMessages = [
+            {
+                photo: "https://i.pinimg.com/736x/72/c4/dd/72c4dd6a2952a7f5ba094e3dc9d32c99.jpg",
+                message: "Me encanta tu sonrisa, es como ver una supernova iluminando todo el universo."
+            },
+            {
+                photo: "https://i.pinimg.com/736x/db/bb/61/dbbb616599bd9a63f6a7f9b5092e872d.jpg",
+                message: "Tus ojos brillan más que todas las estrellas de la Vía Láctea juntas."
+            },
+            {
+                photo: "https://i.pinimg.com/736x/a9/ee/04/a9ee0493320c1e66dc4abc8185aeb072.jpg",
+                message: "Tu belleza es como una galaxia inexplorada, siempre descubro algo nuevo que me maravilla."
+            },
+            {
+                photo: "https://i.pinimg.com/736x/f9/9b/43/f99b43af12bfb77215147364d2c9b94c.jpg",
+                message: "Cuando te miro, siento que he encontrado mi lugar en el cosmos."
+            },
+            {
+                photo: "https://i.pinimg.com/736x/30/d8/45/30d84565308670b9c1cef7e5f94f9577.jpg",
+                message: "El sonido de tu risa es como música interestelar que alegra mi corazón."
+            },
+            {
+                photo: "https://i.pinimg.com/736x/32/b2/6a/32b26a13441bbd77f4847baaa290de86.jpg",
+                message: "Eres mi estrella polar, siempre me guías en la dirección correcta."
+            },
+            {
+                photo: "https://i.pinimg.com/736x/c4/63/11/c463118d1d397df80ec01573ac7a50ff.jpg",
+                message: "Tu inteligencia brilla como un quásar en la oscuridad del espacio."
+            },
+            {
+                photo: "https://i.pinimg.com/736x/b7/0e/d3/b70ed3a6df4b52be7a1c111cb08665cd.jpg",
+                message: "Contigo, cada día es una nueva aventura espacial que quiero explorar."
+            },
+            {
+                photo: "https://i.pinimg.com/736x/0f/19/e1/0f19e1c3f9456c1471a2cf0164f56751.jpg",
+                message: "Tu forma de ver el mundo es tan única como una constelación irrepetible."
+            },
+            {
+                photo: "https://i.pinimg.com/736x/d2/42/62/d2426269201e99785bb57c1eca83694f.jpg",
+                message: "Eres el centro de mi universo, todo gira alrededor tuyo."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/f1/90/56/f19056ef0568aca0a2d74c928da21d04.jpg",
+                message: "Eres todo lo que siempre he deseado, como un planeta perfecto en el espacio."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/30/c8/a3/30c8a3f198c52c8a0273bc113b180777.jpg",
+                message: "Tu ternura derrite cualquier planeta helado."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/1f/73/93/1f73938f9b9e92277d8bd22582a67489.jpg",
+                message: "Tu existencia es mi lugar seguro, aunque esté a mil kilómetros de distancia."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/02/b4/d5/02b4d5f2eaebcca5c0683f79a0ae14fa.jpg",
+                message: "Eres el pensamiento que ilumina cada rincón de mi mente."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/f9/88/97/f9889773511e7b78ef52a89ce1770d87.jpg",
+                message: "Eres el motivo por el que cada mañana vale la pena."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/54/c0/38/54c038b039f0899f83b0b30636ce1365.jpg",
+                message: "Eres mi señal estable en un mundo de conexiones inestables."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/09/69/50/0969506ec79cd15cff8052696049f6b4.jpg",
+                message: "Eres la melodía que acompaña todos mis momentos en silencio."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/22/d3/f7/22d3f7b07db06352403c26f81f8e30a7.jpg",
+                message: "Eres la estrella que siempre encuentro"
+            },
+              {
+                photo: "https://i.pinimg.com/736x/56/0b/d5/560bd5b21b51af9d95358eb86b6011ef.jpg",
+                message: "Eres el motivo por el cual incluso la distancia se siente bonita."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/d8/fb/bc/d8fbbc759cc0ad7cd29fc1ab69d86f03.jpg",
+                message: "Eres mi rincón favorito del universo, aunque esté a kilómetros de mí"
+            },
+              {
+                photo: "https://i.pinimg.com/736x/7e/fd/14/7efd145ec97a060e06528ab740f92c07.jpg",
+                message: "Eres el recuerdo constante que convierte mi presente en poesía."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/b4/12/7b/b4127bfbc3e36b811bc5486187f1b687.jpg",
+                message: "Eres mi cielo despejado en días de tormenta emocional."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/c6/bc/3c/c6bc3c3a31f65bcb229f55ed2007de08.jpg",
+                message: "Eres la razón por la que sonrío sin razón aparente."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/5a/a9/6d/5aa96d8f4ed2a51956c2b306a0b9207b.jpg",
+                message: "Eres mi aurora boreal personal: única, rara y absolutamente maravillosa."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/4e/5b/3f/4e5b3f80ef1701b4376826cafd984493.jpg",
+                message: "Eres la chispa que enciende mi día desde cualquier lugar del mundo."
+            },
+              {
+                photo: "https://i.pinimg.com/736x/ce/fd/50/cefd50b09a07930da0d7edd0eed60189.jpg",
+                message: "Eres ese pensamiento bonito que se cuela entre mis tareas diarias."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/42/0a/7e/420a7e246e5ae0eac9b18588bcc77fbe.jpg",
+                message: "Eres el poema que mi alma recita cuando te piensa."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/ef/e7/e2/efe7e2156f6c7a309e69c6f71723961f.jpg",
+                message: "Eres mi punto de partida y también mi destino."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/1e/6d/5d/1e6d5d45098fd60a84ffb9e7d2134c2d.jpg",
+                message: "Eres esa presencia que se siente sin estar, pero que nunca se va."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/be/c3/a0/bec3a06370b3147f5a1b807d684987ca.jpg",
+                message: "Eres el milagro de todos mis días comunes."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/c2/5e/2f/c25e2f12da2ec383dbf67889a9441409.jpg",
+                message: "Eres la explicación científica de mi felicidad."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/95/78/e5/9578e588492a24b6c8cf353d14decc41.jpg",
+                message: "Eres mi astronauta favorito en esta misión a largo plazo llamada amor."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/18/a7/07/18a70740113a86bfceb97b5985d37b51.jpg",
+                message: "Eres ese pensamiento bonito que se cuela entre mis tareas diarias."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/4c/60/59/4c60594619127e67604e9d9340a8a2f9.jpg",
+                message: "Eres el satélite que siempre orbita mi corazón."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/bb/0b/25/bb0b257d19beff370917a38192a958bc.jpg",
+                message: "Eres esa coordenada que siempre marca 'hogar'."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/2d/d1/74/2dd17498956858f083bbcecccdbd9499.jpg",
+                message: "Eres mi eclipse favorito, imposible de ignorar."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/af/96/07/af96074c92d000350035765f8102388a.jpg",
+                message: "Eres la energía que mueve todos mis pensamientos."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/1c/37/a7/1c37a79959f097c7356d25100bca194e.jpg",
+                message: "Eres la notificación que más me alegra ver."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/8e/a7/2f/8ea72f4bd63415d426a725f2ad541e59.jpg",
+                message: "Eres el motivo por el cual la distancia se siente como un detalle técnico."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/88/13/ba/8813badb51e3135e62f31f1f8bd84ddc.jpg",
+                message: "Eres lo primero que pienso al despertar."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/98/0b/be/980bbeae8f9b0f90685a9049debcd27d.jpg",
+                message: "Eres mi motivo."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/81/ae/d1/81aed12a77735ad47964bc593916894d.jpg",
+                message: "Eres la razon de volver a mirar al cielo."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/5d/1c/d1/5d1cd1b33e9580f9d2b8dab01409c0a8.jpg",
+                message: "Eres eres mi alma gemela, mi otra mitad, mi razón de ser."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/d2/7a/2c/d27a2c8ce5eb0cc6f429c297c05d1618.jpg",
+                message: "Eres esa idea que nunca se apaga, siempre brilla en mi mente."
+            },
+                {
+                    photo: "https://i.pinimg.com/736x/83/bf/90/83bf901d6d98f26c3d38f701ac6a32e7.jpg",
+                    message: "Eres muy completa, como un rompecabezas que encaja perfectamente en mi vida."
+                },
+                {
+                    photo: "https://i.pinimg.com/736x/c2/ee/bf/c2eebff42efb8472c8519c7c99c34ba0.jpg",
+                    message: "Eres lo que hace que mi corazón lata más rápido, como un meteoro cruzando el cielo."
+                },
+                {
+                    photo: "https://i.pinimg.com/736x/47/90/0d/47900d5f5f2492f99701e8e3d7be47cc.jpg",
+                    message: "Eres aquello que necesitava mi vida para ser más brillante."
+                },
+                {
+                    photo: "https://i.pinimg.com/736x/bf/e5/5a/bfe55a93877495b9ace6c88b4368cc90.jpg",
+                    message: "Eres esa oración que nunca me canso de repetir."
+                },
+                 {
+                photo: "https://i.pinimg.com/736x/72/d6/a7/72d6a70489d848203d5b2618d9788d47.jpg",
+                message: "Eres quien me hace sentir que el amor es posible, incluso en un universo tan vasto."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/03/cc/f7/03ccf76056d156eef5399623ace38c08.jpg",
+                message: "Eres quien me acerca mas a Dios, quien me hace sentir que el amor es posible."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/66/77/7f/66777f3cac525907fb1be7021d496571.jpg",
+                message: "Eres lo que deseo cada dia, cada segundo, cada instante."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/ee/05/6c/ee056cde66caddb8dec9c2478cd7f79b.jpg",
+                message: "Eres un segundo pensando en ti, un minuto deseándote, una hora soñando contigo un dia esperando verte, uan semana queriendo abrazarte, un mes amándote, un año deseando que seas mia, y una vida esperando que seas mi esposa."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/35/f5/d0/35f5d0aa373d44ca19b1bb8b46ba5f3a.jpg",
+                message: "Eres la razón por la que creo en el amor a primera vista, me dicho a primer mensaje."
+            },
+             {
+                photo: "https://i.pinimg.com/736x/a8/1f/7e/a81f7e75d7dd32384693bfe43a5f1d58.jpg",
+                message: "Eres todo y  mucho más, eres la razón por la que me despierto cada mañana con una sonrisa."
+            },
+
+
+        ];
+        
+        // Rellenar el array hasta 54 elementos
+        while (photosAndMessages.length < 54) {
+            photosAndMessages.push({
+                photo: "placeholder.jpg",
+                message: `Razón cósmica #${photosAndMessages.length + 1} por la que me gustas: eres mi universo entero.`
+            });
+        }
+        
+        // Array con razones adicionales para llegar a 100
+        const additionalReasons = [
+            "Me gustas porque tu sonrisa me da paz y tu forma de hablar me calma.",
+
+            "Me gustas porque no necesitas estar cerca para hacerme feliz y eso es mágico.",
+
+            "Me gustas porque entiendes mi locura y la haces ver bonita.",
+
+            "Me gustas porque me hablas bonito y me escuchas de verdad.",
+
+            "Me gustas porque eres tú y no necesitas aparentar nada.",
+
+            "Me gustas porque me inspiras a ser mejor y me haces sentir suficiente.",
+
+            "Me gustas porque eres real y aun así pareces un sueño.",
+
+            "Me gustas porque siempre sabes qué decir y cuándo callar.",
+
+            "Me gustas porque haces que la distancia no duela tanto y el tiempo valga más.",
+
+            "Me gustas porque te emocionas por cosas simples y las haces especiales.",
+
+            "Me gustas porque me haces reír y me haces pensar.",
+
+            "Me gustas porque hasta en silencio me haces sentir acompañado.",
+
+            "Me gustas porque no tienes miedo a sentir y a decirlo.",
+
+            "Me gustas porque me haces bien incluso cuando yo no estoy bien.",
+
+            "Me gustas porque no huyes de lo difícil y construyes lo bonito.",
+
+            "Me gustas porque confías en mí y me haces confiar en ti.",
+
+            "Me gustas porque cada parte de ti tiene una historia y quiero conocerlas todas.",
+
+            "Me gustas porque no necesito buscar más cuando te tengo a ti.",
+
+            "Me gustas porque me haces escribir cosas que ni sabía que sentía.",
+
+            "Me gustas porque eres bonita por fuera y aún más por dentro.",
+
+            "Me gustas porque no te rindes fácil y eso me motiva.",
+
+            "Me gustas porque me entiendes sin que tenga que explicar todo.",
+
+            "Me gustas porque eres esa calma en medio de mi caos.",
+
+            "Me gustas porque no me juzgas y me haces sentir libre.",
+
+            "Me gustas porque tu voz es abrigo y tus palabras hogar.",
+
+            "Me gustas porque tienes la risa más linda y el alma más noble.",
+
+            "Me gustas porque haces que quiera contarte todo sin miedo.",
+
+            "Me gustas porque eres fuerte y sensible a la vez.",
+
+            "Me gustas porque no tengo que fingir nada contigo.",
+
+            "Me gustas porque te importo y lo demuestras.",
+
+            "Me gustas porque siempre tienes un plan y aún así improvisas amor.",
+
+            "Me gustas porque me haces ver el mundo con otros ojos.",
+
+            "Me gustas porque eres ternura con actitud.",
+
+            "Me gustas porque me cuidas sin hacerme sentir débil.",
+
+            "Me gustas porque haces arte de lo simple.",
+
+            "Me gustas porque no dejas que la distancia borre el cariño.",
+
+            "Me gustas porque tu forma de pensar me atrapa.",
+
+            "Me gustas porque me haces extrañarte bonito.",
+
+            "Me gustas porque me haces reír como tonto y pensar como sabio.",
+
+            "Me gustas porque crees en mí y eso me hace fuerte.",
+
+            "Me gustas porque contigo todo parece tener sentido.",
+
+            "Me gustas porque no tienes miedo de mostrar quién eres.",
+
+            "Me gustas porque tus dudas también me enamoran.",
+
+            "Me gustas porque eres todo lo que busqué sin saberlo.",
+
+            "Me gustas porque me haces querer compartir cada día contigo.",
+
+            "Me gustas porque haces que lo digital se sienta real.",
+
+            "Me gustas porque eres única y no lo sabes.",
+
+            "Me gustas porque tienes paciencia y carácter.",
+
+            "Me gustas porque hasta tus manías me encantan.",
+
+            "Me gustas porque tu tiempo conmigo lo haces especial.",
+
+            "Me gustas porque no haces promesas vacías, haces acciones reales.",
+
+            "Me gustas porque tu dulzura no es exagerada, es sincera.",
+
+            "Me gustas porque contigo puedo ser cursi sin vergüenza.",
+
+            "Me gustas porque eres más interesante que cualquier serie.",
+
+            "Me gustas porque cuando hablo contigo, todo mejora.",
+
+            "Me gustas porque tu corazón se nota en todo lo que haces.",
+
+            "Me gustas porque no necesitas esfuerzo para conquistarme.",
+
+            "Me gustas porque eres mi lugar seguro desde lejos.",
+
+            "Me gustas porque no importa lo que pase, siempre vuelvo a ti.",
+
+            "Me gustas porque contigo los minutos valen más.",
+
+            "Me gustas porque no necesito verte para sentirte.",
+
+            "Me gustas porque tus textos me hacen sonreír como tonto.",
+
+            "Me gustas porque no eres perfecta, y eso te hace única.",
+
+            "Me gustas porque tus sueños también se parecen a los míos.",
+
+            "Me gustas porque haces del cariño una forma de arte.",
+
+            "Me gustas porque contigo aprendí a querer con calma.",
+
+            "Me gustas porque hasta tus enojos tienen encanto.",
+
+            "Me gustas porque nunca me sentí tan lejos y tan cerca a la vez.",
+
+            "Me gustas porque me haces querer ser mi mejor versión.",
+
+            "Me gustas porque haces que escribirte se sienta como poesía.",
+
+            "Me gustas porque contigo aprendí que lo virtual puede ser real.",
+
+            "Me gustas porque tu forma de ver la vida es inspiradora.",
+
+            "Me gustas porque no hay día que no piense en ti.",
+
+            "Me gustas porque me haces amar el presente y soñar con el futuro.",
+
+            "Me gustas porque no hay filtros que tapen tu esencia.",
+
+            "Me gustas porque eres como el sol que atraviesa la niebla.",
+
+            "Me gustas porque hasta tus errores te hacen más real.",
+
+            "Me gustas porque sabes amar con libertad.",
+
+            "Me gustas porque haces que la espera valga la pena.",
+
+            "Me gustas porque no necesitas estar cerca para abrazarme con palabras.",
+
+            "Me gustas porque contigo no hay miedo a sentir.",
+
+            "Me gustas porque escuchas más allá de lo que digo.",
+
+            "Me gustas porque puedo confiar hasta mis pensamientos más locos.",
+
+            "Me gustas porque no necesito buscar más, ya te encontré.",
+
+            "Me gustas porque tu cariño tiene dirección y propósito.",
+
+            "Me gustas porque lo tuyo no es juego, es entrega.",
+
+            "Me gustas porque lo haces todo con amor.",
+
+            "Me gustas porque me haces esperar por ti con ganas.",
+
+            "Me gustas porque me haces sentir que valgo la pena.",
+
+            "Me gustas porque siempre hay algo nuevo en ti que me encanta.",
+
+            "Me gustas porque incluso lejos, me haces sentir en casa.",
+
+            "Me gustas porque lo que sentimos es verdadero.",
+
+            "Me gustas porque me haces creer que el amor es posible.",
+
+            "Me gustas porque nuestra historia se siente infinita.",
+
+            "Me gustas porque tu forma de querer no se compara.",
+
+            "Me gustas porque eres tú, sin más.",
+
+            "Me gustas porque todo contigo tiene sentido.",
+
+            "Me gustas porque me completas sin robarme nada.",
+
+            "Me gustas porque eres Alejandra, y eso lo dice todo.",
+
+                    
+        ];
+        
+       
+        let currentIndex = 0;
+        let isAutoPlaying = false;
+        let autoPlayInterval;
+        let isPresentationMode = false;
+        
+        
+        const currentPhoto = document.getElementById('current-photo');
+        const currentMessage = document.getElementById('current-message');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const counter = document.getElementById('counter');
+        const thumbnailsContainer = document.getElementById('thumbnails');
+        const reasonsList = document.getElementById('reasons-list');
+        const presentationButton = document.getElementById('presentation-button');
+        const autoplayButton = document.getElementById('autoplay-button');
+        const presentationMode = document.getElementById('presentation-mode');
+        const presentationPhoto = document.getElementById('presentation-photo');
+        const presentationMessage = document.getElementById('presentation-message');
+        const presentationCounter = document.getElementById('presentation-counter');
+        const presentationPrev = document.getElementById('presentation-prev');
+        const presentationNext = document.getElementById('presentation-next');
+        const presentationExit = document.getElementById('presentation-exit');
+        const backToTop = document.getElementById('back-to-top');
+        
+        // Función para actualizar la foto y mensaje mostrados
+        function updatePhotoAndMessage() {
+            const item = photosAndMessages[currentIndex];
+            
+            // Verificar si la imagen existe antes de cargarla
+            const img = new Image();
+            img.onload = function() {
+                currentPhoto.src = item.photo;
+                currentPhoto.style.objectFit = "contain"; // Asegurar que la imagen se vea completa
+            };
+            img.onerror = function() {
+                // Si la imagen no carga, usar un placeholder
+                currentPhoto.src = "https://via.placeholder.com/800x600/1a0347/ffffff?text=Foto+no+disponible";
+            };
+            img.src = item.photo;
+            
+            currentMessage.textContent = item.message;
+            counter.textContent = `Foto ${currentIndex + 1} de ${photosAndMessages.length}`;
+            
+            // Actualizar estado de los botones
+            prevButton.disabled = currentIndex === 0;
+            nextButton.disabled = currentIndex === photosAndMessages.length - 1;
+            
+            // Actualizar miniaturas activas
+            document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
+                if (index === currentIndex) {
+                    thumb.classList.add('active');
+                    // Hacer scroll a la miniatura activa
+                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+            
+            // Si estamos en modo presentación, actualizar también esos elementos
+            if (isPresentationMode) {
+                presentationPhoto.src = item.photo;
+                presentationMessage.textContent = item.message;
+                presentationCounter.textContent = `${currentIndex + 1} / ${photosAndMessages.length}`;
+                presentationPrev.disabled = currentIndex === 0;
+                presentationNext.disabled = currentIndex === photosAndMessages.length - 1;
+            }
+        }
+        
+        // Generar miniaturas
+        function generateThumbnails() {
+            thumbnailsContainer.innerHTML = ''; // Limpiar contenedor
+            
+            photosAndMessages.forEach((item, index) => {
+                const thumbnail = document.createElement('img');
+                
+                // Verificar si la imagen existe
+                const img = new Image();
+                img.onload = function() {
+                    thumbnail.src = item.photo;
+                };
+                img.onerror = function() {
+                    // Si la imagen no carga, usar un placeholder
+                    thumbnail.src = "https://via.placeholder.com/60x60/1a0347/ffffff?text=" + (index + 1);
+                };
+                img.src = item.photo;
+                
+                thumbnail.alt = `Miniatura ${index + 1}`;
+                thumbnail.classList.add('thumbnail');
+                if (index === currentIndex) {
+                    thumbnail.classList.add('active');
+                }
+                thumbnail.addEventListener('click', () => {
+                    currentIndex = index;
+                    updatePhotoAndMessage();
+                    // Detener reproducción automática si está activa
+                    if (isAutoPlaying) {
+                        stopAutoPlay();
+                    }
+                });
+                thumbnailsContainer.appendChild(thumbnail);
+            });
+        }
+        
+        // Generar lista de 100 razones
+        function generateReasonsList() {
+            reasonsList.innerHTML = ''; // Limpiar contenedor
+            
+            // Primero las 54 razones de las fotos
+            photosAndMessages.forEach((item, index) => {
+                const reasonItem = document.createElement('div');
+                reasonItem.classList.add('reason-item');
+                reasonItem.innerHTML = `<span class="reason-number">${index + 1}.</span> ${item.message}`;
+                reasonItem.addEventListener('click', () => {
+                    currentIndex = index;
+                    updatePhotoAndMessage();
+                    // Scroll a la galería
+                    document.querySelector('.gallery-container').scrollIntoView({ behavior: 'smooth' });
+                });
+                reasonsList.appendChild(reasonItem);
+            });
+            
+            // Luego las razones adicionales para llegar a 100
+            additionalReasons.forEach((reason, index) => {
+                const reasonItem = document.createElement('div');
+                reasonItem.classList.add('reason-item');
+                reasonItem.innerHTML = `<span class="reason-number">${photosAndMessages.length + index + 1}.</span> ${reason}`;
+                reasonsList.appendChild(reasonItem);
+            });
+        }
+        
+        // Iniciar reproducción automática
+        function startAutoPlay() {
+            if (!isAutoPlaying) {
+                isAutoPlaying = true;
+                autoplayButton.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                    Detener
+                `;
+                
+                // Cambiar foto cada 5 segundos
+                autoPlayInterval = setInterval(() => {
+                    if (currentIndex < photosAndMessages.length - 1) {
+                        currentIndex++;
+                        updatePhotoAndMessage();
+                    } else {
+                        // Al llegar al final, detener
+                        stopAutoPlay();
+                    }
+                }, 5000);
+            }
+        }
+        
+        // Detener reproducción automática
+        function stopAutoPlay() {
+            if (isAutoPlaying) {
+                isAutoPlaying = false;
+                clearInterval(autoPlayInterval);
+                autoplayButton.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Reproducción Automática
+                `;
+            }
+        }
+        
+        // Activar modo presentación
+        function activatePresentationMode() {
+            isPresentationMode = true;
+            presentationMode.style.display = 'flex';
+            presentationMode.classList.add('presentation-active');
+            document.body.style.overflow = 'hidden'; // Evitar scroll
+            
+            // Actualizar contenido de presentación
+            presentationPhoto.src = photosAndMessages[currentIndex].photo;
+            presentationMessage.textContent = photosAndMessages[currentIndex].message;
+            presentationCounter.textContent = `${currentIndex + 1} / ${photosAndMessages.length}`;
+            
+            // Estado de botones
+            presentationPrev.disabled = currentIndex === 0;
+            presentationNext.disabled = currentIndex === photosAndMessages.length - 1;
+        }
+        
+        // Desactivar modo presentación
+        function deactivatePresentationMode() {
+            isPresentationMode = false;
+            presentationMode.style.display = 'none';
+            presentationMode.classList.remove('presentation-active');
+            document.body.style.overflow = ''; // Restaurar scroll
+        }
+        
+        // Configurar botones de navegación
+        prevButton.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updatePhotoAndMessage();
+                // Detener reproducción automática si está activa
+                if (isAutoPlaying) {
+                    stopAutoPlay();
+                }
+            }
+        });
+        
+        nextButton.addEventListener('click', () => {
+            if (currentIndex < photosAndMessages.length - 1) {
+                currentIndex++;
+                updatePhotoAndMessage();
+                // Detener reproducción automática si está activa
+                if (isAutoPlaying) {
+                    stopAutoPlay();
+                }
+            }
+        });
+        
+        // Configurar botones de presentación
+        presentationButton.addEventListener('click', activatePresentationMode);
+        presentationExit.addEventListener('click', deactivatePresentationMode);
+        
+        presentationPrev.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updatePhotoAndMessage();
+            }
+        });
+        
+        presentationNext.addEventListener('click', () => {
+            if (currentIndex < photosAndMessages.length - 1) {
+                currentIndex++;
+                updatePhotoAndMessage();
+            }
+        });
+        
+        // Configurar botón de reproducción automática
+        autoplayButton.addEventListener('click', () => {
+            if (isAutoPlaying) {
+                stopAutoPlay();
+            } else {
+                startAutoPlay();
+            }
+        });
+        
+        // Permitir navegación con teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                currentIndex--;
+                updatePhotoAndMessage();
+                // Detener reproducción automática si está activa
+                if (isAutoPlaying) {
+                    stopAutoPlay();
+                }
+            } else if (e.key === 'ArrowRight' && currentIndex < photosAndMessages.length - 1) {
+                currentIndex++;
+                updatePhotoAndMessage();
+                // Detener reproducción automática si está activa
+                if (isAutoPlaying) {
+                    stopAutoPlay();
+                }
+            } else if (e.key === 'Escape' && isPresentationMode) {
+                deactivatePresentationMode();
+            }
+        });
+        
+        // Botón para volver arriba
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Inicializar
+        window.addEventListener('load', () => {
+            createStars();
+            generateThumbnails();
+            generateReasonsList();
+            updatePhotoAndMessage();
+            
+            // Precargar imágenes para mejor rendimiento
+            photosAndMessages.forEach(item => {
+                const img = new Image();
+                img.src = item.photo;
+            });
+        });
+        
+        // Manejar errores de carga de imágenes
+        window.addEventListener('error', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.target.src = "https://via.placeholder.com/800x600/1a0347/ffffff?text=Imagen+no+disponible";
+            }
+        }, true);
+    </script>
+</body>
+</html>
