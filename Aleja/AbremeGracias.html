@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para el Amor de Mi Vida - A la Distancia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #faf5ff, #e0e7ff);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='1440' height='800' viewBox='0 0 1440 800' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 800L240 600L480 700L720 500L960 650L1200 450L1440 600V800H0Z' fill='%239333ea' fill-opacity='0.1'/%3E%3Cpath d='M0 800L360 550L720 700L1080 500L1440 650V800H0Z' fill='%239333ea' fill-opacity='0.15'/%3E%3Cpath d='M0 800L480 600L960 700L1440 550V800H0Z' fill='%239333ea' fill-opacity='0.2'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: #7e22ce;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #9333ea;
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .distance-indicator {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(147, 51, 234, 0.2);
+            border: 1px solid #e9d5ff;
+            z-index: 2;
+        }
+        
+        .distance-indicator svg {
+            width: 2rem;
+            height: 2rem;
+            color: #9333ea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .distance-text {
+            font-size: 0.9rem;
+            color: #7e22ce;
+            font-weight: 600;
+        }
+        
+        /* Astronaut */
+        .astronaut {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 120px;
+            height: 120px;
+            z-index: 2;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Letter Content */
+        .letter-container {
+            padding: 4rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .letter {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.2);
+            padding: 2rem;
+            border: 1px solid #e9d5ff;
+        }
+        
+        .letter p {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .letter p:first-of-type::first-letter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #9333ea;
+            float: left;
+            margin-right: 0.5rem;
+            line-height: 1;
+        }
+        
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 3rem 0;
+        }
+        
+        .divider hr {
+            flex-grow: 1;
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d8b4fe, transparent);
+        }
+        
+        .divider-text {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #9333ea;
+            padding: 0 2rem;
+            font-family: 'Playfair Display', serif;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(147, 51, 234, 0.2);
+        }
+        
+        /* Thanks Grid */
+        .thanks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .thanks-item {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid #e9d5ff;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .thanks-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(147, 51, 234, 0.2);
+        }
+        
+        .thanks-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #9333ea, #ec4899, #22c55e, #f59e0b);
+            background-size: 400% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        .thanks-number {
+            display: inline-block;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, #9333ea, #ec4899);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(147, 51, 234, 0.3);
+        }
+        
+        .thanks-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f3e8ff, #e0e7ff);
+            border-radius: 1rem;
+            border: 1px solid #e9d5ff;
+        }
+        
+        .tag {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 9999px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(147, 51, 234, 0.2);
+            border: 1px solid #e9d5ff;
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+        }
+        
+        .tag svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+        
+        /* Image Sections */
+        .image-section {
+            margin: 4rem 0;
+            position: relative;
+        }
+        
+        .heart-decoration {
+            position: absolute;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+        }
+        
+        .heart-decoration.top-left {
+            top: -2rem;
+            left: -2rem;
+            transform: rotate(-12deg);
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+        }
+        
+        .heart-decoration.top-right {
+            top: -2rem;
+            right: -2rem;
+            transform: rotate(12deg);
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+        }
+        
+        .image-frame {
+            position: relative;
+            height: 30rem;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.3);
+            border: 4px solid white;
+        }
+        
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(147, 51, 234, 0.2), rgba(99, 102, 241, 0.2));
+        }
+        
+        .image-caption {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .image-caption.top {
+            top: 0;
+        }
+        
+        .image-caption.bottom {
+            bottom: 0;
+        }
+        
+        .image-caption p {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: white;
+            background-color: rgba(126, 34, 206, 0.8);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            margin: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .image-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c4b5fd;
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 0.75rem;
+        }
+        
+        /* Digital Connection Section */
+        .digital-section {
+            position: relative;
+            padding: 2.5rem;
+            margin: 4rem 0;
+            background: linear-gradient(135deg, #dcfce7, #f3e8ff, #e0e7ff);
+            border-radius: 1rem;
+            border: 1px solid #e9d5ff;
+            box-shadow: 0 8px 25px rgba(147, 51, 234, 0.1);
+        }
+        
+        .digital-section .icon-1 {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            color: #a855f7;
+        }
+        
+        .digital-section .icon-2 {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            color: #22c55e;
+        }
+        
+        .digital-section p {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: 500;
+            color: #374151;
+            line-height: 1.7;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Final Message */
+        .final-message {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, #9333ea, #4f46e5);
+            border-radius: 1rem;
+            color: white;
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.4);
+        }
+        
+        .final-message h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .final-message p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin: 1rem 0;
+        }
+        
+        .signature {
+            text-align: right;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-top: 3rem;
+            color: #9333ea;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Button Section */
+        .button-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .love-button {
+            padding: 1.25rem 2.5rem;
+            background: linear-gradient(135deg, #9333ea, #4f46e5);
+            color: white;
+            border: none;
+            border-radius: 9999px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(147, 51, 234, 0.4);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .love-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(147, 51, 234, 0.5);
+        }
+        
+        .love-button:active {
+            transform: scale(0.95);
+        }
+        
+        /* Floating Hearts */
+        #hearts-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 100;
+            display: none;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            color: #9333ea;
+            animation: floatUp 4s ease-out forwards;
+        }
+        
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .floating-element {
+            position: absolute;
+            opacity: 0.3;
+            animation: floatDown 25s linear infinite;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        @keyframes floatUp {
+            0% { 
+                transform: translateY(100vh) scale(0.5) rotate(0deg); 
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100px) scale(1) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes floatDown {
+            from { transform: translateY(-50px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+            
+            .astronaut {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .distance-indicator {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.75rem;
+            }
+            
+            .letter {
+                padding: 1.5rem;
+            }
+            
+            .thanks-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .thanks-item {
+                padding: 1.25rem;
+            }
+            
+            .image-frame {
+                height: 22rem;
+                max-width: 100%;
+            }
+            
+            .tags {
+                padding: 1.5rem;
+            }
+            
+            .tag {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .final-message {
+                padding: 2rem;
+            }
+            
+            .final-message h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg" id="parallax-bg"></div>
+        
+        <!-- Distance Indicator -->
+        <div class="distance-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <div class="distance-text">Amor a distancia</div>
+        </div>
+        
+        <!-- Astronaut -->
+        <div class="astronaut">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <ellipse cx="50" cy="50" rx="30" ry="35" fill="#f5f5f5" stroke="#9333ea" stroke-width="2" />
+                    <ellipse cx="50" cy="35" rx="20" ry="22" fill="#e0e7ff" stroke="#9333ea" stroke-width="2" />
+                    <ellipse cx="50" cy="35" rx="15" ry="17" fill="#c4b5fd" stroke="#9333ea" stroke-width="1" />
+                    <rect x="35" y="45" width="30" height="25" rx="5" fill="#9333ea" />
+                    <path d="M20,50 Q15,60 25,70" stroke="#f5f5f5" stroke-width="5" fill="none" />
+                    <path d="M80,50 Q85,60 75,70" stroke="#f5f5f5" stroke-width="5" fill="none" />
+                    <path d="M40,80 Q35,95 30,95" stroke="#f5f5f5" stroke-width="5" fill="none" />
+                    <path d="M60,80 Q65,95 70,95" stroke="#f5f5f5" stroke-width="5" fill="none" />
+                    <circle cx="45" cy="30" r="1" fill="white" />
+                    <circle cx="55" cy="32" r="1" fill="white" />
+                    <circle cx="50" cy="28" r="1" fill="white" />
+                    <circle cx="47" cy="38" r="1" fill="white" />
+                    <circle cx="53" cy="36" r="1" fill="white" />
+                </g>
+            </svg>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">Amor mío</h1>
+            <p class="hero-subtitle">Para la mujer que ilumina mi universo desde la distancia</p>
+        </div>
+    </section>
+    
+    <!-- Letter Content -->
+    <div class="container">
+        <section class="letter-container">
+            <div class="letter">
+                <p>Hay algo que quiero decirte, y no quiero que se me quede guardado ni un día más.</p>
+                
+                <div class="divider">
+                    <hr>
+                    <span class="divider-text">50 Gracias</span>
+                    <hr>
+                </div>
+                
+                <!-- 50 Thanks Grid -->
+                <div class="thanks-grid">
+                    <div class="thanks-item">
+                        <div class="thanks-number">1</div>
+                        <div class="thanks-text">Gracias por cada noche que me regalás tu voz hasta quedarnos dormidos en llamada.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">2</div>
+                        <div class="thanks-text">Gracias por cumplir mis caprichos con esa dulzura tuya que llega hasta mí.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">3</div>
+                        <div class="thanks-text">Gracias por mirarme como si fuera un tesoro, cuando en realidad eres tu el tesoro</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">4</div>
+                        <div class="thanks-text">Gracias por acercarme a Dios, inspirándome a hablar con Él y querer saber mas de el</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">5</div>
+                        <div class="thanks-text">Gracias por hacerme querer contarle al mundo que existes, que me quieres desde lejos.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">6</div>
+                        <div class="thanks-text">Gracias por dejarme verte de verdad a través de la pantalla, en tus momentos vulnerables.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">7</div>
+                        <div class="thanks-text">Gracias por llamarme para contarme tu día, incluso cuando estas agotada.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">8</div>
+                        <div class="thanks-text">Gracias por soñar conmigo con el día en que finalmente nos abracemos.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">9</div>
+                        <div class="thanks-text">Gracias por contarme sobre tus aventuras en las montañas, haciéndome sentir parte de ellas.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">10</div>
+                        <div class="thanks-text">Gracias por soñar conmigo con las estrellas, como si fuéramos astronautas en el mismo universo.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">11</div>
+                        <div class="thanks-text">Gracias por contarme sobre tu helado de mora favorito, prometiendo compartirlo conmigo algún día.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">12</div>
+                        <div class="thanks-text">Gracias por describirme tu sándwich especial con tanto detalle que puedo saborearlo.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">13</div>
+                        <div class="thanks-text">Gracias por tu amor al color morado, que ahora veo en todo y me recuerda a ti.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">14</div>
+                        <div class="thanks-text">Gracias por enviarme fotos de los atardeceres y las cosas que disfrutas.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">15</div>
+                        <div class="thanks-text">Gracias por hacer que cada videollamada se sienta como estar en casa.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">16</div>
+                        <div class="thanks-text">Gracias por tu paciencia en la distancia y las conexion malas.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">17</div>
+                        <div class="thanks-text">Gracias por creer en nosotros incluso cuando la distancia se siente imposible.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">18</div>
+                        <div class="thanks-text">Gracias por tu risa que atraviesa kilómetros para llegar a mi corazón.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">19</div>
+                        <div class="thanks-text">Gracias por cuidarme emocionalmente desde lejos cuando me siento mal.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">20</div>
+                        <div class="thanks-text">Gracias por hacer que cualquier lugar se sienta menos solitario cuando hablamos.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">21</div>
+                        <div class="thanks-text">Gracias por ser mi fortaleza emocional a través de mensajes y llamadas.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">22</div>
+                        <div class="thanks-text">Gracias por celebrar mis logros como si estuvieras aquí conmigo.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">23</div>
+                        <div class="thanks-text">Gracias por compartir tu mundo conmigo a través de fotos y videos.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">24</div>
+                        <div class="thanks-text">Gracias por dejarme quererte de la forma en la que lo hago.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">25</div>
+                        <div class="thanks-text">Gracias por tu valentía para amar sin garantías, solo con fe.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">26</div>
+                        <div class="thanks-text">Gracias por dejarme despertarte.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">27</div>
+                        <div class="thanks-text">Gracias por escucharme y luego hacerme actos de celos aunque sean solo historias pasadas.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">28</div>
+                        <div class="thanks-text">Gracias por tu creatividad para mantener viva la chispa entre los dos.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">29</div>
+                        <div class="thanks-text">Gracias por motivarme a ser mejor persona para cuando finalmente nos encontremos.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">30</div>
+                        <div class="thanks-text">Gracias por tu generosidad emocional, dandome tanto amor.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">31</div>
+                        <div class="thanks-text">Gracias por hacer que los momentos virtuales se sientan extraordinarios.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">32</div>
+                        <div class="thanks-text">Gracias por desearme.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">33</div>
+                        <div class="thanks-text">Gracias por tu optimismo que me ayuda a ver que la distancia es temporal.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">34</div>
+                        <div class="thanks-text">Gracias por respetarme.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">35</div>
+                        <div class="thanks-text">Gracias por tu honestidad, siempre diciéndome la verdad con amor.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">36</div>
+                        <div class="thanks-text">Gracias por construir conmigo sueños de un futuro juntos.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">37</div>
+                        <div class="thanks-text">Gracias por planear conmigo.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">38</div>
+                        <div class="thanks-text">Gracias porque te convertiras en mi prometida, esposa y madre de mis hijos.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">39</div>
+                        <div class="thanks-text">Gracias por tu independencia que me inspira a ser mejor compañero.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">40</div>
+                        <div class="thanks-text">Gracias por compartir tu pasión por la naturaleza a través de tus historias.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">41</div>
+                        <div class="thanks-text">Gracias por encontrar belleza en las cosas simples y mostrármelas.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">42</div>
+                        <div class="thanks-text">Gracias por apoyar mis decisiones y estar siempre de mi lado virtualmente.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">43</div>
+                        <div class="thanks-text">Gracias porque mientras hago esto estas durmiendo en llamada conmigo y te has levantado a hablarme varias veces.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">44</div>
+                        <div class="thanks-text">Gracias por enseñarme el verdadero significado del amor sin fronteras.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">45</div>
+                        <div class="thanks-text">Gracias por tu humildad que atraviesa la pantalla y toca mi alma.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">46</div>
+                        <div class="thanks-text">Gracias por que te encontre y tu me encontraste.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">47</div>
+                        <div class="thanks-text">Gracias por hacer que cada "te quiero" digital se sienta como la primera vez.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">48</div>
+                        <div class="thanks-text">Gracias por ser mi mejor amiga, confidente y amor.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">49</div>
+                        <div class="thanks-text">Gracias por elegirme cada día para compartir esta hermosa conexión.</div>
+                    </div>
+                    
+                    <div class="thanks-item">
+                        <div class="thanks-number">50</div>
+                        <div class="thanks-text">Gracias por demostrarme que el amor verdadero no conoce distancias.</div>
+                    </div>
+                      <div class="thanks-item">
+                        <div class="thanks-number">51</div>
+                        <div class="thanks-text">Como extra, gracias por esa sonrisa que tienes ahora.</div>
+                    </div>
+                </div>
+                
+                <!-- Tags Section -->
+                <div class="tags">
+                    <div class="tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                        <span>Nuestras videollamadas nocturnas</span>
+                    </div>
+                    <div class="tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                        <span>Soñando con las estrellas juntos</span>
+                    </div>
+                    <div class="tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m8 3 4 8 5-5 5 15H2L8 3z"/>
+                        </svg>
+                        <span>Tus aventuras en las montañas</span>
+                    </div>
+                    <div class="tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 17c5 0 8-2.69 8-6H4c0 3.31 3 6 8 6Zm-4 4h8m-4-3v3M5.14 11a3.5 3.5 0 1 1 6.71 0"/>
+                            <path d="M12.14 11a3.5 3.5 0 1 1 6.71 0"/>
+                            <path d="M15.5 6.5a1.5 1.5 0 1 0-3 0v.5h3v-.5Z"/>
+                            <path d="M8.5 6.5a1.5 1.5 0 1 0-3 0v.5h3v-.5Z"/>
+                        </svg>
+                        <span>Tu helado de mora favorito</span>
+                    </div>
+                    <div class="tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 11v3a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-3"/>
+                            <path d="M12 19H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-3.83"/>
+                            <path d="m3 11 7.77-6.04a2 2 0 0 1 2.46 0L21 11H3Z"/>
+                            <path d="M12.97 19.77 7 15h12.5l-3.75 4.5a2 2 0 0 1-2.78.27Z"/>
+                        </svg>
+                        <span>Tu sándwich especial</span>
+                    </div>
+                    <div class="tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v6m0 6v6"/>
+                            <path d="m21 12-6-6-6 6-6-6"/>
+                        </svg>
+                        <span>Tu color favorito: morado</span>
+                    </div>
+                </div>
+                
+                <!-- Image Section 1 -->
+                <div class="image-section">
+                    <div class="heart-decoration top-left">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                        </svg>
+                    </div>
+                    <div class="image-frame">
+                        <div class="image-overlay"></div>
+                        <div class="image-placeholder">
+                            <img src="https://i.pinimg.com/736x/35/f5/d0/35f5d0aa373d44ca19b1bb8b46ba5f3a.jpg" alt="Tu sonrisa" />
+                        </div>
+                    </div>
+                </div>
+                
+                <p>No tenías por qué hacerlo, pero elegiste amarme desde la distancia. Y eso vale más que cualquier regalo físico.</p>
+                
+                <!-- Digital Connection Section -->
+                <div class="digital-section">
+                    <svg class="icon-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    <svg class="icon-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                    </svg>
+                    <p>Como la naturaleza que tanto amás, nuestra conexión es pura y real, incluso a través de la distancia. Cada videollamada es un sendero nuevo que exploramos juntos, cada mensaje es una estrella que ilumina mi día. Sos mi brújula emocional en este hermoso viaje digital del amor.</p>
+                </div>
+                
+                <p>Tu presencia en mi vida es una respuesta a oraciones que ni siquiera supe cómo pedir.</p>
+                <p>Y si algún día dudás de tu valor, recordá que yo lo veo en cada píxel de tu sonrisa, en cada palabra de tus mensajes, en cada segundo de nuestras llamadas.</p>
+                
+                <!-- Image Section 2 -->
+                <div class="image-section">
+                    <div class="heart-decoration top-right">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </div>
+                    <div class="image-frame">
+                        <div class="image-overlay"></div>
+                        </div>
+                        <div class="image-placeholder">
+                            <img src="https://i.pinimg.com/736x/5d/1c/d1/5d1cd1b33e9580f9d2b8dab01409c0a8.jpg" alt="Tu belleza" />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Final Message -->
+                <div class="final-message">
+                    <h2>Te quiero. Con el alma.</h2>
+                    <p>Y gracias por hacerme parte de tu historia, incluso desde la distancia.</p>
+                    <p>Eres mi todo: mi compañera digital, mi sueño de futuro, mi inspiración diaria y mi hogar emocional.</p>
+                    <p>Pronto nos abrazaremos en persona, pero mientras tanto, mi amor viaja a través de cada mensaje, cada llamada, cada "te quiero" que cruza la distancia para llegar a ti.</p>
+                </div>
+                
+                <div class="signature">—Dilan</div>
+            </div>
+        </section>
+        
+        <!-- Button Section -->
+        <section class="button-section">
+            <button class="love-button" id="love-button">Presiona para enviar mis 50 gracias a través de la distancia 💜</button>
+        </section>
+    </div>
+    
+    <!-- Floating Hearts Container -->
+    <div id="hearts-container"></div>
+    
+    <!-- Floating Elements -->
+    <div class="floating-elements" id="floating-elements"></div>
+    
+    <script>
+        // Parallax effect for background
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            const parallaxBg = document.getElementById('parallax-bg');
+            if (parallaxBg) {
+                parallaxBg.style.transform = `translateY(${scrollY * 0.2}px)`;
+            }
+        });
+        
+        // Love button effect
+        document.getElementById('love-button').addEventListener('click', function() {
+            const heartsContainer = document.getElementById('hearts-container');
+            heartsContainer.style.display = 'block';
+            heartsContainer.innerHTML = '';
+            
+            // Create floating hearts
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('floating-heart');
+                    
+                    const colors = ['#9333ea', '#ec4899', '#ef4444', '#f59e0b', '#22c55e', '#3b82f6'];
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    heart.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="${Math.random() * 50 + 20}" height="${Math.random() * 50 + 20}" viewBox="0 0 24 24" fill="${randomColor}" stroke="none">
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                        </svg>
+                    `;
+                    heart.style.left = `${Math.random() * 100}vw`;
+                    heart.style.opacity = Math.random() * 0.8 + 0.2;
+                    heartsContainer.appendChild(heart);
+                }, i * 40);
+            }
+            
+            // Hide hearts container after animation
+            setTimeout(() => {
+                heartsContainer.style.display = 'none';
+            }, 5000);
+        });
+        
+        // Create floating elements
+        const floatingElements = document.getElementById('floating-elements');
+        const icons = [
+            // Phone icon
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>`,
+            // Star icon
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>`,
+            // Mountain icon
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m8 3 4 8 5-5 5 15H2L8 3z"/>
+            </svg>`,
+            // Heart icon
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>`,
+            // Message icon
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>`,
+            // Video icon
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="23 7 16 12 23 17 23 7"/>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+            </svg>`,
+            // Globe icon
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>`
+        ];
+        
+        for (let i = 0; i < 30; i++) {
+            const element = document.createElement('div');
+            element.classList.add('floating-element');
+            element.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            element.style.left = `${Math.random() * 100}vw`;
+            element.style.top = `-50px`;
+            element.style.animationDuration = `${Math.random() * 30 + 20}s`;
+            element.style.animationDelay = `${Math.random() * 20}s`;
+            element.style.opacity = Math.random() * 0.4 + 0.2;
+            element.style.transform = `scale(${Math.random() * 0.8 + 0.5})`;
+            floatingElements.appendChild(element);
+        }
+        
+        // Add scroll animations for thanks items
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all thanks items
+        document.querySelectorAll('.thanks-item').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = `opacity 0.6s ease ${index * 0.05}s, transform 0.6s ease ${index * 0.05}s`;
+            observer.observe(item);
+        });
+        
+        // Add hover effects to thanks items
+        document.querySelectorAll('.thanks-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
