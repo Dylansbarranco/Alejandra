@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti, mi amor 💜</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #9d50bb 0%, #6e48aa 50%, #8a2be2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Pétalos flotantes */
+        .petals {
+            position: fixed;
+            top: -10px;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .petal {
+            position: absolute;
+            color: #9d50bb;
+            font-size: 20px;
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Corazones flotantes */
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            color: #9d50bb;
+            font-size: 25px;
+            animation: heartFloat 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes heartFloat {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4em;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px #9d50bb; }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px #9d50bb, 0 0 30px #9d50bb; }
+        }
+
+        .header p {
+            font-size: 1.3em;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(157,80,187,0.1), transparent);
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .flower-icon {
+            text-align: center;
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .message {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .message.romantic {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8em;
+            color: #8a2be2;
+            font-weight: 600;
+        }
+
+        .love-quote {
+            background: linear-gradient(135deg, #9d50bb 0%, #6e48aa 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(157,80,187,0.3);
+        }
+
+        .love-quote::before {
+            content: '"';
+            font-size: 4em;
+            color: rgba(255,255,255,0.5);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .love-quote::after {
+            content: '"';
+            font-size: 4em;
+            color: rgba(255,255,255,0.5);
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .love-quote p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8em;
+            color: #fff;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            margin: 0;
+        }
+
+        .flower-description {
+            background: linear-gradient(135deg, #9d50bb 0%, #6e48aa 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(157,80,187,0.3);
+        }
+
+        .flower-description h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .flower-description p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .reason-card {
+            background: linear-gradient(135deg, #9d50bb 0%, #6e48aa 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(157,80,187,0.3);
+        }
+
+        .reason-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(157,80,187,0.4);
+        }
+
+        .reason-card .icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .reason-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .reason-card p {
+            font-size: 1em;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .signature {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .signature p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2em;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .signature .date {
+            font-size: 1.1em;
+            color: rgba(255,255,255,0.8);
+            font-weight: 300;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: #9d50bb;
+            font-size: 30px;
+            animation: floatHeart 4s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                opacity: 0;
+                transform: translateY(100px) scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) scale(0);
+            }
+        }
+
+        .music-note {
+            position: fixed;
+            color: #9d50bb;
+            font-size: 25px;
+            animation: musicFloat 5s linear infinite;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        @keyframes musicFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pulse-heart {
+            display: inline-block;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .special-highlight {
+            background: linear-gradient(135deg, #9d50bb, #6e48aa);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(157,80,187,0.3);
+        }
+
+        .special-highlight h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .shiny-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shiny-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: shiny 4s linear infinite;
+        }
+
+        @keyframes shiny {
+            from {
+                transform: translateX(-100%) rotate(30deg);
+            }
+            to {
+                transform: translateX(100%) rotate(30deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .card {
+                padding: 25px;
+                margin: 20px 0;
+            }
+            
+            .message {
+                font-size: 1.1em;
+            }
+            
+            .message.romantic {
+                font-size: 1.5em;
+            }
+            
+            .love-quote p {
+                font-size: 1.4em;
+            }
+            
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pétalos flotantes -->
+    <div class="petals" id="petals"></div>
+    
+    <!-- Corazones flotantes -->
+    <div class="hearts" id="hearts"></div>
+    
+    <!-- Notas musicales -->
+    <div id="musicNotes"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Para ti, mi amor</h1>
+            <p>Un mensaje especial que acompaña estas flores 💜</p>
+        </div>
+
+        <!-- Carta principal -->
+        <div class="card">
+            <div class="flower-icon">💜🌸💜</div>
+            
+            <div class="message">
+                <p>Mi amor hermoso,</p>
+                <br>
+                <p>Hoy quería sorprenderte con algo especial. Cuando vi estas flores Shiny, inmediatamente pensé en ti porque son tan elegantes y hermosas como tú.</p>
+                <br>
+                <p class="romantic">Cada pétalo representa un "te quiero", cada brillo un momento especial juntos, y cada tono morado un recuerdo hermoso que hemos creado.</p>
+            </div>
+
+            <div class="flower-description shiny-effect">
+                <h3>Sobre estas flores especiales ✨</h3>
+                <p>Elegí estas flores Shiny de color morado porque representan la magia, la elegancia y lo especial que eres para mí. Y lo mejor de todo, son flores que no se marchitan, justo como mi cariño por ti que permanecerá para siempre.</p>
+            </div>
+
+            <div class="love-quote">
+                <p>En un jardín lleno de flores, tú sigues siendo la más hermosa <span class="pulse-heart">💜</span></p>
+            </div>
+        </div>
+
+        <!-- Razones por las que te amo -->
+        <div class="card">
+            <h2 style="text-align: center; color: #8a2be2; font-family: 'Dancing Script', cursive; font-size: 2.5em; margin-bottom: 30px;">¿Por qué estas flores son para ti?</h2>
+            
+            <div class="reasons-grid">
+                <div class="reason-card">
+                    <span class="icon">💜</span>
+                    <h3>Como su color morado</h3>
+                    <p>Representan la magia y el misterio que me hace querer descubrirte cada día</p>
+                </div>
+                
+                <div class="reason-card">
+                    <span class="icon">✨</span>
+                    <h3>Como su brillo "Shiny"</h3>
+                    <p>Iluminas mi vida con tu presencia y haces que todo sea más especial</p>
+                </div>
+                
+                <div class="reason-card">
+                    <span class="icon">🌟</span>
+                    <h3>Como su durabilidad</h3>
+                    <p>No se marchitan, igual que mi cariño por ti que es eterno y verdadero</p>
+                </div>
+                
+                <div class="reason-card">
+                    <span class="icon">💎</span>
+                    <h3>Como su elegancia</h3>
+                    <p>Eres única, sofisticada y la mujer más hermosa del mundo</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje especial sobre las flores -->
+        <div class="card">
+            <div class="special-highlight shiny-effect">
+                <h3>Un detalle especial 💝</h3>
+                <p>Estas flores Shiny llegaron hasta tu puerta porque quería que supieras que, sin importar la distancia, mi cariño siempre encuentra la manera de llegar hasta ti. Y al igual que estas flores que no se marchitan, mis sentimientos por ti permanecerán intactos con el paso del tiempo.</p>
+            </div>
+
+            <div class="message romantic">
+                <p>Espero que cuando las veas, sientas todo el cariño que puse en elegirlas para ti.</p>
+                <br>
+                <p>Que su belleza te recuerde lo hermosa que eres, que su brillo te haga pensar en mí, y que su color morado te recuerde la magia de lo que sentimos.</p>
+                <br>
+                <p>No necesito una fecha especial para demostrarte lo mucho que significas para mí. Cada día contigo es una celebración.</p>
+            </div>
+
+            <div class="love-quote">
+                <p>Estas flores nunca se marchitarán, igual que mi cariño por ti <span class="pulse-heart">💜</span></p>
+            </div>
+        </div>
+
+        <!-- Promesas -->
+        <div class="card">
+            <h2 style="text-align: center; color: #8a2be2; font-family: 'Dancing Script', cursive; font-size: 2.5em; margin-bottom: 30px;">Mis promesas para ti</h2>
+            
+            <div class="message">
+                <p>🌸 <strong>Prometo</strong> seguir sorprendiéndote con detalles como este</p>
+                <br>
+                <p>💜 <strong>Prometo</strong> quererte cada día más que el anterior</p>
+                <br>
+                <p>🌟 <strong>Prometo</strong> ser tu apoyo incondicional siempre</p>
+                <br>
+                <p>😊 <strong>Prometo</strong> hacerte sonreír incluso en los días grises</p>
+                <br>
+                <p>🤗 <strong>Prometo</strong> abrazarte fuerte y nunca dejarte ir</p>
+                <br>
+                <p>💖 <strong>Prometo</strong> construir contigo el futuro más hermoso</p>
+            </div>
+        </div>
+
+        <!-- Mensaje final -->
+        <div class="card">
+            <div class="message romantic">
+                <p>Disfruta estas flores Shiny, mi amor.</p>
+                <br>
+                <p>Ponlas en tu lugar favorito y cada vez que las veas, recuerda que hay alguien que te quiere infinitamente y que piensa en ti todo el tiempo.</p>
+                <br>
+                <p>Eres mi flor más preciada, mi brillo más hermoso, mi jardín completo.</p>
+            </div>
+
+            <div class="love-quote">
+                <p>Te quiero más que a todas las flores del mundo juntas <span class="pulse-heart">💜</span></p>
+            </div>
+        </div>
+
+        <!-- Firma -->
+        <div class="signature">
+            <p>Con todo mi cariño y estas flores especiales,</p>
+            <p style="font-size: 2.8em; color: #9d50bb;">Tu novio que te quiere infinitamente</p>
+            <p style="font-size: 2.8em; color: #9d50bb;">Dilan, Nesquik 🫶</p>
+            <p class="date" id="currentDate"></p>
+            <div style="font-size: 3em; margin-top: 20px;">💜✨🌸✨💜</div>
+        </div>
+    </div>
+
+    <script>
+        // Crear pétalos flotantes (más morados para coincidir con las flores)
+        function createPetals() {
+            const petalsContainer = document.getElementById('petals');
+            const petalEmojis = ['🌸', '💜', '✨', '🔮', '💫'];
+            
+            setInterval(() => {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.innerHTML = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                petal.style.animationDelay = Math.random() * 2 + 's';
+                
+                petalsContainer.appendChild(petal);
+                
+                setTimeout(() => {
+                    petal.remove();
+                }, 5000);
+            }, 300);
+        }
+
+        // Crear corazones flotantes
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartEmojis = ['💜', '💖', '✨', '💫', '🌟'];
+            
+            for (let i = 0; i < 8; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 6 + 's';
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Crear notas musicales y brillos
+        function createMusicNotes() {
+            const musicContainer = document.getElementById('musicNotes');
+            const notes = ['🎵', '✨', '💫', '🌟'];
+            
+            setInterval(() => {
+                const note = document.createElement('div');
+                note.className = 'music-note';
+                note.innerHTML = notes[Math.floor(Math.random() * notes.length)];
+                note.style.left = Math.random() * 100 + '%';
+                note.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                
+                musicContainer.appendChild(note);
+                
+                setTimeout(() => {
+                    note.remove();
+                }, 5000);
+            }, 2000);
+        }
+
+        // Establecer fecha actual
+        function setCurrentDate() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                weekday: 'long'
+            };
+            const dateString = now.toLocaleDateString('es-ES', options);
+            document.getElementById('currentDate').textContent = dateString;
+        }
+
+        // Crear corazones que aparecen al hacer click
+        function createClickHearts(e) {
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '💜';
+                heart.style.position = 'fixed';
+                heart.style.left = (e.clientX - 15 + Math.random() * 30) + 'px';
+                heart.style.top = (e.clientY - 15 + Math.random() * 30) + 'px';
+                heart.style.fontSize = '20px';
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '1000';
+                heart.style.animation = 'floatHeart 2s ease-out forwards';
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 2000);
+            }
+        }
+
+        // Inicializar todo
+        document.addEventListener('DOMContentLoaded', function() {
+            setCurrentDate();
+            createPetals();
+            createHearts();
+            createMusicNotes();
+            
+            // Agregar corazones al hacer click
+            document.addEventListener('click', createClickHearts);
+            
+            // Agregar efecto de brillo a las cartas al pasar el mouse
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 25px 50px rgba(0,0,0,0.15)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.1)';
+                });
+            });
+        });
+
+        // Agregar más efectos especiales
+        setInterval(() => {
+            const randomCard = document.querySelectorAll('.reason-card')[Math.floor(Math.random() * 4)];
+            randomCard.style.transform = 'translateY(-5px) scale(1.02)';
+            setTimeout(() => {
+                randomCard.style.transform = 'translateY(0) scale(1)';
+            }, 1000);
+        }, 3000);
+    </script>
+</body>
+</html>
