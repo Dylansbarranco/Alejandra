@@ -3,349 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestro Historia Digital de Amor</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Georgia', serif;
-            background-color: #f9f3e9;
-            color: #333;
-            line-height: 1.6;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .book-container {
-            flex: 1;
-            display: flex;
-            perspective: 1500px;
-            margin: 20px auto;
-            max-width: 100%;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .book {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transform: translateZ(0);
-            transition: transform 0.5s;
-        }
-        
-        .page {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            overflow-y: auto;
-            padding: 20px;
-            background: linear-gradient(to right, #fff 0%, #f9f7f1 100%);
-            transform-origin: left center;
-            transform-style: preserve-3d;
-            transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
-            border-radius: 0 5px 5px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-        }
-        
-        .page-content {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 20px;
-            padding-bottom: 60px;
-        }
-        
-        .page::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 100%;
-            background: linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
-        }
-        
-        .page.active {
-            z-index: 1;
-        }
-        
-        .page.flipped {
-            transform: rotateY(-180deg);
-        }
-        
-        .page.flipped::before {
-            background: linear-gradient(to left, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
-        }
-        
-        .page-number {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            text-align: center;
-            font-style: italic;
-            color: #888;
-            left: 0;
-        }
-        
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 20px;
-            background-color: #f0e6d2;
-            border-top: 1px solid #e0d6c2;
-        }
-        
-        .nav-button {
-            background-color: #8e6d5e;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: 'Georgia', serif;
-            transition: background-color 0.3s;
-        }
-        
-        .nav-button:hover {
-            background-color: #6d5348;
-        }
-        
-        .nav-button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-        
-        .page-indicator {
-            display: flex;
-            align-items: center;
-            color: #8e6d5e;
-            font-style: italic;
-        }
-        
-        h1, h2, h3 {
-            color: #8e6d5e;
-            margin-bottom: 20px;
-            text-align: center;
-            font-family: 'Georgia', serif;
-        }
-        
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(to right, transparent, #8e6d5e, transparent);
-        }
-        
-        h2 {
-            font-size: 1.8rem;
-            margin-top: 30px;
-        }
-        
-        h3 {
-            font-size: 1.4rem;
-            font-style: italic;
-        }
-        
-        p {
-            margin-bottom: 20px;
-            text-align: justify;
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-        
-        .first-letter {
-            float: left;
-            font-size: 3.5rem;
-            line-height: 1;
-            font-weight: bold;
-            margin-right: 10px;
-            color: #8e6d5e;
-            font-family: 'Georgia', serif;
-        }
-        
-        .chapter-title {
-            text-align: center;
-            margin: 40px 0 30px;
-            font-size: 1.5rem;
-            color: #8e6d5e;
-            font-style: italic;
-        }
-        
-        .date {
-            text-align: center;
-            font-style: italic;
-            color: #8e6d5e;
-            margin-bottom: 30px;
-        }
-        
-        .quote {
-            font-style: italic;
-            padding: 20px;
-            background-color: #f9f3e9;
-            border-left: 3px solid #8e6d5e;
-            margin: 20px 0;
-            position: relative;
-            text-align: center;
-        }
-        
-        .quote::before, .quote::after {
-            content: '"';
-            font-size: 2.5rem;
-            color: #d1c3b6;
-            position: absolute;
-        }
-        
-        .quote::before {
-            top: -10px;
-            left: 5px;
-        }
-        
-        .quote::after {
-            bottom: -30px;
-            right: 5px;
-        }
-        
-        .reasons-list {
-            column-count: 2;
-            column-gap: 30px;
-            margin: 20px 0;
-            list-style-type: none;
-        }
-        
-        .reasons-list li {
-            margin-bottom: 10px;
-            break-inside: avoid;
-            position: relative;
-            padding-left: 25px;
-        }
-        
-        .reasons-list li::before {
-            content: '♥';
-            color: #8e6d5e;
-            position: absolute;
-            left: 0;
-            font-size: 1.1rem;
-        }
-        
-        .book-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #6d5348;
-            margin: 50px 0 20px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        
-        .book-subtitle {
-            text-align: center;
-            font-style: italic;
-            color: #8e6d5e;
-            margin-bottom: 50px;
-            font-size: 1.3rem;
-        }
-        
-        .dedication {
-            text-align: center;
-            font-style: italic;
-            margin: 50px 0;
-            color: #8e6d5e;
-        }
-        
-        .cover {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            background: linear-gradient(135deg, #f9f3e9, #e6d7c3);
-        }
-        
-        .cover-decoration {
-            font-size: 3rem;
-            color: #8e6d5e;
-            margin: 20px 0;
-        }
-        
-        .page-break {
-            page-break-after: always;
-            margin: 40px 0;
-            text-align: center;
-            color: #8e6d5e;
-        }
-        
-        .page-break::before {
-            content: '• • •';
-            letter-spacing: 10px;
-        }
-        
-        .chapter-number {
-            font-size: 1.2rem;
-            text-align: center;
-            color: #8e6d5e;
-            margin-bottom: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            .page-content {
-                padding: 15px;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            .reasons-list {
-                column-count: 1;
-            }
-            
-            .first-letter {
-                font-size: 3rem;
-            }
-        }
-    </style>
+    <title>Nuestra Historia Digital de Amor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Kalam:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Css/Libro.css">
 </head>
 <body>
+    <!-- Contenedor de galaxia -->
+    <div class="galaxy-container" id="galaxy"></div>
+    
+    <!-- Sol y Luna -->
+    <div class="celestial-body sun" id="sun">☀️</div>
+    <div class="celestial-body moon" id="moon">🌙</div>
+    
+    <!-- Planetas del sistema solar -->
+    <div class="solar-system" id="solar-system"></div>
+    
+    <!-- Nebulosas -->
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="nebula nebula-3"></div>
+    
     <div class="book-container">
         <div class="book" id="book">
-         
+            <!-- Portada -->
             <div class="page active" id="page-0">
                 <div class="page-content cover">
-                    <div class="cover-decoration">❦</div>
-                    <h1 class="book-title">Nuestra Historia Digital</h1>
-                    <p class="book-subtitle">Un viaje a través de nuestro amor</p>
-                    <div class="dedication">Para ti Alejandra, que iluminas mi vida con cada mensaje</div>
-                    <div class="cover-decoration">❦</div>
+                    <div class="little-prince-illustration">
+                        <div class="planet-b612">🪐</div>
+                        <div class="prince-figure">👤</div>
+                        <div class="rose">🌹</div>
+                    </div>
+                    <h1 class="book-title-cursive">Nuestra Historia Digital</h1>
+                    <p class="book-subtitle-cursive">Un viaje a través de nuestro amor</p>
+                    <div class="stars-decoration">✦ ✦ ✦</div>
+                    <div class="dedication-cursive">Para ti Alejandra, que iluminas mi vida con cada mensaje</div>
+                    <div class="author-cursive">❦</div>
                     <div class="page-number">Portada</div>
                 </div>
             </div>
-            
-          
+
+            <!-- Nueva página: Nuestras fotos -->
+<div class="page" id="page-0-5">
+    <div class="page-content">
+        <h1 class="animate-fade-in">Los Protagonistas de Esta Historia</h1>
+        
+        <div class="photos-container">
+            <div class="photo-section alejandra-section">
+                <div class="photo-frame">
+                    <img src="https://i.pinimg.com/736x/6d/58/d8/6d58d86a6d6b152b2cd0789292048321.jpg" alt="Foto de Alejandra" class="photo-image">
+                </div>
+                <div class="person-description">
+                    <h3>Alejandra</h3>
+                    <p>La estrella más brillante de mi galaxia, aquella que con su luz ilumina cada rincón de mi universo. Con su sonrisa puede crear constelaciones y con sus palabras, nuevos mundos llenos de amor y esperanza. La mujer que me enseñó que el amor verdadero existe y que vale la pena esperar por él.</p>
+                </div>
+            </div>
+
+            <div class="photo-section dilan-section">
+                <div class="photo-frame">
+                    <img src="https://i.pinimg.com/736x/b4/c7/19/b4c719b7ea6eddf3210c54048fa8a0d4.jpg" alt="Foto de Dilan" class="photo-image">
+                </div>
+                <div class="person-description">
+                    <h3>Dilan</h3>
+                    <p>El viajero espacial que encontró su hogar en el corazón de Alejandra. Un soñador que escribe cartas digitales entre las estrellas y que cada día descubre nuevas razones para amar en esta inmensa galaxia del amor. El hombre que aprendió que la distancia no existe cuando dos almas están destinadas a estar juntas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="story-intro">
+            <h2>📖 Sobre Este Libro</h2>
+            <p>Esta es nuestra historia digital, un libro que se continúa escribiendo una vez por semana. Cada capítulo es una nueva aventura, una nueva semana de amor que se suma a nuestra galaxia de recuerdos.</p>
+            <p><strong>Una semana Alejandra, una semana Dilan</strong> - así vamos construyendo juntos este universo de palabras, emociones y amor infinito.</p>
+            <div class="writing-schedule">
+                <div class="week-indicator alejandra-week">
+                    <span class="week-icon">✨</span>
+                    <span>Semana de Alejandra</span>
+                </div>
+                <div class="week-indicator dilan-week">
+                    <span class="week-icon">🌟</span>
+                    <span>Semana de Dilan</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page-number">0.5</div>
+    </div>
+</div>  
+            <!-- Capítulo I -->
             <div class="page" id="page-1">
                 <div class="page-content">
                     <div class="chapter-number">Capítulo I</div>
@@ -382,7 +125,7 @@
                 </div>
             </div>
             
-           
+            <!-- Capítulo II -->
             <div class="page" id="page-2">
                 <div class="page-content">
                     <div class="chapter-number">Capítulo II</div>
@@ -474,7 +217,7 @@
                 </div>
             </div>
             
-       
+            <!-- Capítulo III -->
             <div class="page" id="page-3">
                 <div class="page-content">
                     <div class="chapter-number">Capítulo III</div>
@@ -553,6 +296,7 @@
                 </div>
             </div>
             
+            <!-- Capítulo IV -->
             <div class="page" id="page-4">
                 <div class="page-content">
                     <div class="chapter-number">Capítulo IV</div>
@@ -754,7 +498,8 @@
                 </div>
             </div>
             
-            <Div class="page" id="page-5">
+            <!-- Capítulo V -->
+            <div class="page" id="page-5">
                 <div class="page-content">
                     <div class="chapter-number">Capítulo V</div>
                     <h1></h1>
@@ -763,14 +508,14 @@
                         Creo que es mi turno de contar la historia desde este lado.</p>
 
                     <p>Quiero confesarte que eres la forma más linda en la que alguien me ha querido.
-                    La manera en que me haces sentir es tan bonita, tan pura e inocente. Como te lo he dicho: tú eres eso que siempre quise, ese “algo” que sabía que necesitaba, aunque no sabía cuándo llegaría. 
+                    La manera en que me haces sentir es tan bonita, tan pura e inocente. Como te lo he dicho: tú eres eso que siempre quise, ese "algo" que sabía que necesitaba, aunque no sabía cuándo llegaría. 
                     Supongo que no se puede controlar, simplemente pasa… y cuando lo sabes, lo sabes.
                     ❤️ </p>
 
-                    <p>También te confieso (de nuevo) que la primera vez que te vi en ese grupo pensé: “Qué lindo es”.
+                    <p>También te confieso (de nuevo) que la primera vez que te vi en ese grupo pensé: "Qué lindo es".
                     Desde entonces, estaba atenta a cada mensaje tuyo, analizando en silencio cada palabra. Un día, 
-                    sin esperarlo, sentí que se abría una oportunidad para acercarme. Pensé: “Una sola vez, y si 
-                    hay un no, normal… dejo así”.</p>
+                    sin esperarlo, sentí que se abría una oportunidad para acercarme. Pensé: "Una sola vez, y si 
+                    hay un no, normal… dejo así".</p>
                                         
                 <div class="quote">
                  "Quizás esa entrada con confianza fue porque sí te conozco de otra vida. 
@@ -779,15 +524,15 @@
             </div>
                     
                     <p>Primer acercamiento: 11 de abril, 22:02
-                    Mi primer intento fue un “¿Y el tuyo lo pasas, Dilan?” refiriéndome a tu Instagram. Esa misma 
+                    Mi primer intento fue un "¿Y el tuyo lo pasas, Dilan?" refiriéndome a tu Instagram. Esa misma 
                     noche, hice otro comentario: dije que todos en el grupo eran preciosos, y en un mensaje aparte 
-                    agregué: “Y Dilan también”,solo obtuve una reacción al mensaje, pero yo ya me lo había propuesto. 
+                    agregué: "Y Dilan también",solo obtuve una reacción al mensaje, pero yo ya me lo había propuesto. 
                     Me ignoraron por primera vez, sí, pero seguí. Fue un trabajo duro, pero lo logré.</p>
  
 
                     <p>Ni siquiera te tenía agregado, y hoy lo veo como una Diosidencia. Todo estaba justo en su lugar, solo debía esperar el momento.
                     El domingo 13 de abril, a las 14:56, respondí a un estado tuyo. Pero no podía hacerlo de manera corriente o aburrida. 
-                    Necesitaba algo que abriera la puerta a una conversación. Así que escribí: “¿Le diste besito al piso hoy o no?” Y exactamente 
+                    Necesitaba algo que abriera la puerta a una conversación. Así que escribí: "¿Le diste besito al piso hoy o no?" Y exactamente 
                     un minuto después, me respondiste con una nota de voz. Ahí supe que algo iba a pasar, al menos una conversación (pensando en poco).
                     Poco a poco empezamos a responder con tiempos intermedios… hasta que un día eso cambió.
                     17 de abril, 12:11
@@ -814,263 +559,269 @@
                     
                     <div class="page-number">5</div>
                 </div>
+            </div>
 
-            </Div>
-
+            <!-- Capítulo VI -->
             <div class="page" id="page-6">
-    <div class="page-content">
-        <div class="chapter-number">Capítulo VI</div>
-        <h1>Un Mes de Nosotros: El Inicio de Nuestra Eternidad</h1>
-        
-        <p><span class="first-letter">E</span>sta semana celebramos nuestro primer mes juntos. Treinta días que han pasado como un suspiro y, a la vez, como una eternidad. Treinta días en los que hemos construido más recuerdos de los que muchos crean en años. Treinta días que han cambiado el curso de nuestras vidas para siempre.</p>
-        
-        <p>Dicen que el tiempo es relativo, y nunca lo he sentido tan cierto como ahora. Cuando estamos en llamada, las horas se desvanecen en minutos. Cuando no estamos conectados, los minutos se estiran como horas. Y sin embargo, cada segundo contigo, incluso en la distancia, vale más que mil años de soledad.</p>
-        
-        <div class="quote">
-            "Un mes puede parecer poco en el calendario, pero es una eternidad cuando se mide en latidos compartidos."
-        </div>
-        
-        <h2>Lo Que Hemos Construido</h2>
-        
-        <p>En solo un meiojs, hemos creado nuestro propio lenguaje, nuestros propios rituales, nuestras propias tradiciones. Tenemos canciones que son solo nuestras, chistes que solo nosotros entendemos, momentos que solo nosotros atesoramos.</p>
-        
-        <p>Hemos aprendido a leernos a través de una pantalla, a sentir el calor del otro a kilómetros de distancia, a abrazarnos con palabras cuando no podemos hacerlo con los brazos. Hemos descubierto que el amor verdadero trasciende lo físico y se instala en el alma.</p>
-        
-        <p>Hemos compartido miedos que nunca antes habíamos confesado, sueños que nunca antes habíamos verbalizado, esperanzas que nunca antes habíamos permitido florecer. Nos hemos mostrado vulnerables, auténticos, reales.</p>
-        
-        <h2>Lo Que He Aprendido</h2>
-        
-        <p>En este mes contigo, he aprendido más sobre el amor de lo que había aprendido en toda mi vida. He aprendido que amar no es solo un sentimiento, sino una decisión que se toma cada día. He aprendido que la distancia, lejos de debilitar el amor, puede fortalecerlo cuando hay compromiso y dedicación.</p>
-        
-        <p>He aprendido a valorar cada mensaje, cada llamada, cada momento compartido como el tesoro que realmente es. He aprendido a encontrar alegría en las cosas pequeñas: un buenos días al despertar, un te extraño en medio de la tarde, un dulces sueños antes de dormir.</p>
-        
-        <p>He aprendido que el amor verdadero no busca cambiar al otro, sino celebrar quién es. Y tú, mi Alejandra, eres alguien digna de celebración cada día, cada hora, cada minuto.</p>
-        
-        <h2>Lo Que Siento</h2>
-        
-        <p>¿Cómo describir lo que siento por ti después de este primer mes juntos? Las palabras parecen insuficientes, limitadas, pequeñas ante la inmensidad de mis sentimientos.</p>
-        
-        <p>Siento gratitud por cada momento que has decidido compartir conmigo. Siento admiración por tu fortaleza, tu inteligencia, tu bondad. Siento orgullo de poder llamarte mía, de que me llames tuyo.</p>
-        
-        <p>Siento esperanza por todo lo que nos queda por vivir, por descubrir, por crear juntos. Siento paz cuando pienso en nuestro futuro, porque sé que mientras estemos juntos, todo estará bien.</p>
-        
-        <p>Y sobre todo, siento amor. Un amor que crece cada día, que se fortalece con cada prueba, que se profundiza con cada conversación. Un amor que no conoce límites ni condiciones. Un amor que, estoy seguro, está destinado a durar toda la vida.</p>
-        
-        <div class="quote">
-            "Treinta días han bastado para saber que quiero pasar contigo todos los días que me queden."
-        </div>
-        
-        <h2>Lo Que Espero</h2>
-        
-        <p>Este primer mes es solo el comienzo de nuestra historia. El primer capítulo de un libro que seguiremos escribiendo juntos, página a página, día a día.</p>
-        
-        <p>Espero celebrar contigo no solo meses, sino años. Espero ver cómo nuestro amor madura, evoluciona, se transforma sin perder su esencia. Espero superar juntos los obstáculos que la vida nos presente, sabiendo que unidos somos más fuertes.</p>
-        
-        <p>Espero el día en que la distancia sea solo un recuerdo, en que podamos despertar cada mañana uno al lado del otro, en que podamos convertir los abrazos virtuales en reales.</p>
-        
-        <p>Espero construir contigo una vida llena de amor, de risas, de complicidad. Una vida en la que cada día sea una nueva oportunidad para amarnos más y mejor.</p>
-        
-        <p>Porque si algo he aprendido en este primer mes juntos, es que lo nuestro no es casualidad, sino destino. No es temporal, sino eterno. No es simple atracción, sino amor verdadero.</p>
-        
-        <div class="quote">
-            "Un mes ha sido suficiente para saber que lo nuestro es para siempre."
-        </div>
-        
-        <p>Feliz primer mes, mi amor. Gracias por estos treinta días de felicidad, de aprendizaje, de crecimiento. Gracias por elegirme cada día, por quererme como soy, por soñar conmigo un futuro juntos.</p>
-        
-        <p>Este es solo el primero de muchos meses que celebraremos juntos. El primero de muchos capítulos que escribiremos en nuestra historia de amor. El primero de muchos hitos en nuestro camino compartido.</p>
-        
-        <p>Te quiero hoy más que ayer y menos que mañana. Y así será siempre, mi Alejandra, mi amor, mi todo.</p>
-        
-        <div class="dedication" style="margin-top: 50px;">
-            Con amor infinito,<br>
-            En nuestro primer mes juntos,<br>
-            13 de mayo de 2025
-        </div>
-        
-        <div class="page-number">6</div>
-    </div>
-</div>
-<div class="page" id="page-7">
-    <div class="page-content">
-        <div class="chapter-number">Capítulo VII</div>
-        <h1>Del 19 a 25 de mayo</h1>
-        
-        <p><span class="first-letter">E</span>sta ha sido una semana en la que hemos logrado conocernos un poco más y más.</p>
-        
-        <h2>Ponle el subtitulo que quieras, pero cambialo cada vez que lo hayas leído todo.</h2>
-        <p>
-            Con muchos sentimientos, historias e intrigas de por medio por saber más y más del otro.
-            Contigo he aprendido que no existe momento incómodo o que si lo es, se puede camuflar de la mejor forma posible.
-            Ha sido una semana llena de mucho sentimiento, mucha nostalgia pero a pesar de todo considero que es super necesario todo esto para formar y formar 
-            una relación sólida y preparada para los malos momentos.
-        </p>
+                <div class="page-content">
+                    <div class="chapter-number">Capítulo VI</div>
+                    <h1>Un Mes de Nosotros: El Inicio de Nuestra Eternidad</h1>
+                    
+                    <p><span class="first-letter">E</span>sta semana celebramos nuestro primer mes juntos. Treinta días que han pasado como un suspiro y, a la vez, como una eternidad. Treinta días en los que hemos construido más recuerdos de los que muchos crean en años. Treinta días que han cambiado el curso de nuestras vidas para siempre.</p>
+                    
+                    <p>Dicen que el tiempo es relativo, y nunca lo he sentido tan cierto como ahora. Cuando estamos en llamada, las horas se desvanecen en minutos. Cuando no estamos conectados, los minutos se estiran como horas. Y sin embargo, cada segundo contigo, incluso en la distancia, vale más que mil años de soledad.</p>
+                    
+                    <div class="quote">
+                        "Un mes puede parecer poco en el calendario, pero es una eternidad cuando se mide en latidos compartidos."
+                    </div>
+                    
+                    <h2>Lo Que Hemos Construido</h2>
+                    
+                    <p>En solo un mes, hemos creado nuestro propio lenguaje, nuestros propios rituales, nuestras propias tradiciones. Tenemos canciones que son solo nuestras, chistes que solo nosotros entendemos, momentos que solo nosotros atesoramos.</p>
+                    
+                    <p>Hemos aprendido a leernos a través de una pantalla, a sentir el calor del otro a kilómetros de distancia, a abrazarnos con palabras cuando no podemos hacerlo con los brazos. Hemos descubierto que el amor verdadero trasciende lo físico y se instala en el alma.</p>
+                    
+                    <p>Hemos compartido miedos que nunca antes habíamos confesado, sueños que nunca antes habíamos verbalizado, esperanzas que nunca antes habíamos permitido florecer. Nos hemos mostrado vulnerables, auténticos, reales.</p>
+                    
+                    <h2>Lo Que He Aprendido</h2>
+                    
+                    <p>En este mes contigo, he aprendido más sobre el amor de lo que había aprendido en toda mi vida. He aprendido que amar no es solo un sentimiento, sino una decisión que se toma cada día. He aprendido que la distancia, lejos de debilitar el amor, puede fortalecerlo cuando hay compromiso y dedicación.</p>
+                    
+                    <p>He aprendido a valorar cada mensaje, cada llamada, cada momento compartido como el tesoro que realmente es. He aprendido a encontrar alegría en las cosas pequeñas: un buenos días al despertar, un te extraño en medio de la tarde, un dulces sueños antes de dormir.</p>
+                    
+                    <p>He aprendido que el amor verdadero no busca cambiar al otro, sino celebrar quién es. Y tú, mi Alejandra, eres alguien digna de celebración cada día, cada hora, cada minuto.</p>
+                    
+                    <h2>Lo Que Siento</h2>
+                    
+                    <p>¿Cómo describir lo que siento por ti después de este primer mes juntos? Las palabras parecen insuficientes, limitadas, pequeñas ante la inmensidad de mis sentimientos.</p>
+                    
+                    <p>Siento gratitud por cada momento que has decidido compartir conmigo. Siento admiración por tu fortaleza, tu inteligencia, tu bondad. Siento orgullo de poder llamarte mía, de que me llames tuyo.</p>
+                    
+                    <p>Siento esperanza por todo lo que nos queda por vivir, por descubrir, por crear juntos. Siento paz cuando pienso en nuestro futuro, porque sé que mientras estemos juntos, todo estará bien.</p>
+                    
+                    <p>Y sobre todo, siento amor. Un amor que crece cada día, que se fortalece con cada prueba, que se profundiza con cada conversación. Un amor que no conoce límites ni condiciones. Un amor que, estoy seguro, está destinado a durar toda la vida.</p>
+                    
+                    <div class="quote">
+                        "Treinta días han bastado para saber que quiero pasar contigo todos los días que me queden."
+                    </div>
+                    
+                    <h2>Lo Que Espero</h2>
+                    
+                    <p>Este primer mes es solo el comienzo de nuestra historia. El primer capítulo de un libro que seguiremos escribiendo juntos, página a página, día a día.</p>
+                    
+                    <p>Espero celebrar contigo no solo meses, sino años. Espero ver cómo nuestro amor madura, evoluciona, se transforma sin perder su esencia. Espero superar juntos los obstáculos que la vida nos presente, sabiendo que unidos somos más fuertes.</p>
+                    
+                    <p>Espero el día en que la distancia sea solo un recuerdo, en que podamos despertar cada mañana uno al lado del otro, en que podamos convertir los abrazos virtuales en reales.</p>
+                    
+                    <p>Espero construir contigo una vida llena de amor, de risas, de complicidad. Una vida en la que cada día sea una nueva oportunidad para amarnos más y mejor.</p>
+                    
+                    <p>Porque si algo he aprendido en este primer mes juntos, es que lo nuestro no es casualidad, sino destino. No es temporal, sino eterno. No es simple atracción, sino amor verdadero.</p>
+                    
+                    <div class="quote">
+                        "Un mes ha sido suficiente para saber que lo nuestro es para siempre."
+                    </div>
+                    
+                    <p>Feliz primer mes, mi amor. Gracias por estos treinta días de felicidad, de aprendizaje, de crecimiento. Gracias por elegirme cada día, por quererme como soy, por soñar conmigo un futuro juntos.</p>
+                    
+                    <p>Este es solo el primero de muchos meses que celebraremos juntos. El primero de muchos capítulos que escribiremos en nuestra historia de amor. El primero de muchos hitos en nuestro camino compartido.</p>
+                    
+                    <p>Te quiero hoy más que ayer y menos que mañana. Y así será siempre, mi Alejandra, mi amor, mi todo.</p>
+                    
+                    <div class="dedication" style="margin-top: 50px;">
+                        Con amor infinito,<br>
+                        En nuestro primer mes juntos,<br>
+                        13 de mayo de 2025
+                    </div>
+                    
+                    <div class="page-number">6</div>
+                </div>
+            </div>
 
-        <p>
-            En esta semana me has hecho sentir muy pero muy querida y espero que haya sido igual para ti.
-            Me acompañaste a dar las clases, me esperaste pacientemente. 
-            Resaltaría algo en específico, pero ¿Cómo resaltar una sola cosa y pasar por alto todos los días en general?
-            Si me educaste, me corregiste, me diste a conocer muchas facetas más de ti, me viste y acompañaste en mi fragilidad, mi felicidad y cuando estuve triste hiciste todo lo posible por hacerme reír o "cambiarme el aura" como dices tú.
+            <!-- Capítulo VII -->
+            <div class="page" id="page-7">
+                <div class="page-content">
+                    <div class="chapter-number">Capítulo VII</div>
+                    <h1>Del 19 a 25 de mayo</h1>
+                    
+                    <p><span class="first-letter">E</span>sta ha sido una semana en la que hemos logrado conocernos un poco más y más.</p>
+                    
+                    <h2>Ponle el subtitulo que quieras, pero cambialo cada vez que lo hayas leído todo.</h2>
+                    <p>
+                        Con muchos sentimientos, historias e intrigas de por medio por saber más y más del otro.
+                        Contigo he aprendido que no existe momento incómodo o que si lo es, se puede camuflar de la mejor forma posible.
+                        Ha sido una semana llena de mucho sentimiento, mucha nostalgia pero a pesar de todo considero que es super necesario todo esto para formar y formar 
+                        una relación sólida y preparada para los malos momentos.
+                    </p>
 
-        </p>
-        
-        <h2>Fuí, soy y seré feliz todas las semanas contigo💗.</h2>
-        
-        <div class="quote">
-            "Nuestro amor es como el viento, no puedo verlo, pero puedo sentirlo" - Nicholas Sparks
-        </div>
-        
-        <p>
-            Cada semana es mágica contigo, el despertarme en la madrugada, despertarte y que siempre estés ahí; el hecho de que hayas notado mi gusto por lo cósmico y te hayas tomado el tiempo de crear algo con esa temática para mí. La página web que me creaste con las 53 fotos que te he subido al drive y ponerle un píe de foto a cada una, las 100 razones por la que te gusto, cómo te hago sentir. Todo eso es algo que me resulta demasiado conmovedor y me da paz pues me confirma que el objetivo de mi estadía contigo se está cumpliendo, que es el siempre hacerte feliz y hacerte sentir cómodo, querido, valorado y escuchado. 
-            Esta semana fue de mucha ternura y más motivos para seguirme enamorando de ti.
-            Gracias por esta semana tan linda, tan llena de tantas palabras, detalles, acompañamiento y mucho pero mucho amor.
-            Gracias por permitirme conocerte y por brindarme tus lenguajes del amor, gracias por quererme y por los silencios que se sienten como abrazos y acompañamiento eterno.
-        </p>
-        <div class="dedication" style="margin-top: 50px;">
-            Hecho con amor por Alejita,<br>
-            Para el amor de mi vida, mi Nesquik🫶.
-        </div>
-        <div class="page-number">7</div>
-    </div>
-</div>
+                    <p>
+                        En esta semana me has hecho sentir muy pero muy querida y espero que haya sido igual para ti.
+                        Me acompañaste a dar las clases, me esperaste pacientemente. 
+                        Resaltaría algo en específico, pero ¿Cómo resaltar una sola cosa y pasar por alto todos los días en general?
+                        Si me educaste, me corregiste, me diste a conocer muchas facetas más de ti, me viste y acompañaste en mi fragilidad, mi felicidad y cuando estuve triste hiciste todo lo posible por hacerme reír o "cambiarme el aura" como dices tú.
 
-<div class="page" id="page-8">
-    <div class="page-content">
-        <div class="chapter-number">Capítulo VIII</div>
-        <h1>Verdades que Sacuden, Amor que Permanece</h1>
-        <div class="date">Del 25 de mayo al 1 de junio de 2025</div>
-        <p>
-            <span class="first-letter">E</span>sta semana no fue sencilla.<br>
-            Pero no por peleas, ni por gritos, ni por dramas baratos.<br>
-            Fue intensa porque salieron verdades. De esas que estaban ahí, agazapadas, esperando el momento de salir.
-        </p>
-        <p>
-            No me dolieron las verdades en sí.<br>
-            No me sentí triste.<br>
-            No me sentí traicionado.<br>
-            Solo me molestó una cosa: la mentira, o mejor dicho, la omisión.
-        </p>
-        <p>
-            Y tal vez eso también fue un espejo: quizás no supe hacer la pregunta en el momento justo.<br>
-            Quizás simplemente aún nos estamos aprendiendo.
-        </p>
-        <div class="quote">
-            "Prefiero una verdad que incomode a una mentira que entretenga. Porque el amor, el de verdad, no necesita disfraces."
-        </div>
+                    </p>
+                    
+                    <h2>Fuí, soy y seré feliz todas las semanas contigo💗.</h2>
+                    
+                    <div class="quote">
+                        "Nuestro amor es como el viento, no puedo verlo, pero puedo sentirlo" - Nicholas Sparks
+                    </div>
+                    
+                    <p>
+                        Cada semana es mágica contigo, el despertarme en la madrugada, despertarte y que siempre estés ahí; el hecho de que hayas notado mi gusto por lo cósmico y te hayas tomado el tiempo de crear algo con esa temática para mí. La página web que me creaste con las 53 fotos que te he subido al drive y ponerle un píe de foto a cada una, las 100 razones por la que te gusto, cómo te hago sentir. Todo eso es algo que me resulta demasiado conmovedor y me da paz pues me confirma que el objetivo de mi estadía contigo se está cumpliendo, que es el siempre hacerte feliz y hacerte sentir cómodo, querido, valorado y escuchado. 
+                        Esta semana fue de mucha ternura y más motivos para seguirme enamorando de ti.
+                        Gracias por esta semana tan linda, tan llena de tantas palabras, detalles, acompañamiento y mucho pero mucho amor.
+                        Gracias por permitirme conocerte y por brindarme tus lenguajes del amor, gracias por quererme y por los silencios que se sienten como abrazos y acompañamiento eterno.
+                    </p>
+                    <div class="dedication" style="margin-top: 50px;">
+                        Hecho con amor por Alejita,<br>
+                        Para el amor de mi vida, mi Nesquik🫶.
+                    </div>
+                    <div class="page-number">7</div>
+                </div>
+            </div>
 
-        <h2>Lo que pasó (🔥)</h2>
-        <p>
-            Esta semana, además de las conversaciones difíciles, hubo una intensidad física y emocional que no puedo dejar de mencionar.<br>
-            La atracción sexual entre nosotros fue innegable, poderosa, casi abrumadora. Nos deseamos con una fuerza que traspasó la pantalla, con ganas de estar juntos, de tocarnos, de sentirnos piel con piel.
-        </p>
-        <p>
-            Nos masturbamos juntos muchas veces, sin tabúes, sin miedo a mostrarnos tal como somos. Cada llamada se volvía un espacio seguro para explorar nuestros deseos, para confesarnos fantasías, para entregarnos placer y ternura a partes iguales.<br>
-            No fue solo sexo virtual: fue confianza absoluta, fue entrega, fue descubrirnos en lo más íntimo y vulnerable. Nos dimos permiso de sentir, de gozar, de decirnos con el cuerpo lo que a veces cuesta poner en palabras.
-        </p>
-        <p>
-            Hubo mucha paja, sí, pero también mucho amor en cada gesto, en cada mirada, en cada gemido compartido. Creamos un lenguaje propio, donde el deseo y el cariño se mezclan, donde el fuego no apaga la ternura, sino que la enciende aún más.<br>
-            Y aunque la distancia sigue ahí, cada encuentro virtual nos acerca, nos une, nos confirma que lo nuestro es real en todos los sentidos.
-        </p>
-        <div class="quote">
-            Cuando el deseo nace del amor, hasta una pantalla se vuelve cama, y cada pixel, una caricia traviesa.
-        </div>
-        <h2>Lo que entendí</h2>
-        <p>
-            Entendí que tu pasado es tuyo, no mío.<br>
-            Y lo respeto.<br>
-            No me interesa escarbar heridas, ni jugar al juez del tiempo.<br>
-            Me importa lo que somos ahora, lo que decidimos ser desde que empezamos esto.
-        </p>
-        <p>
-            Lo que me molestó no fue lo que pasó, sino no saberlo desde el principio.<br>
-            Pero aun así, nunca sentí que quisiera irme.<br>
-            Al contrario, me reafirmé en lo que siento por ti.<br>
-            Te vi con más claridad, y con esa claridad, te quiero aún más.
-        </p>
+            <!-- Capítulo VIII -->
+            <div class="page" id="page-8">
+                <div class="page-content">
+                    <div class="chapter-number">Capítulo VIII</div>
+                    <h1>Verdades que Sacuden, Amor que Permanece</h1>
+                    <div class="date">Del 25 de mayo al 1 de junio de 2025</div>
+                    <p>
+                        <span class="first-letter">E</span>sta semana no fue sencilla.<br>
+                        Pero no por peleas, ni por gritos, ni por dramas baratos.<br>
+                        Fue intensa porque salieron verdades. De esas que estaban ahí, agazapadas, esperando el momento de salir.
+                    </p>
+                    <p>
+                        No me dolieron las verdades en sí.<br>
+                        No me sentí triste.<br>
+                        No me sentí traicionado.<br>
+                        Solo me molestó una cosa: la mentira, o mejor dicho, la omisión.
+                    </p>
+                    <p>
+                        Y tal vez eso también fue un espejo: quizás no supe hacer la pregunta en el momento justo.<br>
+                        Quizás simplemente aún nos estamos aprendiendo.
+                    </p>
+                    <div class="quote">
+                        "Prefiero una verdad que incomode a una mentira que entretenga. Porque el amor, el de verdad, no necesita disfraces."
+                    </div>
 
-        <h2>Lo que valoro</h2>
-        <p>
-            Valoro que hayas sido valiente.<br>
-            Que lo dijeras, que no huyeras.<br>
-            Valoro que me dieras la oportunidad de comprender, no de juzgar.<br>
-            Y también valoro en mí la capacidad de escuchar sin cargarme de emociones que no ayudan.
-        </p>
-        <p>
-            Esta semana, sin querer, nos hizo crecer.<br>
-            Nos hizo mirar con menos idealización, pero con más profundidad.
-        </p>
-        <div class="quote">
-            "La sinceridad puede doler un segundo; la mentira, una vida entera."
-        </div>
+                    <h2>Lo que pasó (🔥)</h2>
+                    <p>
+                        Esta semana, además de las conversaciones difíciles, hubo una intensidad física y emocional que no puedo dejar de mencionar.<br>
+                        La atracción sexual entre nosotros fue innegable, poderosa, casi abrumadora. Nos deseamos con una fuerza que traspasó la pantalla, con ganas de estar juntos, de tocarnos, de sentirnos piel con piel.
+                    </p>
+                    <p>
+                        Nos masturbamos juntos muchas veces, sin tabúes, sin miedo a mostrarnos tal como somos. Cada llamada se volvía un espacio seguro para explorar nuestros deseos, para confesarnos fantasías, para entregarnos placer y ternura a partes iguales.<br>
+                        No fue solo sexo virtual: fue confianza absoluta, fue entrega, fue descubrirnos en lo más íntimo y vulnerable. Nos dimos permiso de sentir, de gozar, de decirnos con el cuerpo lo que a veces cuesta poner en palabras.
+                    </p>
+                    <p>
+                        Hubo mucha paja, sí, pero también mucho amor en cada gesto, en cada mirada, en cada gemido compartido. Creamos un lenguaje propio, donde el deseo y el cariño se mezclan, donde el fuego no apaga la ternura, sino que la enciende aún más.<br>
+                        Y aunque la distancia sigue ahí, cada encuentro virtual nos acerca, nos une, nos confirma que lo nuestro es real en todos los sentidos.
+                    </p>
+                    <div class="quote">
+                        Cuando el deseo nace del amor, hasta una pantalla se vuelve cama, y cada pixel, una caricia traviesa.
+                    </div>
+                    <h2>Lo que entendí</h2>
+                    <p>
+                        Entendí que tu pasado es tuyo, no mío.<br>
+                        Y lo respeto.<br>
+                        No me interesa escarbar heridas, ni jugar al juez del tiempo.<br>
+                        Me importa lo que somos ahora, lo que decidimos ser desde que empezamos esto.
+                    </p>
+                    <p>
+                        Lo que me molestó no fue lo que pasó, sino no saberlo desde el principio.<br>
+                        Pero aun así, nunca sentí que quisiera irme.<br>
+                        Al contrario, me reafirmé en lo que siento por ti.<br>
+                        Te vi con más claridad, y con esa claridad, te quiero aún más.
+                    </p>
 
-        <h2>Lo que espero</h2>
-        <p>
-            Espero que este capítulo sea una especie de cimiento.<br>
-            Uno más firme, más honesto, más real.<br>
-            Que nos miremos con la certeza de que ya no tenemos que esconder nada.<br>
-            Que el amor no se construye solo con besos y planes bonitos, sino con conversaciones difíciles y decisiones conscientes.
-        </p>
-        <p>
-            Porque si después de hablar todo lo que hablamos esta semana, seguimos aquí, el uno con el otro, es porque lo nuestro tiene más verdad que cuento.
-        </p>
-        <div class="quote" style="margin-top: 50px;">
-            Las relaciones no se quiebran por lo que se dice, sino por lo que se calla.
-        </div>
-        <div class="dedication" style="margin-top: 30px;">
-            Escrito por Dilan,<br>
-            para el amor de mi vida, mi amor real, dueña de Neymar.
-        </div>
-        <div class="page-number">8</div>
-    </div>
-</div>
-<div class="page" id="page-9">
-    <div class="page-content">
-        <div class="chapter-number">Capítulo IX</div>
-        <h1>Nuestro drama de cimientos necesarios para nuestra obra👷🏻‍♀️👷🏽💜.
-</h1>
-        <div class="date">Semana del 02 al 08 de junio </div>
-        <p>
-            Ha sido una gran semana, intensa en todos los sentidos. Un poco complicada, pero a hoy en este punto escribiendo esto me da gusto que haya sido así. 
-            Pues en medio de la adversidad hemos sabido mantenernos un poco firmes por lo que queremos.
-            En este semana reímos intensamente, nos quisimos y a su vez nos corregimos en el camino. A nivel personal fue una semana de miedo, miedo a que se echara a perder, 
-            pero siento que ese miedo es necesario pues me recuerda y me hace ser consciente de lo mucho que me importa esto y cuán metida estoy.
+                    <h2>Lo que valoro</h2>
+                    <p>
+                        Valoro que hayas sido valiente.<br>
+                        Que lo dijeras, que no huyeras.<br>
+                        Valoro que me dieras la oportunidad de comprender, no de juzgar.<br>
+                        Y también valoro en mí la capacidad de escuchar sin cargarme de emociones que no ayudan.
+                    </p>
+                    <p>
+                        Esta semana, sin querer, nos hizo crecer.<br>
+                        Nos hizo mirar con menos idealización, pero con más profundidad.
+                    </p>
+                    <div class="quote">
+                        "La sinceridad puede doler un segundo; la mentira, una vida entera."
+                    </div>
 
-        </p>
-        <p>
-            Fue de retos, me retó desde mi comodidad, me hizo reflexionar, rectificar mis errores, en lo que he fallado y en lo que no quiero seguir haciendo. 
-            En esta semana me enseñaste mucho, me corregiste y te abriste conmigo con un poco de ansiedad, frustración e incluso enojo, pero todo desde el amor, no olvidando el principio de todo esto. 
-        </p>
-        <div class="quote">
-            "El amor es el anhelo de salir de uno mismo." Charles Baudelaire
-        </div>
-        <h2>Contigo lo difícil o incómodo, vale la pena😽</h2>
-        <p>
-            Estoy segura que no será la última vez que tengamos una semana con un "salpicón" de emociones así, pero esto preparada a seguir contigo, tú tienes todo lo que quiero
-             y sí ese camino va acompañado de conversaciones incomodas, de resolver las cosas así el enojo sea más fuerte o la ansiedad; quiero hacerlo, pues contigo he aprendido
-              que todo eso es necesario para construir una relación estable y duradera.
-        </p>
-        <p>
-            Quiero recorrer contigo todo este camino, nunca olvidando el porqué empezamos con esto y hacía donde lo queremos llevar.
-        </p>
-        <div class="quote">
-            "Nunca conocí a nadie que me suscitara deseos irrefrenables de sonreírle y acariciarle" Alejandra Pizarnik
-        </div>
-        <h2>🔥🔥🔥🔥</h2>
-        <p>
-            Discutamos todo lo que sea necesario, con tal de terminar de resolver con una pajita. 
-            (Mientras estamos a distancia, ya cuando estemos juntos será con muchas ganas y amor❤️‍🔥.)
-        </p>
-        <p>
-            Gracias por demostrarme tus lenguajes del amor, gracias por tu paciencia, entrega, dedicación, confianza y honestidad en este proceso. 
-            Gracias por enseñarme a querer, y qué bonito que es quererte a ti.
-        </p>
-        <div class="dedication" style="margin-top: 50px;">
-            Con mucho amor y dedicación para mi Nesquik, tú eres el chocolate y yo la leche (aunque esa la lleves tú)
-            Cada día te quiero un poco más y me reafirmo que es contigo con quien quiero estar❤️💜.
-        </div>
-        <div class="page-number">9</div>
-    </div>
-</div>
+                    <h2>Lo que espero</h2>
+                    <p>
+                        Espero que este capítulo sea una especie de cimiento.<br>
+                        Uno más firme, más honesto, más real.<br>
+                        Que nos miremos con la certeza de que ya no tenemos que esconder nada.<br>
+                        Que el amor no se construye solo con besos y planes bonitos, sino con conversaciones difíciles y decisiones conscientes.
+                    </p>
+                    <p>
+                        Porque si después de hablar todo lo que hablamos esta semana, seguimos aquí, el uno con el otro, es porque lo nuestro tiene más verdad que cuento.
+                    </p>
+                    <div class="quote" style="margin-top: 50px;">
+                        Las relaciones no se quiebran por lo que se dice, sino por lo que se calla.
+                    </div>
+                    <div class="dedication" style="margin-top: 30px;">
+                        Escrito por Dilan,<br>
+                        para el amor de mi vida, mi amor real, dueña de Neymar.
+                    </div>
+                    <div class="page-number">8</div>
+                </div>
+            </div>
+
+            <!-- Capítulo IX -->
+            <div class="page" id="page-9">
+                <div class="page-content">
+                    <div class="chapter-number">Capítulo IX</div>
+                    <h1>Nuestro drama de cimientos necesarios para nuestra obra👷🏻‍♀️👷🏽💜.</h1>
+                    <div class="date">Semana del 02 al 08 de junio </div>
+                    <p>
+                        Ha sido una gran semana, intensa en todos los sentidos. Un poco complicada, pero a hoy en este punto escribiendo esto me da gusto que haya sido así. 
+                        Pues en medio de la adversidad hemos sabido mantenernos un poco firmes por lo que queremos.
+                        En este semana reímos intensamente, nos quisimos y a su vez nos corregimos en el camino. A nivel personal fue una semana de miedo, miedo a que se echara a perder, 
+                        pero siento que ese miedo es necesario pues me recuerda y me hace ser consciente de lo mucho que me importa esto y cuán metida estoy.
+
+                    </p>
+                    <p>
+                        Fue de retos, me retó desde mi comodidad, me hizo reflexionar, rectificar mis errores, en lo que he fallado y en lo que no quiero seguir haciendo. 
+                        En esta semana me enseñaste mucho, me corregiste y te abriste conmigo con un poco de ansiedad, frustración e incluso enojo, pero todo desde el amor, no olvidando el principio de todo esto. 
+                    </p>
+                    <div class="quote">
+                        "El amor es el anhelo de salir de uno mismo." Charles Baudelaire
+                    </div>
+                    <h2>Contigo lo difícil o incómodo, vale la pena😽</h2>
+                    <p>
+                        Estoy segura que no será la última vez que tengamos una semana con un "salpicón" de emociones así, pero esto preparada a seguir contigo, tú tienes todo lo que quiero
+                         y sí ese camino va acompañado de conversaciones incomodas, de resolver las cosas así el enojo sea más fuerte o la ansiedad; quiero hacerlo, pues contigo he aprendido
+                          que todo eso es necesario para construir una relación estable y duradera.
+                    </p>
+                    <p>
+                        Quiero recorrer contigo todo este camino, nunca olvidando el porqué empezamos con esto y hacía donde lo queremos llevar.
+                    </p>
+                    <div class="quote">
+                        "Nunca conocí a nadie que me suscitara deseos irrefrenables de sonreírle y acariciarle" Alejandra Pizarnik
+                    </div>
+                    <h2>🔥🔥🔥🔥</h2>
+                    <p>
+                        Discutamos todo lo que sea necesario, con tal de terminar de resolver con una pajita. 
+                        (Mientras estamos a distancia, ya cuando estemos juntos será con muchas ganas y amor❤️‍🔥.)
+                    </p>
+                    <p>
+                        Gracias por demostrarme tus lenguajes del amor, gracias por tu paciencia, entrega, dedicación, confianza y honestidad en este proceso. 
+                        Gracias por enseñarme a querer, y qué bonito que es quererte a ti.
+                    </p>
+                    <div class="dedication" style="margin-top: 50px;">
+                        Con mucho amor y dedicación para mi Nesquik, tú eres el chocolate y yo la leche (aunque esa la lleves tú)
+                        Cada día te quiero un poco más y me reafirmo que es contigo con quien quiero estar❤️💜.
+                    </div>
+                    <div class="page-number">9</div>
+                </div>
+            </div>
+
+            <!-- Epílogo -->
             <div class="page" id="page-10">
                 <div class="page-content">
                     <div class="chapter-number">Epílogo</div>
@@ -1104,97 +855,22 @@
     </div>
     
     <div class="navigation">
-        <button id="prev-btn" class="nav-button" disabled>Página Anterior</button>
-        <div class="page-indicator">Página <span id="current-page">1</span> de <span id="total-pages">365</span></div>
-        <button id="next-btn" class="nav-button">Página Siguiente</button>
+        <button id="prev-btn" class="nav-button" disabled>
+            <span class="nav-icon">←</span>
+            Página Anterior
+        </button>
+        <div class="page-indicator">
+            <span class="page-text">Página</span>
+            <span id="current-page" class="page-number-display">1</span>
+            <span class="page-text">de</span>
+            <span id="total-pages" class="page-number-display">11</span>
+        </div>
+        <button id="next-btn" class="nav-button">
+            Página Siguiente
+            <span class="nav-icon">→</span>
+        </button>
     </div>
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const book = document.getElementById('book');
-            const pages = document.querySelectorAll('.page');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const currentPageSpan = document.getElementById('current-page');
-            const totalPagesSpan = document.getElementById('total-pages');
-            
-            let currentPage = 0;
-            const totalPages = pages.length;
-            
-            totalPagesSpan.textContent = totalPages;
-            
-            function updatePage() {
-                pages.forEach((page, index) => {
-                    page.classList.remove('active');
-                    page.classList.remove('flipped');
-                    
-                    if (index < currentPage) {
-                        page.classList.add('flipped');
-                    } else if (index === currentPage) {
-                        page.classList.add('active');
-                    }
-                });
-                
-                currentPageSpan.textContent = currentPage + 1;
-                
-                prevBtn.disabled = currentPage === 0;
-                nextBtn.disabled = currentPage === totalPages - 1;
-            }
-            
-            prevBtn.addEventListener('click', function() {
-                if (currentPage > 0) {
-                    currentPage--;
-                    updatePage();
-                }
-            });
-            
-            nextBtn.addEventListener('click', function() {
-                if (currentPage < totalPages - 1) {
-                    currentPage++;
-                    updatePage();
-                }
-            });
-            
-        
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowLeft' && currentPage > 0) {
-                    currentPage--;
-                    updatePage();
-                } else if (e.key === 'ArrowRight' && currentPage < totalPages - 1) {
-                    currentPage++;
-                    updatePage();
-                }
-            });
-            
-       
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            document.addEventListener('touchstart', function(e) {
-                touchStartX = e.changedTouches[0].screenX;
-            }, false);
-            
-            document.addEventListener('touchend', function(e) {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, false);
-            
-            function handleSwipe() {
-                const swipeThreshold = 50;
-                if (touchEndX + swipeThreshold < touchStartX && currentPage < totalPages - 1) {
-                
-                    currentPage++;
-                    updatePage();
-                } else if (touchEndX > touchStartX + swipeThreshold && currentPage > 0) {
-                   
-                    currentPage--;
-                    updatePage();
-                }
-            }
-            
-          
-            updatePage();
-        });
-    </script>
+    <script src="/Script/libro.js"></script>
 </body>
 </html>
