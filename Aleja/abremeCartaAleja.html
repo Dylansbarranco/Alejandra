@@ -5,57 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carta para Ti ❤</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/Css/Cartadeamor2.css">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Dancing Script', cursive;
-      background: #9686e7;
-      color: #120e20;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem;
-    }
-    .carta {
-      background: #9686e7;
-      border: 5px solid #6f9bed;
-      padding: 3rem;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      max-width: 700px;
-      width: 100%;
-      text-align: center;
-      position: relative;
-    }
-    .frase {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 1s ease;
-      margin: 3rem 0;
-      font-size: 1.8rem;
-    }
-    .frase.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    #musica {
-      display: none;
-    }
-    .btn-inicio {
-      background: #6f9bed;
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.5rem;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 2rem;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
+    
   </style>
 </head>
 <body>
@@ -76,22 +28,6 @@
     </div>
   </div>
 
-  <script>
-    function iniciarCarta() {
-      document.querySelector('.btn-inicio').style.display = 'none';
-      document.getElementById('contenido').style.display = 'block';
-
-      const audio = document.getElementById('musica');
-      audio.volume = 0.3;
-      audio.play();
-
-      const frases = document.querySelectorAll('.frase');
-      frases.forEach((frase, i) => {
-        setTimeout(() => {
-          frase.classList.add('visible');
-        }, i * 2000);
-      });
-    }
-  </script>
+  <script src="/Script/Cartadeamor2.js"></script>
 </body>
 </html>

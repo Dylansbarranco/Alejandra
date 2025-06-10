@@ -1,0 +1,252 @@
+ :root {
+            --primary-color: #8a4fff;
+            --secondary-color: #6a26cd;
+            --bg-color: #f5f0ff;
+            --card-bg: #f9f5ff;
+            --card-hover: #f0e6ff;
+            --text-color: #333;
+            --header-bg: #8a4fff;
+            --header-text: white;
+            --card-border: #8a4fff;
+            --special-border: #6a26cd;
+        }
+
+        .dark-mode {
+            --primary-color: #b78fff;
+            --secondary-color: #9966ff;
+            --bg-color: #2a1a3a;
+            --card-bg: #3a2a4a;
+            --card-hover: #4a3a5a;
+            --text-color: #e0e0e0;
+            --header-bg: #4a2a7a;
+            --header-text: #f0f0f0;
+            --card-border: #9966ff;
+            --special-border: #b78fff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            text-align: center;
+            padding: 30px 0;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.5s ease;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .intro {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 1.3rem;
+            color: var(--text-color);
+            transition: color 0.5s ease;
+        }
+
+        .gustos-list {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.5s ease;
+        }
+
+        .gusto-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: var(--card-bg);
+            border-left: 5px solid var(--card-border);
+            transition: transform 0.3s ease, background-color 0.5s ease, opacity 0.5s ease;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .gusto-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gusto-item:hover {
+            transform: translateX(10px);
+            background-color: var(--card-hover);
+        }
+
+        .gusto-item h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            transition: color 0.5s ease;
+        }
+
+        .dilan-item {
+            border-left: 5px solid var(--special-border);
+        }
+
+        .alejandra-item {
+            border-left: 5px solid #ff4d6d;
+        }
+
+        .alejandra-item h3 {
+            color: #ff4d6d;
+        }
+
+        .icon {
+            text-align: center;
+            font-size: 3rem;
+            margin: 20px 0;
+            color: var(--primary-color);
+            transition: color 0.5s ease;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            transition: color 0.5s ease;
+        }
+
+        .heart {
+            color: #ff4d6d;
+        }
+
+        .purple {
+            color: var(--primary-color);
+            transition: color 0.5s ease;
+        }
+
+        
+        .emoji-secret {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-size: 1.5rem;
+        }
+
+        .gusto-item:hover .emoji-secret {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+  
+        .secret-section {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 0;
+            height: 0;
+            overflow: hidden;
+            margin: 30px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: padding 0.5s ease, height 0.5s ease, background-color 0.5s ease;
+            text-align: center;
+            position: relative;
+        }
+
+        .secret-section.revealed {
+            padding: 25px;
+            height: auto;
+        }
+
+        .secret-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .secret-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+  
+        .mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: background-color 0.3s ease;
+        }
+
+        .mode-toggle:hover {
+            background-color: var(--secondary-color);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .floating-heart {
+            position: fixed;
+            font-size: 1.5rem;
+            pointer-events: none;
+            animation: float 4s ease-in forwards;
+        }
+        
+ 
+        .interest-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .interest-image:hover {
+            transform: scale(1.02);
+        }

@@ -1,0 +1,476 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+        body {
+            overflow-x: hidden;
+            background-color: #0a0a1a;
+            color: white;
+        }
+
+        .roller-coaster {
+            position: relative;
+            height: 100vh;
+            overflow-y: auto;
+            perspective: 10px;
+            scroll-behavior: smooth;
+
+            scroll-snap-type: y mandatory;
+        }
+
+        .track {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 500vh; 
+            transform-style: preserve-3d;
+            z-index: -1;
+        }
+
+        .track::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #ff3366 0%, #ff9933 100%);
+            transform: translateZ(-10px) scale(2);
+            z-index: -2;
+        }
+
+        .track::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0) 70%);
+            background-size: 20px 20px;
+            opacity: 0.2;
+            transform: translateZ(-5px) scale(1.5);
+            z-index: -1;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            transform-style: preserve-3d;
+            
+            scroll-snap-align: start;
+        }
+
+        .section:nth-child(odd) {
+            background-color: rgba(255, 51, 102, 0.1);
+        }
+
+        .section:nth-child(even) {
+            background-color: rgba(255, 153, 51, 0.1);
+        }
+
+        h1, h2 {
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ff3366;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #ff9933;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        .emoji-container {
+            font-size: 5rem;
+            margin: 1.5rem 0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .challenge {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .challenge h3 {
+            color: #ff3366;
+            margin-bottom: 0.5rem;
+        }
+
+        .final-question {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff3366;
+            margin: 2rem 0;
+            text-shadow: 0 0 15px rgba(255, 51, 102, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        .message {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin: 1rem 0;
+            max-width: 80%;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .message.left {
+            align-self: flex-start;
+            background-color: rgba(255, 51, 102, 0.2);
+            border-bottom-left-radius: 0;
+        }
+
+        .message.right {
+            align-self: flex-end;
+            background-color: rgba(255, 153, 51, 0.2);
+            border-bottom-right-radius: 0;
+            text-align: right;
+        }
+
+        .conversation {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-yes {
+            background-color: #ff3366;
+            color: white;
+        }
+
+        .btn-yes:hover {
+            background-color: #ff5e82;
+            transform: scale(1.1);
+        }
+
+        .btn-no {
+            background-color: #333;
+            color: white;
+            position: relative;
+        }
+
+        .btn-no:hover {
+            animation: moveAway 0.5s forwards;
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            display: none;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .fire {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatFire 3s ease-in-out infinite;
+        }
+
+      
+        .sound-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgba(255, 51, 102, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .sound-btn:hover {
+            background-color: rgba(255, 51, 102, 1);
+            transform: scale(1.1);
+        }
+
+        .sound-tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            width: 200px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .sound-btn:hover .sound-tooltip {
+            opacity: 1;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes moveAway {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100px); opacity: 0; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes floatFire {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+        }
+
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff3366, #ff9933);
+            width: 0%;
+            transition: width 0.2s;
+        }
+
+        .cart {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 40px;
+            background-color: #ff3366;
+            border-radius: 10px 10px 0 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .cart::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10px;
+            width: 15px;
+            height: 15px;
+            background-color: #ff3366;
+            border-radius: 50%;
+        }
+
+        .cart::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 10px;
+            width: 15px;
+            height: 15px;
+            background-color: #ff3366;
+            border-radius: 50%;
+        }
+
+        .cart-person {
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .cart-person::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 5px;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+       
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+            display: none;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff3366;
+            opacity: 0.8;
+        }
+
+        .music-notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            z-index: 2000;
+            display: none;
+            text-align: center;
+            max-width: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .music-notification button {
+            background-color: #ff3366;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        
+        .spotify-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            z-index: 999;
+            width: 80px;
+            height: 80px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .spotify-container:hover {
+            width: 300px;
+            height: 380px;
+            opacity: 1;
+        }
+
+        .spotify-container iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .final-question {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .emoji-container {
+                font-size: 4rem;
+            }
+
+            .spotify-container {
+                bottom: 90px;
+                right: 10px;
+                width: 60px;
+                height: 60px;
+            }
+
+            .spotify-container:hover {
+                width: 280px;
+                height: 360px;
+            }
+        }
