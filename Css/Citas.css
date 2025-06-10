@@ -1,0 +1,830 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.book-container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 100vh;
+}
+
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 2rem;
+  background: white;
+  margin: 1rem auto; /* Añadido auto para centrar horizontalmente */
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Portada */
+.cover-page {
+  background-image: url("https://i.pinimg.com/736x/e8/d4/91/e8d49192c869e4ddff6f2efeae336bf5.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #333;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  width: calc(100% - 2rem); /* Asegura que tenga el ancho correcto */
+  max-width: 900px; /* Limita el ancho máximo */
+  margin: 1rem auto; /* Centra horizontalmente */
+}
+
+.cover-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 1;
+}
+
+.cover-content {
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 0 auto; /* Centra el contenido */
+}
+
+.cover-text-top {
+  margin-bottom: 1rem;
+  text-align: center; /* Asegura que el texto esté centrado */
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.main-title,
+.main-title-love {
+  font-family: "Dancing Script", cursive;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #4a90e2;
+  margin: 0 auto; /* Centra el título */
+  line-height: 0.8;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+  text-align: center; /* Asegura que el texto esté centrado */
+}
+
+.couple-photo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto; /* Centra la foto */
+  flex: 1;
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.couple-photo {
+  width: 280px;
+  height: 280px;
+  object-fit: contain; /* Cambiado de cover a contain */
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 6px solid white;
+  transition: transform 0.3s ease;
+  margin: 0 auto;
+  background: #f8f9ff; /* Añadir fondo para espacios vacíos */
+}
+
+.couple-photo:hover {
+  transform: scale(1.02);
+}
+
+.cover-text-bottom {
+  margin-top: 1rem;
+  text-align: center; /* Asegura que el texto esté centrado */
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.subtitle-cover {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  font-style: italic;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  text-align: center; /* Asegura que el texto esté centrado */
+}
+
+.author-section {
+  margin-bottom: 1.5rem;
+  text-align: center; /* Asegura que el texto esté centrado */
+}
+
+.author-text {
+  font-size: 1.2rem;
+  color: #4a90e2;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  text-align: center; /* Asegura que el texto esté centrado */
+}
+
+.start-btn {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+  margin: 1rem auto 0; /* Centra el botón */
+  display: block; /* Asegura que el botón se comporte como bloque */
+}
+
+.start-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
+}
+
+/* Responsive para portada */
+@media (max-width: 768px) {
+  .main-title,
+  .main-title-love {
+    font-size: 2.8rem;
+  }
+
+  .couple-photo {
+    width: 220px;
+    height: 220px;
+  }
+
+  .cover-content {
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title,
+  .main-title-love {
+    font-size: 2.2rem;
+  }
+
+  .couple-photo {
+    width: 180px;
+    height: 180px;
+  }
+
+  .subtitle-cover {
+    font-size: 0.9rem;
+  }
+
+  .author-text {
+    font-size: 1rem;
+  }
+
+  .cover-content {
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+  }
+
+  .start-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Páginas internas */
+.page-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-family: "Dancing Script", cursive;
+  font-size: 3rem;
+  color: #667eea;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Introducción */
+.intro-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  text-align: center;
+}
+
+.intro-text p {
+  margin-bottom: 1.5rem;
+}
+
+.decorative-line {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  margin: 2rem auto;
+  border-radius: 2px;
+}
+
+.quote {
+  font-style: italic;
+  font-size: 1.3rem;
+  color: #764ba2;
+  font-weight: 500;
+}
+
+/* Contrato */
+.contract-content {
+  background: #f8f9ff;
+  padding: 2rem;
+  border-radius: 15px;
+  border: 2px solid #667eea;
+}
+
+.contract-text {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.contract-list {
+  list-style: none;
+  margin: 2rem 0;
+}
+
+.contract-list li {
+  padding: 0.5rem 0;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.contract-promise {
+  font-style: italic;
+  color: #764ba2;
+  font-weight: 500;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.signatures {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  gap: 2rem;
+}
+
+.signature {
+  text-align: center;
+  flex: 1;
+}
+
+.signature-line {
+  font-family: "Dancing Script", cursive;
+  font-size: 2rem;
+  color: #667eea;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.signature-date {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Índice */
+.index-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.week-section {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.week-section h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.week-section p {
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+/* Página de Citas */
+.date-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.date-counter {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.date-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.date-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.date-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  aspect-ratio: 1 / 1; /* Hacer cuadradas todas las imágenes */
+  background: #f8f9ff; /* Fondo suave para espacios vacíos */
+}
+
+.date-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Cambiado de cover a contain */
+  object-position: center; /* Centra la imagen */
+  transition: transform 0.5s ease;
+  background: #f8f9ff; /* Añadir fondo para espacios vacíos */
+}
+
+.date-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.date-details h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.5rem;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+}
+
+.date-details p {
+  color: #555;
+  line-height: 1.6;
+}
+
+.spotify-player {
+  background: #f8f9ff;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e0e0e0;
+}
+
+.song-info {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.spotify-icon {
+  color: #1db954;
+  font-size: 1.5rem;
+}
+
+.spotify-button {
+  background: #1db954;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.spotify-button:hover {
+  background: #1aa34a;
+  transform: translateY(-2px);
+}
+
+.date-reflection {
+  background: #f8f9ff;
+  padding: 1rem;
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+}
+
+/* Navegación */
+.navigation-buttons,
+.date-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.navigation-buttons button,
+.date-navigation button {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navigation-buttons button:hover,
+.date-navigation button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Contraportada */
+.back-cover-page {
+  background-image: url("https://i.pinimg.com/736x/e8/d4/91/e8d49192c869e4ddff6f2efeae336bf5.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #333;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  width: calc(100% - 2rem);
+  max-width: 900px;
+  margin: 1rem auto;
+}
+
+.back-cover-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 1;
+}
+
+.back-cover-content {
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 0 auto;
+}
+
+.back-cover-content h2 {
+  font-family: "Dancing Script", cursive;
+  font-size: 3rem;
+  color: #4a90e2;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.heart-decoration.big {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.closing-quote {
+  font-size: 1.3rem;
+  font-style: italic;
+  margin: 1.5rem 0;
+  color: #666;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.back-cover-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  width: 100%;
+  max-width: 400px;
+}
+
+.back-cover-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain; /* Cambiado de cover a contain */
+  object-position: center;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  border: 4px solid white;
+  transition: transform 0.3s ease;
+  background: #f8f9ff; /* Añadir fondo para espacios vacíos */
+}
+
+.back-cover-photo:hover {
+  transform: scale(1.05);
+}
+
+.book-info {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.book-info h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  color: #4a90e2;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.book-info p {
+  color: #666;
+  font-size: 1rem;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.acknowledgment {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin: 1.5rem 0;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.acknowledgment p {
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.restart-btn {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+  margin: 1rem auto 0;
+  display: block;
+}
+
+.restart-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
+}
+
+/* Responsive para contraportada */
+@media (max-width: 768px) {
+  .back-cover-content h2 {
+    font-size: 2.5rem;
+  }
+
+  .back-cover-photos {
+    grid-template-columns: 1fr 1fr;
+    max-width: 350px;
+    gap: 1rem;
+  }
+
+  .back-cover-photo {
+    height: 200px;
+  }
+
+  .closing-quote {
+    font-size: 1.1rem;
+  }
+
+  .book-info h3 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .back-cover-content {
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .back-cover-content h2 {
+    font-size: 2rem;
+  }
+
+  .heart-decoration.big {
+    font-size: 3rem;
+  }
+
+  .closing-quote {
+    font-size: 1rem;
+  }
+
+  .restart-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Menú flotante */
+.floating-menu {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.menu-toggle {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+.menu-items {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 150px;
+}
+
+.menu-items.active {
+  display: flex;
+}
+
+.menu-items button {
+  background: none;
+  border: none;
+  padding: 0.8rem;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+  color: #555;
+}
+
+.menu-items button:hover {
+  background: #f0f0f0;
+  color: #667eea;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page {
+    margin: 0.5rem auto; /* Centra horizontalmente */
+    padding: 1rem;
+  }
+
+  .book-title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .couple-names {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .date-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .signatures {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .date-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-menu {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .menu-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .navigation-buttons,
+  .date-navigation {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navigation-buttons button,
+  .date-navigation button {
+    width: 100%;
+    max-width: 200px;
+  }
+}

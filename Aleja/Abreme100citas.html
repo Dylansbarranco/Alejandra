@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellas de un Amor - 100 Citas</title>
+    <link rel="stylesheet" href="/Css/Citas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="book-container">
+        <!-- Portada -->
+        <div class="page cover-page active" id="cover">
+    <div class="cover-content">
+        <div class="cover-text-top">
+            <h1 class="main-title">HUELLAS DE UN</h1>
+            <h1 class="main-title-love">AMOR</h1>
+        </div>
+        
+        <div class="couple-photo-container">
+            <img src="https://i.pinimg.com/736x/b3/97/e7/b397e7b7187b0d1f446e132730e4107b.jpg" alt="Nuestra foto" class="couple-photo">
+        </div>
+        
+        <div class="cover-text-bottom">
+            <p class="subtitle-cover">100 días, 100 citas, 1 historia infinita</p>
+            <div class="author-section">
+                <p class="author-text">Por Dilan Barranco</p>
+            </div>
+        </div>
+        
+        <button class="start-btn" onclick="nextPage()">Comenzar Nuestro Viaje</button>
+    </div>
+</div>
+
+        <!-- Introducción -->
+        <div class="page intro-page" id="intro">
+            <div class="page-content">
+                <h2>Nuestra Historia</h2>
+                <div class="intro-text">
+                    <p>Este no es solo un libro, es un camino. Un viaje de 100 días que une dos corazones a través de citas virtuales, risas compartidas, recuerdos guardados y promesas de amor.</p>
+                    <p>Aquí documentamos cada instante vivido a distancia, con la esperanza de un encuentro eterno.</p>
+                    <div class="decorative-line"></div>
+                    <p class="quote">"El amor verdadero no conoce distancias, solo corazones que laten al mismo ritmo."</p>
+                </div>
+                <div class="navigation-buttons">
+                    <button onclick="prevPage()">← Anterior</button>
+                    <button onclick="nextPage()">Siguiente →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contrato de Noviazgo -->
+        <div class="page contract-page" id="contract">
+            <div class="page-content">
+                <h2>Contrato de Noviazgo a Distancia</h2>
+                <div class="contract-content">
+                    <p class="contract-text">
+                        Nosotros, <strong>Alejandra Gualdron</strong> y <strong>Dilan Barranco</strong>, por medio de este acuerdo declaramos nuestro deseo firme y lleno de cariño de mantener un vínculo basado en:
+                    </p>
+                    <ul class="contract-list">
+                        <li>💙 Amor incondicional</li>
+                        <li>🤝 Confianza mutua</li>
+                        <li>🌟 Respeto absoluto</li>
+                        <li>😄 Locuras compartidas</li>
+                        <li>💕 100 citas mágicas</li>
+                    </ul>
+                    <p class="contract-promise">
+                        Nos prometemos seguir amándonos a pesar del Wi-Fi lento y las diferencias horarias.
+                    </p>
+                    <div class="signatures">
+                        <div class="signature">
+                            <div class="signature-line">Alejandra Gualdron</div>
+                            <span class="signature-date">Fecha: <span id="contract-date"></span></span>
+                        </div>
+                        <div class="signature">
+                            <div class="signature-line">Dilan Barranco</div>
+                            <span class="signature-date">Fecha: <span id="contract-date-2"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation-buttons">
+                    <button onclick="prevPage()">← Anterior</button>
+                    <button onclick="nextPage()">Siguiente →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Índice -->
+        <div class="page index-page" id="index">
+            <div class="page-content">
+                <h2>Índice de Nuestras Citas</h2>
+                <div class="index-content">
+                    <div class="week-section">
+                        <h3>Semana 1-2: Conectando el corazón</h3>
+                        <p>Citas 1-14: Los primeros encuentros virtuales</p>
+                    </div>
+                    <div class="week-section">
+                        <h3>Semana 3-4: Jugar y reír</h3>
+                        <p>Citas 15-28: Juegos, risas y complicidad</p>
+                    </div>
+                    <div class="week-section">
+                        <h3>Semana 5-8: Conociendo el alma</h3>
+                        <p>Citas 29-56: Conversaciones profundas</p>
+                    </div>
+                    <div class="week-section">
+                        <h3>Semana 9-12: Creando recuerdos</h3>
+                        <p>Citas 57-84: Momentos especiales</p>
+                    </div>
+                    <div class="week-section">
+                        <h3>Semana 13-14: Celebrar el amor</h3>
+                        <p>Citas 85-100: El gran final</p>
+                    </div>
+                </div>
+                <div class="navigation-buttons">
+                    <button onclick="prevPage()">← Anterior</button>
+                    <button onclick="showDates()">Ver Citas →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página de Citas -->
+        <div class="page dates-page" id="dates">
+            <div class="page-content">
+                <div class="date-header">
+                    <h2 id="date-title">Día 1 - "Silencio con Miradas"</h2>
+                    <div class="date-counter">
+                        <span id="current-date">1</span> / 100
+                    </div>
+                </div>
+                
+                <div class="date-content">
+                    <div class="date-gallery">
+                        <div class="date-image">
+                            <img id="date-photo-1" src="/placeholder.svg?height=300&width=400" alt="Foto de la cita 1">
+                        </div>
+                        <div class="date-image">
+                            <img id="date-photo-2" src="/placeholder.svg?height=300&width=400" alt="Foto de la cita 2">
+                        </div>
+                    </div>
+                    
+                    <div class="date-details">
+                        <div class="date-description">
+                            <h3>Descripción de la cita:</h3>
+                            <p id="date-desc">Nuestra primera videollamada. Nos quedamos en silencio por momentos, pero nuestras miradas lo decían todo. El nerviosismo se convirtió en sonrisas tímidas.</p>
+                        </div>
+                        
+                        <div class="date-quote">
+                            <h3>Frase del día:</h3>
+                            <p id="date-phrase">"A veces el silencio dice más que mil palabras."</p>
+                        </div>
+                        
+                        <div class="date-song">
+                            <h3>Canción del momento:</h3>
+                            <div class="spotify-player">
+                                <div class="song-info">
+                                    <i class="fab fa-spotify spotify-icon"></i>
+                                    <span id="song-name">Perfect - Ed Sheeran</span>
+                                </div>
+                                <a href="#" id="spotify-link" class="spotify-button" target="_blank">
+                                    <i class="fas fa-play"></i> Escuchar
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="date-reflection">
+                            <h3>Reflexión:</h3>
+                            <p id="date-reflection-text">Hoy sentí mariposas en el estómago al verte sonreír. Aunque estamos lejos, nunca me he sentido tan cerca de alguien.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="date-navigation">
+                    <button onclick="prevDate()" id="prev-date-btn">← Cita Anterior</button>
+                    <button onclick="goToIndex()">Índice</button>
+                    <button onclick="nextDate()" id="next-date-btn">Siguiente Cita →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contraportada -->
+        <div class="page back-cover-page" id="back-cover">
+            <div class="back-cover-content">
+                <div class="heart-decoration big">💜</div>
+                
+                <h2>El Final es Solo el Comienzo</h2>
+                
+                <p class="closing-quote">
+                    "Si este libro tiene un final, que sea solo el comienzo de todo lo que viviremos juntos."
+                </p>
+                
+                <div class="back-cover-photos">
+                    <img src="https://i.pinimg.com/736x/b3/97/e7/b397e7b7187b0d1f446e132730e4107b.jpg" alt="Nuestra primera foto" class="back-cover-photo">
+                    <img src="/placeholder.svg?height=180&width=180" alt="Nuestra última foto del reto" class="back-cover-photo">
+                </div>
+                
+                <div class="book-info">
+                    <h3>Huellas de un Amor</h3>
+                    <p>100 días, 100 citas, 1 historia infinita</p>
+                    <p>Fecha de publicación: <span id="publication-date"></span></p>
+                </div>
+                
+                <div class="acknowledgment">
+                    <p>Gracias por caminar estos 100 días conmigo. Cada cita fue una promesa, y cada promesa, un paso más cerca de ti. Este libro es el testimonio de nuestro amor a distancia y la prueba de que el amor verdadero no conoce barreras.</p>
+                </div>
+                
+                <button onclick="goToStart()" class="restart-btn">Revivir Nuestro Viaje</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menú de navegación flotante -->
+    <div class="floating-menu">
+        <button onclick="toggleMenu()" class="menu-toggle">📖</button>
+        <div class="menu-items" id="menu-items">
+            <button onclick="goToPage('cover')">Portada</button>
+            <button onclick="goToPage('intro')">Introducción</button>
+            <button onclick="goToPage('contract')">Contrato</button>
+            <button onclick="goToPage('index')">Índice</button>
+            <button onclick="showDates()">Citas</button>
+            <button onclick="goToPage('back-cover')">Final</button>
+        </div>
+    </div>
+
+    <script src="/Script/Citas.js"></script>
+</body>
+</html>
