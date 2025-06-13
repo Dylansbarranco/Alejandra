@@ -6,13 +6,13 @@ let currentDate = 1
 const datesData = {
   1: {
     title: 'Día 1 - "Videollamada mirándose sin hablar por 5 minutos"',
-    description: "[Aquí va la descripción de cómo fue esta cita]",
-    phrase: "[Aquí va la frase del día]",
-    song: "[Aquí va la canción de Spotify del día]",
-    spotifyLink: "https://open.spotify.com/",
-    image1: "/placeholder.svg?height=300&width=400",
-    image2: "/placeholder.svg?height=300&width=400",
-    reflection: "[Aquí va la reflexión del día]",
+    description: "Dimos inicio a este viaje de citas virtuales conectando en silencio, simplemente viéndonos a los ojos durante 5 minutos (que resultaron siendo un poquito más). ",
+    phrase: "Si te miro intensamente, me provocas",
+    song: "Perfect- Ed Sheeran",
+    spotifyLink: "https://open.spotify.com/intl-es/track/0tgVpDi06FyKpA1z0VMD4v?si=5826bad2d27549f3",
+    image1: "https://i.pinimg.com/736x/88/48/b6/8848b6732e08ccb3b4eb34c00d591f72.jpg",
+    image2: "https://i.pinimg.com/736x/d6/c4/74/d6c4746ae0c6d4167f3251ee92652726.jpg",
+    reflection: "Nuestra conexión es única e  irrepetible",
   },
   2: {
     title: 'Día 2 - "Cena virtual sincronizada"',
