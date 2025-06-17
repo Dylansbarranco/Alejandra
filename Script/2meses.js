@@ -3,49 +3,235 @@ let musicPlaying = false
 
 // Definir las reglas de la relación organizadas por categorías
 const relationshipRules = [
-    {
-        id: 1,
-        category: "comunicacion",
-        title: "",
-        description: "",
-        icon: "💬",
-    },
-    {
-        id: 2,
-        category: "respeto",
-        title: "",
-        description: "",
-        icon: "🤝",
-    },
-    {
-        id: 3,
-        category: "amor",
-        title: "",
-        description: "",
-        icon: "❤️",
-    },
-    {
-        id: 4,
-        category: "tiempo",
-        title: "",
-        description: "",
-        icon: "⏰",
-    },
-    {
-        id: 5,
-        category: "crecimiento",
-        title: "",
-        description: "",
-        icon: "🌱",
-    },
-    {
-        id: 6,
-        category: "extras",
-        title: "",
-        description: "",
-        icon: "✨",
-    },
-]
+  // 🗣 COMUNICACIÓN
+  {
+    id: 1,
+    category: "comunicacion",
+    title: "Escuchar, ceder y corregir en equipo siempre.",
+    description: "No se trata de tener la razón, sino de entendernos. Los dos debemos hablar y también saber escuchar.",
+    icon: "💬",
+  },
+  {
+    id: 2,
+    category: "comunicacion",
+    title: "No contar nuestros problemas a terceros.",
+    description: "Las cosas de pareja se resuelven entre nosotros. Nadie más tiene por qué opinar.",
+    icon: "💬",
+  },
+  {
+    id: 3,
+    category: "comunicacion",
+    title: "Evitar conversaciones incómodas.",
+    description: "No hay necesidad de hablar de cosas que incomodan si no van a aportar a la relación.",
+    icon: "💬",
+  },
+  {
+    id: 4,
+    category: "comunicacion",
+    title: "No contarme cómo te sientes.",
+    description: "Habla siempre. No guardes lo que sientes. No me hagas adivinar.",
+    icon: "💬",
+  },
+  {
+    id: 5,
+    category: "comunicacion",
+    title: "Cuidar nuestra lengua.",
+    description: "No nos lastimemos con palabras. Hablemos con respeto incluso cuando estemos molestos.",
+    icon: "💬",
+  },
+  {
+    id: 6,
+    category: "comunicacion",
+    title: "Me dices siempre lo que piensas.",
+    description: "No quiero que te calles nada. Todo lo que te pasa o piensas, quiero saberlo.",
+    icon: "💬",
+  },
+  {
+    id: 7,
+    category: "comunicacion",
+    title: "Durante una discusión no puedes dejarme en visto.",
+    description: "Discutamos, sí, pero no huyas ni me ignores.",
+    icon: "💬",
+  },
+
+  // ❤️ AMOR
+  {
+    id: 8,
+    category: "amor",
+    title: "No dejarnos coquetear.",
+    description: "Si estamos juntos, los demás deben saberlo. Nada de coqueteos.",
+    icon: "❤️",
+  },
+  {
+    id: 9,
+    category: "amor",
+    title: "Cero juegos mentales.",
+    description: "Nada de manipular o probar al otro. Mejor ser sinceros siempre.",
+    icon: "❤️",
+  },
+  {
+    id: 10,
+    category: "amor",
+    title: "No celar por todo, pero no ignorar señales reales.",
+    description: "Hay que confiar, pero también estar atentos si algo no cuadra.",
+    icon: "❤️",
+  },
+  {
+    id: 11,
+    category: "amor",
+    title: "No puedes tocarte sin mí y si lo haces me mandas fotos o videos.",
+    description: "Si hay deseo, que sea entre nosotros. Si lo haces sol@, que también esté yo.",
+    icon: "❤️",
+  },
+  {
+    id: 12,
+    category: "amor",
+    title: "Si estoy en casa, muéstrame cómo te vistes, con calma y sensualidad.",
+    description: "Me gusta verte, disfrutar tu proceso, compartir ese momento.",
+    icon: "❤️",
+  },
+
+  // 🤝 RESPETO
+  {
+    id: 13,
+    category: "respeto",
+    title: "Respeto mutuo.",
+    description: "Sin respeto no hay nada. No te burles, no me humilles. Y yo tampoco.",
+    icon: "🤝",
+  },
+  {
+    id: 14,
+    category: "respeto",
+    title: "No salir solo con una amigo/a.",
+    description: "No se trata de prohibir, pero sí de evitar situaciones que se puedan malinterpretar.",
+    icon: "🤝",
+  },
+  {
+    id: 15,
+    category: "respeto",
+    title: "No estar a solas con una mujer.",
+    description: "Estar a solas con alguien que puede gustarte no es buena idea. Cuidémonos.",
+    icon: "🤝",
+  },
+  {
+    id: 16,
+    category: "respeto",
+    title: "No seguir a mujeres o hombres de la nada en redes.",
+    description: "¿Para qué seguir a gente con la que ni hablas? No tiene sentido.",
+    icon: "🤝",
+  },
+  {
+    id: 17,
+    category: "respeto",
+    title: "No reírse de otros chistes, salvo familia o amigos del mismo sexo.",
+    description: "No quiero sentir que otra persona te causa más gracia que yo.",
+    icon: "🤝",
+  },
+  {
+    id: 18,
+    category: "respeto",
+    title: "Las fotos que subes deben ser aprobadas por mí, y debo ser mencionado.",
+    description: "No es control, es respeto por cómo representas nuestra relación en redes.",
+    icon: "🤝",
+  },
+  {
+    id: 19,
+    category: "respeto",
+    title: "No hay salidas con hombres, sin importar si es gay, primo, o con novia.",
+    description: "Prefiero evitar cualquier posible confusión o mal momento.",
+    icon: "🤝",
+  },
+
+  // 🕰 TIEMPO JUNTOS
+  {
+    id: 20,
+    category: "tiempo",
+    title: "No irnos a dormir molestos.",
+    description: "Si estamos mal, lo arreglamos antes de dormir. No más silencios eternos.",
+    icon: "⏰",
+  },
+  {
+    id: 21,
+    category: "tiempo",
+    title: "Nunca dormir fuera de casa.",
+    description: "Nuestro espacio es sagrado. No te desaparezcas.",
+    icon: "⏰",
+  },
+  {
+    id: 22,
+    category: "tiempo",
+    title: "No puedes estar más de una hora sin escribirme.",
+    description: "Aunque sea un \"estoy ocupado\", quiero saber de ti.",
+    icon: "⏰",
+  },
+  {
+    id: 23,
+    category: "tiempo",
+    title: "Quiero una foto cada vez que salgas de casa.",
+    description: "Solo quiero saber cómo te ves, cómo estás.",
+    icon: "⏰",
+  },
+  {
+    id: 24,
+    category: "tiempo",
+    title: "Quiero saber con quién estás.",
+    description: "No es control, es necesidad de sentirme parte de tu día.",
+    icon: "⏰",
+  },
+
+  // 🌱 CRECIMIENTO
+  {
+    id: 25,
+    category: "crecimiento",
+    title: "Responsabilidad emocional.",
+    description: "No me hagas cargar con lo tuyo, pero tampoco cargues con lo mío. Acompañémonos.",
+    icon: "🌱",
+  },
+  {
+    id: 26,
+    category: "crecimiento",
+    title: "Todos los días debemos leer y repasar las reglas.",
+    description: "Repetirlas nos ayuda a recordarlas y no fallarnos.",
+    icon: "🌱",
+  },
+
+  // ✨ EXTRAS
+  {
+    id: 27,
+    category: "extras",
+    title: "Dejar de hablar con quien se interesa en mí.",
+    description: "No quiero que haya competencia. Si alguien se interesa, lo cortas.",
+    icon: "✨",
+  },
+  {
+    id: 28,
+    category: "extras",
+    title: "No beber hasta emborracharme.",
+    description: "No quiero que pongas en riesgo nuestra relación por no medir tus límites.",
+    icon: "✨",
+  },
+  {
+    id: 29,
+    category: "extras",
+    title: "Si quiero ver algo de tu celular, me lo muestras o me das tus redes.",
+    description: "No tengo por qué desconfiar, pero tampoco quiero secretos.",
+    icon: "✨",
+  },
+  {
+    id: 30,
+    category: "extras",
+    title: "Me instalaré Life360 para saber dónde estás.",
+    description: "Me da paz saber por dónde andas. No es desconfianza, es tranquilidad.",
+    icon: "✨",
+  },
+  {
+    id: 31,
+    category: "extras",
+    title: "Si te pido una foto, me la mandas.",
+    description: "Si la pido es porque quiero verte, sentirte cerca.",
+    icon: "✨",
+  },
+];
 
 // Función para renderizar las reglas
 function renderRules(rulesToShow = relationshipRules) {
