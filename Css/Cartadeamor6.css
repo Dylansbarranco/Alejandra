@@ -1,0 +1,263 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .petals {
+            position: fixed;
+            top: -10px;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .petal {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #c8a2c8;
+            border-radius: 50% 0;
+            animation: fall linear infinite;
+            opacity: 0.7;
+        }
+
+        .petal:nth-child(odd) {
+            background: #dda0dd;
+            transform: rotate(45deg);
+        }
+
+        .petal:nth-child(even) {
+            background: #b19cd9;
+            transform: rotate(-45deg);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .love-letter {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #8b5a8c;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .photo-container {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #dda0dd;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .flower-decoration {
+            position: absolute;
+            font-size: 2rem;
+            animation: rotate 4s linear infinite;
+        }
+
+        .flower-1 { top: -10px; left: -10px; }
+        .flower-2 { top: -10px; right: -10px; }
+        .flower-3 { bottom: -10px; left: -10px; }
+        .flower-4 { bottom: -10px; right: -10px; }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .greeting {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #8b5a8c;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .letter-content {
+            line-height: 1.8;
+            color: #444;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .paragraph {
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .paragraph:nth-child(1) { animation-delay: 0.2s; }
+        .paragraph:nth-child(2) { animation-delay: 0.4s; }
+        .paragraph:nth-child(3) { animation-delay: 0.6s; }
+        .paragraph:nth-child(4) { animation-delay: 0.8s; }
+        .paragraph:nth-child(5) { animation-delay: 1s; }
+        .paragraph:nth-child(6) { animation-delay: 1.2s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 30px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #8b5a8c;
+            font-weight: 600;
+        }
+
+        .heart {
+            color: #e74c3c;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 20px;
+            animation: floatUp 6s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .decorative-border {
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #dda0dd, #c8a2c8, #b19cd9) border-box;
+            border-radius: 20px;
+            padding: 3px;
+        }
+
+        .inner-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 17px;
+            padding: 37px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .love-letter {
+                padding: 20px;
+                margin: 10px 0;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .photo {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .letter-content {
+                font-size: 1rem;
+            }
+        }
