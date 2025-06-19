@@ -7,12 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Kalam:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/Css/Libro.css">
 </head>
+
 <body>
+    <!-- Buscador de páginas -->
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Buscar capítulos o páginas..." id="searchInput">
+        <button class="search-button" id="searchButton">🔍</button>
+        <div class="search-results" id="searchResults"></div>
+    </div>
+
     <!-- Contenedor de galaxia -->
     <div class="galaxy-container" id="galaxy"></div>
     
-    <!-- Sol y Luna -->
-    <div class="celestial-body sun" id="sun">☀️</div>
+    <!-- Solo Luna (sin Sol) -->
     <div class="celestial-body moon" id="moon">🌙</div>
     
     <!-- Planetas del sistema solar -->
@@ -925,14 +932,15 @@
             <span class="page-text">Página</span>
             <span id="current-page" class="page-number-display">1</span>
             <span class="page-text">de</span>
-            <span id="total-pages" class="page-number-display">11</span>
+            <span id="total-pages" class="page-number-display">12</span>
         </div>
         <button id="next-btn" class="nav-button">
             Página Siguiente
             <span class="nav-icon">→</span>
         </button>
     </div>
-    
     <script src="/Script/libro.js"></script>
 </body>
 </html>
+<!-- Este es un libro digital creado por Dilan y Alejandra, lleno de amor, risas y momentos compartidos. Cada capítulo refleja su viaje juntos, desde el primer mensaje hasta los desafíos y alegrías que han vivido. Un testimonio de su amor que sigue creciendo día a día. -->
+        
