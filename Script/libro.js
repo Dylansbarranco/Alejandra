@@ -1,4 +1,10 @@
-document.addEventListener('DOMContentLoaded', function() {
+
+    const totalPages = pages.length;
+    let isAnimating = false;
+    let isDayTime = false;
+
+    // Inicialización
+    totalPagesSpan.textContent = tdocument.addEventListener('DOMContentLoaded', function() {
     // Elementos principales
     const book = document.getElementById('book');
     const pages = document.querySelectorAll('.page');
@@ -12,13 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const solarSystem = document.getElementById('solar-system');
 
     // Variables de estado
-    let currentPage = 0;
-    const totalPages = pages.length;
-    let isAnimating = false;
-    let isDayTime = false;
-
-    // Inicialización
-    totalPagesSpan.textContent = totalPages;
+    let currentPage = 0;otalPages;
     detectTimeOfDay();
     createGalaxyEffects();
     setupPages();
