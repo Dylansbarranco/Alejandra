@@ -1,0 +1,58 @@
+body {
+      background: linear-gradient(to right, #d4bef0, #d1c9f1);
+      font-family: 'Times New Roman', Times, serif;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #a865ec;
+      font-size: 2.5em;
+    }
+    .intro, .poema, .mensajeFinal {
+      background-color: #c798de;
+      border: 2px dashed #c678e4;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 700px;
+      font-size: 1.2em;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      animation: fadeIn 2s ease-in;
+    }
+    button {
+      padding: 15px 25px;
+      font-size: 1em;
+      border: none;
+      background-color: #b75af1;
+      color: rgb(255, 255, 255);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 20px;
+      font-family: 'Times New Roman', Times, serif;
+    }
+    button:hover {
+      background-color: #a95fe2;
+    }
+    img {
+      width: 80%;
+      max-width: 400px;
+      border-radius: 20px;
+      margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .heartRain {
+      position: absolute;
+      animation: fall 5s linear infinite;
+      font-size: 1.5em;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
