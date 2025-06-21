@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌌 Mudanza Interdimensional: Misión Amor 3000 🛸</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Courier+Prime:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(45deg, #0a0a0a, #1a0033, #000066);
+            color: #00ffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Estrellas de fondo */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        /* Pantalla de carga */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #000, #1a0033);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 1s ease-out;
+        }
+
+        .loading-text {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            animation: pulse 1.5s infinite;
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 20px;
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .loading-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            width: 0%;
+            animation: loading 3s ease-in-out forwards;
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Pantalla de aceptación */
+        .acceptance-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #000, #1a0033);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .acceptance-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px #00ffff;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .acceptance-text {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 60px;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .accept-btn, .deny-btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .accept-btn {
+            background: linear-gradient(45deg, #00ff00, #00ffff);
+            color: #000;
+            position: relative;
+        }
+
+        .accept-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
+        }
+
+        .deny-btn {
+            background: linear-gradient(45deg, #ff0000, #ff00ff);
+            color: #fff;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .deny-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 20px #00ffff; }
+            100% { text-shadow: 0 0 30px #ff00ff, 0 0 40px #00ffff; }
+        }
+
+        /* Terminal */
+        .terminal {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            font-family: 'Courier Prime', monospace;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #00ffff;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 5px;
+            margin-right: 15px;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .close { background: #ff5f56; }
+        .minimize { background: #ffbd2e; }
+        .maximize { background: #27ca3f; }
+
+        .terminal-title {
+            color: #00ffff;
+            font-weight: bold;
+        }
+
+        .terminal-line {
+            margin: 5px 0;
+            opacity: 0;
+            animation: typewriter 0.5s forwards;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: #00ffff;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes typewriter {
+            to { opacity: 1; }
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Misiones */
+        .missions-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .mission-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ff00ff;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideIn 0.8s forwards;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+        }
+
+        .mission-card.unlocked {
+            border-color: #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .mission-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .mission-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+
+        .mission-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .mission-description {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .mission-button {
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .mission-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.7);
+        }
+
+        .mission-button:disabled {
+            background: #333;
+            color: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Mensajes secretos */
+        .secret-messages {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .secret-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 0, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .secret-icon:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(45deg, #1a0033, #000066);
+            border: 2px solid #00ffff;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            animation: modalAppear 0.5s ease-out;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #ff00ff;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        @keyframes modalAppear {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+            animation: pulse 2s infinite;
+            z-index: 100;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .loading-text, .acceptance-title {
+                font-size: 1.5rem;
+            }
+            
+            .loading-bar {
+                width: 250px;
+            }
+            
+            .acceptance-text {
+                font-size: 1.1rem;
+            }
+            
+            .buttons-container {
+                gap: 40px;
+                flex-direction: column;
+            }
+            
+            .accept-btn, .deny-btn {
+                min-width: 200px;
+                margin: 10px 0;
+            }
+            
+            .terminal {
+                margin: 10px;
+                padding: 15px;
+            }
+            
+            .missions-container {
+                padding: 10px;
+            }
+            
+            .mission-card {
+                padding: 15px;
+            }
+            
+            .secret-messages {
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Estrellas de fondo -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Pantalla de carga -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-text">
+            🌌 Sincronizando corazones... 💕
+        </div>
+        <div class="loading-bar">
+            <div class="loading-fill"></div>
+        </div>
+        <div style="margin-top: 20px; font-size: 1rem;">
+            Estableciendo conexión interdimensional...
+        </div>
+    </div>
+
+    <!-- Pantalla de aceptación -->
+    <div class="acceptance-screen" id="acceptanceScreen">
+        <div class="acceptance-title">
+            🛸 ¿ACEPTAS ESTAS MISIONES GALÁCTICAS? 🛸
+        </div>
+        <div class="acceptance-text">
+            Tu comandante de apoyo ha preparado una serie de misiones épicas para tu aventura interdimensional. 
+            Algunas serán normales, otras completamente locas y random. 
+            <br><br>
+            <strong>¿Estás lista para convertirte en la heroína más legendaria del universo?</strong>
+            <br><br>
+            ⚠️ <em>Advertencia: Las misiones pueden causar ataques de risa incontrolables</em> ⚠️
+        </div>
+        <div class="buttons-container">
+            <button class="accept-btn" onclick="acceptMissions()">
+                ✅ ¡SÍ, ACEPTO!
+            </button>
+            <button class="deny-btn" id="denyBtn" onclick="denyMissions()">
+                ❌ No, gracias
+            </button>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div id="mainContent" style="display: none;">
+        <!-- Terminal -->
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <div class="terminal-button close"></div>
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                </div>
+                <div class="terminal-title">COMANDO CENTRAL - MISIÓN AMOR 3000</div>
+            </div>
+            <div id="terminalContent">
+                <div class="terminal-line">> Inicializando sistema de soporte emocional...</div>
+                <div class="terminal-line">> Localizando nueva base de operaciones...</div>
+                <div class="terminal-line">> Coordenadas obtenidas: Nueva localidad ✅</div>
+                <div class="terminal-line">> Cargando protocolos de adaptación...</div>
+                <div class="terminal-line">> Activando escudo de amor: ✅</div>
+                <div class="terminal-line">> Estado de la heroína: LISTA PARA LA AVENTURA 🚀</div>
+                <div class="terminal-line">> Comandante de apoyo: CONECTADO DESDE LA TIERRA 🌍</div>
+                <div class="terminal-line">> Misiones aceptadas. Iniciando protocolo...</div>
+                <div class="terminal-line"><span class="cursor"></span></div>
+            </div>
+        </div>
+
+        <!-- Misiones -->
+        <div class="missions-container">
+            <h1 style="text-align: center; margin: 30px 0; font-size: 2.5rem; text-shadow: 0 0 10px #00ffff;">
+                🛸 MISIONES GALÁCTICAS 🛸
+            </h1>
+
+            <div class="mission-card" data-mission="1">
+                <div class="mission-header">
+                    <div class="mission-icon">📞</div>
+                    <div class="mission-title">MISIÓN 1: Comunicación Interdimensional</div>
+                </div>
+                <div class="mission-description">
+                    Establece contacto inmediato con tu comandante de apoyo desde la Tierra. 
+                    Esta primera comunicación es crucial para sincronizar las frecuencias emocionales 
+                    y confirmar que llegaste sana y salva a tu nuevo planeta. ¡Tu comandante está esperando tu señal!
+                </div>
+                <button class="mission-button" onclick="openWhatsApp()">📞 LLAMAR AL COMANDANTE</button>
+            </div>
+
+            <div class="mission-card" data-mission="2">
+                <div class="mission-header">
+                    <div class="mission-icon">📦</div>
+                    <div class="mission-title">MISIÓN 2: Organización de la Base Espacial</div>
+                </div>
+                <div class="mission-description">
+                    Organiza tu nueva base de operaciones (cuarto/casa). Una base bien organizada 
+                    es fundamental para el éxito de futuras misiones. Cada objeto en su lugar 
+                    crea armonía en el espacio-tiempo. ¡Desbloquearás un mensaje secreto al completarla!
+                </div>
+                <button class="mission-button" onclick="completeMission(2)" disabled>MISIÓN BLOQUEADA</button>
+            </div>
+
+            <div class="mission-card" data-mission="3">
+                <div class="mission-header">
+                    <div class="mission-icon">🧭</div>
+                    <div class="mission-title">MISIÓN 3: Exploración del Territorio Alienígena</div>
+                </div>
+                <div class="mission-description">
+                    Explora tu nuevo entorno como si fuera un planeta desconocido. Documenta las especies locales 
+                    (personas), la geografía urbana, los recursos disponibles y las rutas de escape. 
+                    ¡Cada esquina esconde secretos galácticos!
+                </div>
+                <button class="mission-button" onclick="completeMission(3)" disabled>MISIÓN BLOQUEADA</button>
+            </div>
+
+            <div class="mission-card" data-mission="4">
+                <div class="mission-header">
+                    <div class="mission-icon">📸</div>
+                    <div class="mission-title">MISIÓN 4: Captura de Anomalía Cósmica</div>
+                </div>
+                <div class="mission-description">
+                    Manda una foto de lo más random que se te ocurra en tu nuevo planeta. 
+                    Puede ser cualquier cosa: una sombra extraña, un objeto fuera de lugar, 
+                    algo que te haga reír... ¡La randomness es la clave del universo!
+                </div>
+                <button class="mission-button" onclick="completeMission(4)" disabled>MISIÓN BLOQUEADA</button>
+            </div>
+
+            <div class="mission-card" data-mission="5">
+                <div class="mission-header">
+                    <div class="mission-icon">🦶</div>
+                    <div class="mission-title">MISIÓN 5: Ritual de los Pies Galácticos</div>
+                </div>
+                <div class="mission-description">
+                    Tómate una foto de tus pies en el lugar más inesperado de tu nuevo planeta. 
+                    Los pies son nuestros conectores con cada mundo que pisamos. 
+                    ¡Demuestra que has conquistado oficialmente este territorio!
+                </div>
+                <button class="mission-button" onclick="completeMission(5)" disabled>MISIÓN BLOQUEADA</button>
+            </div>
+
+            <div class="mission-card" data-mission="6">
+                <div class="mission-header">
+                    <div class="mission-icon">🥄</div>
+                    <div class="mission-title">MISIÓN 6: La Cuchara del Destino</div>
+                </div>
+                <div class="mission-description">
+                    Encuentra una cuchara (o cualquier utensilio) y tómate una selfie haciendo 
+                    la cara más épica posible, como si fuera Excalibur. 
+                    ¡Porque hasta los objetos más simples pueden ser legendarios en manos de una heroína!
+                </div>
+                <button class="mission-button" onclick="completeMission(6)" disabled>MISIÓN BLOQUEADA</button>
+            </div>
+
+            <div class="mission-card" data-mission="7">
+                <div class="mission-header">
+                    <div class="mission-icon">🌮</div>
+                    <div class="mission-title">MISIÓN 7: Comunicación con Especies Alimentarias</div>
+                </div>
+                <div class="mission-description">
+                    Tómate una foto "hablando" con alguna comida, como si fuera tu confidente alienígena. 
+                    Puede ser una fruta, un snack, lo que sea. ¡Las conversaciones más profundas 
+                    a veces son con un plátano!
+                </div>
+                <button class="mission-button" onclick="completeMission(7)" disabled>MISIÓN BLOQUEADA</button>
+            </div>
+
+            <div class="mission-card" data-mission="8">
+                <div class="mission-header">
+                    <div class="mission-icon">🧦</div>
+                    <div class="mission-title">MISIÓN 8: El Misterio del Calcetín Perdido</div>
+                </div>
+                <div class="mission-description">
+                    Encuentra un calcetín solitario (todos tenemos uno) y créale una historia épica. 
+                    Tómale una foto en una "aventura" por tu casa. ¡Ese calcetín ha visto cosas 
+                    que nosotros no podemos imaginar!
+                </div>
+                <button class="mission-button" onclick="completeMission(8)" disabled>MISIÓN BLOQUEADA</button>
+            </div>
+
+            <div class="mission-card" data-mission="9">
+                <div class="mission-header">
+                    <div class="mission-icon">🪞</div>
+                    <div class="mission-title">MISIÓN 9: Portal Dimensional Selfie</div>
+                </div>
+                <div class="mission-description">
+                    Tómate una selfie en un espejo, pero haz como si fueras dos personas diferentes 
+                    saludándose desde dimensiones paralelas. ¡Bonus points si haces voces diferentes 
+                    para cada "dimensión"!
+                </div>
+                <button class="mission-button" onclick="completeMission(9)" disabled>MISIÓN BLOQUEADA</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensajes secretos -->
+    <div class="secret-messages">
+        <div class="secret-icon" onclick="showSecret('cat')" title="Mensaje del gatito">😺</div>
+        <div class="secret-icon" onclick="showSecret('heart')" title="Mensaje del corazón">💖</div>
+        <div class="secret-icon" onclick="showSecret('star')" title="Mensaje estelar">⭐</div>
+    </div>
+
+    <!-- Modal para mensajes secretos -->
+    <div class="modal" id="secretModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="secretContent"></div>
+        </div>
+    </div>
+
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/573162402680?text=🚀%20¡Hola%20comandante!%20Estoy%20lista%20para%20comenzar%20mi%20aventura%20interdimensional%20💕" 
+       class="whatsapp-btn" target="_blank" title="Contactar Comandante">
+        📱
+    </a>
+
+    <script>
+        // Crear estrellas
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Animación de carga
+        function startLoading() {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                    document.getElementById('acceptanceScreen').style.display = 'flex';
+                }, 1000);
+            }, 3500);
+        }
+
+        // Variables para el troll del botón "No"
+        let denyAttempts = 0;
+        const trollMessages = [
+            "❌ No, gracias",
+            "🤔 ¿Segura?",
+            "😅 Vamos...",
+            "🙄 En serio?",
+            "😏 Dale que sí",
+            "🤨 No seas así",
+            "😂 Ya acepta",
+            "🥺 Por favor",
+            "😎 Sabes que quieres",
+            "🚀 ¡Acepta ya!"
+        ];
+
+        const trollPositions = [
+            { top: '60%', left: '30%' },
+            { top: '40%', left: '70%' },
+            { top: '70%', left: '60%' },
+            { top: '30%', left: '20%' },
+            { top: '80%', left: '40%' },
+            { top: '20%', left: '80%' },
+            { top: '50%', left: '10%' },
+            { top: '35%', left: '85%' },
+            { top: '75%', left: '15%' },
+            { top: '25%', left: '50%' }
+        ];
+
+        function denyMissions() {
+            const denyBtn = document.getElementById('denyBtn');
+            denyAttempts++;
+
+            if (denyAttempts < trollMessages.length) {
+                // Cambiar texto del botón
+                denyBtn.textContent = trollMessages[denyAttempts];
+                
+                // Mover el botón a una posición random
+                const position = trollPositions[denyAttempts - 1];
+                denyBtn.style.position = 'absolute';
+                denyBtn.style.top = position.top;
+                denyBtn.style.left = position.left;
+                
+                // Efecto de vibración
+                denyBtn.style.animation = 'none';
+                setTimeout(() => {
+                    denyBtn.style.animation = 'shake 0.5s ease-in-out';
+                }, 10);
+            } else {
+                // Después de muchos intentos, el botón se convierte en "SÍ"
+                denyBtn.textContent = "✅ ¡SÍ, ACEPTO!";
+                denyBtn.style.background = "linear-gradient(45deg, #00ff00, #00ffff)";
+                denyBtn.style.color = "#000";
+                denyBtn.onclick = acceptMissions;
+                
+                // Mostrar mensaje troll
+                setTimeout(() => {
+                    alert("🤣 ¡JA! Sabía que no podrías resistirte a las misiones galácticas. ¡Bienvenida a bordo, heroína espacial! 🚀💕");
+                }, 500);
+            }
+        }
+
+        // Agregar animación de shake
+        const shakeKeyframes = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = shakeKeyframes;
+        document.head.appendChild(styleSheet);
+
+        function acceptMissions() {
+            document.getElementById('acceptanceScreen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('acceptanceScreen').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                animateTerminal();
+            }, 1000);
+        }
+
+        // Animación del terminal
+        function animateTerminal() {
+            const lines = document.querySelectorAll('.terminal-line');
+            lines.forEach((line, index) => {
+                setTimeout(() => {
+                    line.style.animationDelay = '0s';
+                    line.style.opacity = '1';
+                }, index * 500);
+            });
+        }
+
+        // Sistema de misiones
+        let completedMissions = 0;
+        const secretMessages = {
+            cat: {
+                title: "🐱 Mensaje del Gatito Cósmico",
+                content: "¡Miau! Tu comandante dice que eres la exploradora más valiente de toda la galaxia. Cada día que pasas en tu nueva aventura, tu corazón se vuelve más fuerte. ¡Sigue adelante, heroína espacial! 💫"
+            },
+            heart: {
+                title: "💖 Transmisión del Corazón",
+                content: "Desde la Tierra, tu comandante envía todo su amor a través de las dimensiones. Aunque estés lejos, cada latido de su corazón resuena en el tuyo. La distancia es solo una ilusión cuando el amor es real. 🌌💕"
+            },
+            star: {
+                title: "⭐ Mensaje Estelar Secreto",
+                content: "Las estrellas me contaron un secreto: que tienes la fuerza para conquistar cualquier planeta, cualquier desafío. Tu luz brilla más que todas las constelaciones juntas. ¡Eres mi estrella favorita! ✨🚀"
+            }
+        };
+
+        function completeMission(missionNumber) {
+            const missionCard = document.querySelector(`[data-mission="${missionNumber}"]`);
+            const button = missionCard.querySelector('.mission-button');
+            
+            // Marcar misión como completada
+            missionCard.classList.add('unlocked');
+            button.textContent = '✅ MISIÓN COMPLETADA';
+            button.disabled = true;
+            button.style.background = '#00ff00';
+            
+            completedMissions++;
+            
+            // Desbloquear siguiente misión
+            const nextMission = document.querySelector(`[data-mission="${missionNumber + 1}"]`);
+            if (nextMission) {
+                const nextButton = nextMission.querySelector('.mission-button');
+                nextButton.disabled = false;
+                nextButton.textContent = 'INICIAR MISIÓN';
+            }
+            
+            // Mensaje especial para misión 2 (organizar base)
+            if (missionNumber === 2) {
+                setTimeout(() => {
+                    alert('🎉 ¡MENSAJE DESBLOQUEADO! Revisa el ícono del gatito para ver tu sorpresa especial. 😺✨');
+                }, 1000);
+            }
+
+            // Mensajes especiales para misiones random
+            if (missionNumber >= 4) {
+                const randomMessages = [
+                    '🤣 ¡Tu comandante se está riendo desde la Tierra! ¡Esa foto es épica!',
+                    '🛸 Los alienígenas aprueban tu creatividad galáctica!',
+                    '⭐ ¡Has desbloqueado el nivel de randomness cósmico!',
+                    '🚀 Tu comandante dice: "Eso es exactamente lo que esperaba de mi heroína favorita"',
+                    '💫 ¡El universo sonríe con tu locura interdimensional!'
+                ];
+                setTimeout(() => {
+                    alert(randomMessages[Math.floor(Math.random() * randomMessages.length)]);
+                }, 1000);
+            }
+        }
+
+        function showSecret(type) {
+            const modal = document.getElementById('secretModal');
+            const content = document.getElementById('secretContent');
+            const message = secretMessages[type];
+            
+            content.innerHTML = `
+                <h2 style="color: #ff00ff; margin-bottom: 20px;">${message.title}</h2>
+                <p style="line-height: 1.6; font-size: 1.1rem;">${message.content}</p>
+                <div style="margin-top: 20px;">
+                    <button onclick="closeModal()" style="background: linear-gradient(45deg, #00ffff, #ff00ff); border: none; padding: 10px 20px; border-radius: 20px; color: #000; font-weight: bold; cursor: pointer;">
+                        ❤️ CERRAR MENSAJE
+                    </button>
+                </div>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('secretModal').style.display = 'none';
+        }
+
+        function openWhatsApp() {
+            // Para la primera misión, abrir WhatsApp directamente
+            window.open('https://wa.me/573162402680?text=🚀%20¡Comandante!%20He%20llegado%20sana%20y%20salva%20a%20mi%20nuevo%20planeta.%20Estableciendo%20comunicación%20interdimensional%20💕🛸', '_blank');
+            
+            // Marcar misión 1 como completada después de un momento
+            setTimeout(() => {
+                completeMission(1);
+            }, 2000);
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('secretModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            startLoading();
+        });
+    </script>
+</body>
+</html>
