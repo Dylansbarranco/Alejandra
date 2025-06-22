@@ -95,7 +95,14 @@
                     keywords: ["semana", "perfecta", "nuestra", "discusión", "charla", "ajustes", "tiktok"]
                 },
                 {
-                    pageIndex: 12,
+                     pageIndex: 12,
+                    title: "Pon el titulo del capitulo",
+                    content: "Pon alguna frase que resuma el capitulo",
+                    keywords: ["palabra", "palabra", "palabra", "palabra", "palabra", "palabra", "palabra"]
+
+                },
+                {
+                    pageIndex: 13,
                     title: "Epílogo - Nuestro Capítulo Continúa",
                     content: "epílogo capítulo continúa libro digital fragmento historia mensaje inesperado",
                     keywords: ["epílogo", "capítulo", "continúa", "libro", "digital", "fragmento", "historia"]
