@@ -96,9 +96,9 @@
                 },
                 {
                      pageIndex: 12,
-                    title: "Pon el titulo del capitulo",
-                    content: "Pon alguna frase que resuma el capitulo",
-                    keywords: ["palabra", "palabra", "palabra", "palabra", "palabra", "palabra", "palabra"]
+                    title: "Entre lágrimas y revelaciones, el corazón habló fuerte.",
+                    content: "Semana cargada de emociones, dos palabras un gran sentimiento, Dios de nuestro lado",
+                    keywords: ["nubes", "humildes", "amables", "Dios", "aprendizaje", "discusiones", "brindas"]
 
                 },
                 {
