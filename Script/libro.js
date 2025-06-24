@@ -95,7 +95,7 @@
                     keywords: ["semana", "perfecta", "nuestra", "discusión", "charla", "ajustes", "tiktok"]
                 },
                 {
-                     pageIndex: 12,
+                    pageIndex: 12,
                     title: "Entre lágrimas y revelaciones, el corazón habló fuerte.",
                     content: "Semana cargada de emociones, dos palabras un gran sentimiento, Dios de nuestro lado",
                     keywords: ["nubes", "humildes", "amables", "Dios", "aprendizaje", "discusiones", "brindas"]
