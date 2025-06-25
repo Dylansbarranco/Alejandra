@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Mi Amor</title>
-    <link rel="stylesheet" href="/Componentes/styles.css">
+    <link rel="stylesheet" href="Componentes/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap">
 </head>
 <body>
     <div class="stars"></div>
+    <div class="floating-hearts"></div>
     <header>
         <nav>
             <ul>
@@ -38,27 +39,53 @@
                         <img src="https://i.pinimg.com/736x/88/13/ba/8813badb51e3135e62f31f1f8bd84ddc.jpg" alt="Foto de ella">
                         <p class="caption">Mi persona favorita ❤️</p>
                     </div>
+                    <!-- Cualidades flotantes alrededor de la imagen -->
+                    <div class="floating-qualities">
+                        <div class="floating-quality quality-1" data-message="Tu amor es mi refugio y mi hogar. Amas tan profundamente que transformas todo a tu alrededor.">
+                            <span class="quality-icon">❤️</span>
+                            <span class="quality-text">Amorosa</span>
+                        </div>
+                        <div class="floating-quality quality-2" data-message="Tu inteligencia me fascina. Tienes esa chispa especial que ilumina cualquier conversación.">
+                            <span class="quality-icon">✨</span>
+                            <span class="quality-text">Brillante</span>
+                        </div>
+                        <div class="floating-quality quality-3" data-message="Tu sonrisa es mi droga favorita. Cuando ríes, el mundo entero se vuelve más hermoso.">
+                            <span class="quality-icon">😊</span>
+                            <span class="quality-text">Alegre</span>
+                        </div>
+                        <div class="floating-quality quality-4" data-message="En un mundo lleno de copias, tú eres una obra maestra original. No hay nadie como tú.">
+                            <span class="quality-icon">🌟</span>
+                            <span class="quality-text">Única</span>
+                        </div>
+                        <div class="floating-quality quality-5" data-message="Eres mi tesoro más preciado. Tu valor no se puede medir porque eres invaluable para mí.">
+                            <span class="quality-icon">💎</span>
+                            <span class="quality-text">Valiosa</span>
+                        </div>
+                        <div class="floating-quality quality-6" data-message="Tu belleza va más allá de lo físico. Tienes esa hermosura que viene del alma.">
+                            <span class="quality-icon">🌺</span>
+                            <span class="quality-text">Hermosa</span>
+                        </div>
+                        <div class="floating-quality quality-7" data-message="Tu mente me enamora cada día. Eres brillante, astuta y siempre me sorprendes.">
+                            <span class="quality-icon">🧠</span>
+                            <span class="quality-text">Inteligente</span>
+                        </div>
+                        <div class="floating-quality quality-8" data-message="Llenas mi vida de colores que no sabía que existían. Contigo todo es más vibrante.">
+                            <span class="quality-icon">🌈</span>
+                            <span class="quality-text">Colorida</span>
+                        </div>
+                        <div class="floating-quality quality-9" data-message="Tu fortaleza me inspira. Eres más valiente de lo que imaginas y más fuerte de lo que crees.">
+                            <span class="quality-icon">💪</span>
+                            <span class="quality-text">Fuerte</span>
+                        </div>
+                        <div class="floating-quality quality-10" data-message="Tienes el don de crear belleza en todo lo que tocas. Tu creatividad no tiene límites.">
+                            <span class="quality-icon">🎨</span>
+                            <span class="quality-text">Creativa</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="about-text">
                     <p>Desde que llegaste a mi vida, me he convertido en un testigo privilegiado de la persona tan increíble que eres. Eres fuerte, aunque a veces no lo notes. Eres creativa, intuitiva, y tienes ese talento natural para hacer que los demás se sientan bien solo con tu presencia. Me encanta cómo te expresas, cómo sientes tan intensamente, cómo amas sin medias tintas. Eres el equilibrio perfecto entre ternura y valentía.</p>
                     <p>Contigo la vida tiene otra luz. No hay un solo día en el que no me sorprenda lo mucho que me haces sentir. Cuando hablo contigo, cuando me sonríes, cuando simplemente existes cerca de mí (aunque sea a la distancia), me siento visto, comprendido y profundamente afortunado. Me haces querer ser mejor, no por presión, sino porque al mirarte a ti, siento que todo lo bueno que yo pueda construir, quiero compartirlo contigo.</p>
-                    <div class="qualities">
-                        <div class="quality">
-                            <span class="quality-icon">❤️</span>
-                            <h3>Amorosa</h3>
-                            <p>Su forma de amar es incomparable</p>
-                        </div>
-                        <div class="quality">
-                            <span class="quality-icon">✨</span>
-                            <h3>Brillante</h3>
-                            <p>Su inteligencia me asombra cada día</p>
-                        </div>
-                        <div class="quality">
-                            <span class="quality-icon">😊</span>
-                            <h3>Alegre</h3>
-                            <p>Su sonrisa ilumina cualquier habitación</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -69,23 +96,101 @@
             <h2>Galería de Recuerdos</h2>
             <div class="gallery">
                 <div class="gallery-item">
-                    <img src="https://i.pinimg.com/736x/03/7e/ad/037ead52526fb39ccc8826cc5d46357a.jpg" alt="Recuerdo 1">
+                    <img src="https://i.pinimg.com/736x/03/7e/ad/037ead52526fb39ccc8826cc5d46357a.jpg" alt="Recuerdo 1" loading="lazy">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://i.pinimg.com/736x/02/78/67/0278673e36a0efe440901689b3a3c780.jpg" alt="Recuerdo 2">
+                    <img src="https://i.pinimg.com/736x/02/78/67/0278673e36a0efe440901689b3a3c780.jpg" alt="Recuerdo 2" loading="lazy">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://i.pinimg.com/736x/eb/5a/5b/eb5a5b44fdc5e471462c81edf921db14.jpg" alt="Recuerdo 3">
+                    <img src="https://i.pinimg.com/736x/eb/5a/5b/eb5a5b44fdc5e471462c81edf921db14.jpg" alt="Recuerdo 3" loading="lazy">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://i.pinimg.com/736x/d7/c7/0c/d7c70c25199bdb68ae3716d0422716b7.jpg" alt="Recuerdo 4">
+                    <img src="https://i.pinimg.com/736x/d7/c7/0c/d7c70c25199bdb68ae3716d0422716b7.jpg" alt="Recuerdo 4" loading="lazy">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://i.pinimg.com/736x/b5/19/b4/b519b47c6241bccfd60c84ac4d94d0cc.jpg" alt="Recuerdo 5">
+                    <img src="https://i.pinimg.com/736x/b5/19/b4/b519b47c6241bccfd60c84ac4d94d0cc.jpg" alt="Recuerdo 5" loading="lazy">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://i.pinimg.com/736x/32/6b/ee/326bee89fae8dac23958d63c7944e65e.jpg" alt="Recuerdo 6">
+                    <img src="https://i.pinimg.com/736x/32/6b/ee/326bee89fae8dac23958d63c7944e65e.jpg" alt="Recuerdo 6" loading="lazy">
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="momentos" class="section">
+        <div class="container">
+            <h2>Momentos Especiales</h2>
+            <div class="timeline"> 
+            <div class="timeline-item">
+                <div class="timeline-date">13/04/2025</div>
+                <div class="timeline-content">
+                <h3>Primer Chat</h3>
+                <p>La primera vez que hablamos por mensaje.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">17/04/2025</div>
+                <div class="timeline-content">
+                <h3>Primera Carta</h3>
+                <p>Te dediqué mi primer detalle programado.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">21/04/2025</div>
+                <div class="timeline-content">
+                <h3>Primera Llamada</h3>
+                <p>Nos escuchamos y reímos juntos.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">24/04/2025</div>
+                <div class="timeline-content">
+                <h3>Videollamada y Te Quiero</h3>
+                <p>Nos vimos y dijimos nuestro primer "te quiero".</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">29/04/2025</div>
+                <div class="timeline-content">
+                <h3>Carta en Morse</h3>
+                <p>Recibí tu carta especial en código.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">29/04/2025</div>
+                <div class="timeline-content">
+                <h3>Libro Juntos</h3>
+                <p>Comenzamos a escribir nuestro libro.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">15/05/2025</div>
+                <div class="timeline-content">
+                <h3>Oficialmente Juntos</h3>
+                <p>Hicimos oficial nuestra relación.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">17/05/2025</div>
+                <div class="timeline-content">
+                    <h3>Primera Conversación Incómoda</h3>
+                    <p>Ese día tuvimos nuestra primera conversación incómoda, aprendiendo a conocernos aún más y creciendo juntos.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">08/06/2025</div>
+                <div class="timeline-content">
+                <h3>Flores para Ti</h3>
+                <p>Te envié flores para alegrar tu día.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">20/06/2025</div>
+                <div class="timeline-content">
+                    <h3>Primer "Te Amo"</h3>
+                    <p>Nos dijimos "te amo" por primera vez, un momento que marcó nuestro corazón para siempre.</p>
+                </div>
+            </div>
             </div>
         </div>
     </section>
@@ -273,8 +378,8 @@
                         <p>Simplemente me gustas y todo por ti, siempre todo por ti.</p>
                         <a href="/Aleja/AbremeAlejandra.html" class="btn">Ver Proyecto</a>
                     </div>
-            </div>
-              <div class="project-card">
+                </div>
+                <div class="project-card">
                     <div class="project-image">
                         <img src="Img/Ojostentadores.png" alt="Proyecto 19">
                     </div>
@@ -283,7 +388,7 @@
                         <p>Eres eso que me hace sentir "Culpable".</p>
                         <a href="/Aleja/AbremeSecreto.html" class="btn">Ver Proyecto</a>
                     </div>
-            </div>
+                </div>
             <div class="project-card">
                     <div class="project-image">
                         <img src="/Img/gracias.png" alt="Proyecto 20">
@@ -366,7 +471,6 @@
                     </div>
                 </div>
             </div>
-            </div>
         </section>
 
     <section id="mensaje" class="section">
@@ -375,9 +479,9 @@
             <div class="message-container">
                 <div class="letter">
                     <p>Querida Alejandra ❤️ ,</p>
-                    <P>Esta página no es solo un detalle... es un pedazo de mi alma dedicado a ti. La hice porque no hay cancion, poema o red social que alcance para decirte todo lo que siento, asi que decidí construirlo con mi propias manos, como quien arma algo que quiere que dure para símepre.</P>
-                    <P>Este espacio es para recordarte que eres única. No lo digo por decir. Eres increibremente inteligente, decidida, con esa dulzura me derrites. No hay nada en ti que no admire: Tu forma de pensar, de sentir, de hablarle al mundo, de construir tus sueños... y sobre todo , de dejarme entrar en ellos.</P>
-                    <P>Realmente, sueño con un futuro a tu lado, no uno perfecto, pero si eterno; sueño con despetar y verte a mi lado, sueño con hacerte feliz cada dia, sueño con poder abrazarte, reir hasta que duela el estomago , apoyarnos en los dia dificiles y celebrar los pequeños logros.</P>
+                    <p>Esta página no es solo un detalle... es un pedazo de mi alma dedicado a ti. La hice porque no hay canción, poema o red social que alcance para decirte todo lo que siento, así que decidí construirlo con mis propias manos, como quien arma algo que quiere que dure para siempre.</p>
+                    <p>Este espacio es para recordarte que eres única. No lo digo por decir. Eres increíblemente inteligente, decidida, con esa dulzura que me derrites. No hay nada en ti que no admire: tu forma de pensar, de sentir, de hablarle al mundo, de construir tus sueños... y sobre todo, de dejarme entrar en ellos.</p>
+                    <p>Realmente, sueño con un futuro a tu lado, no uno perfecto, pero sí eterno; sueño con despertar y verte a mi lado, sueño con hacerte feliz cada día, sueño con poder abrazarte, reír hasta que duela el estómago, apoyarnos en los días difíciles y celebrar los pequeños logros.</p>
                     <p>Con amor y mucha dedicacion Dilan 💖</p>
                 </div>
             </div>
@@ -390,7 +494,16 @@
             <p class="copyright">© <span id="year"></span> Dilan Barranco</p>
         </div>
     </footer>
-    <script src="/Componentes/script.js"></script>
+    
+    <!-- Mensaje emergente para las cualidades -->
+    <div id="quality-tooltip" class="quality-tooltip">
+        <div class="tooltip-content">
+            <span class="tooltip-text"></span>
+            <div class="tooltip-arrow"></div>
+        </div>
+    </div>
+    
+    <script src="Componentes/script.js"></script>
 </body>
 </html>
 
