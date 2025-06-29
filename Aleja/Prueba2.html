@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💜 Nuestras Canciones 💜</title>
+    <link rel="stylesheet" href="/Css/prueba2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-decoration">
+            <i class="fas fa-heart heart-1"></i>
+            <i class="fas fa-heart heart-2"></i>
+            <i class="fas fa-heart heart-3"></i>
+        </div>
+        <h1 class="title">💜 Nuestras Canciones 💜</h1>
+        <p class="subtitle">Una colección especial de música para el alma</p>
+        <div class="header-decoration">
+            <i class="fas fa-music note-1"></i>
+            <i class="fas fa-music note-2"></i>
+            <i class="fas fa-music note-3"></i>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Search and Filter Section -->
+        <div class="controls-section">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Buscar nuestras canciones..." class="search-input">
+            </div>
+            <div class="filter-container">
+                <select id="artistFilter" class="artist-filter">
+                    <option value="">Todos los artistas</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Current Playing Section -->
+        <div class="now-playing" id="nowPlaying">
+            <div class="now-playing-info">
+                <div class="song-artwork">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="song-details">
+                    <h3 class="current-song">Selecciona una canción</h3>
+                    <p class="current-artist">Artista</p>
+                </div>
+            </div>
+            
+            <!-- Player Controls -->
+            <div class="player-controls">
+                <button class="control-btn" id="shuffleBtn" title="Aleatorio">
+                    <i class="fas fa-random"></i>
+                </button>
+                <button class="control-btn" id="prevBtn" title="Anterior">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button class="control-btn play-btn" id="playBtn" title="Reproducir">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="control-btn" id="nextBtn" title="Siguiente">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+                <button class="control-btn" id="repeatBtn" title="Repetir">
+                    <i class="fas fa-redo"></i>
+                </button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <span class="time" id="currentTime">0:00</span>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <span class="time" id="duration">0:00</span>
+            </div>
+
+            <!-- Volume Control -->
+            <div class="volume-container">
+                <i class="fas fa-volume-up volume-icon"></i>
+                <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="70">
+            </div>
+
+            <!-- Lyrics Section -->
+            <div class="lyrics-section" id="lyricsSection" style="display: none;">
+                <div class="lyrics-header">
+                    <h4><i class="fas fa-quote-left"></i> Letra de la canción <i class="fas fa-quote-right"></i></h4>
+                    <button class="close-lyrics" id="closeLyrics">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="lyrics-content" id="lyricsContent">
+                    <!-- La letra se mostrará aquí -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Songs Grid -->
+        <div class="songs-grid" id="songsGrid">
+            <!-- Las canciones se generarán dinámicamente aquí -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-hearts">
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-heart"></i>
+        </div>
+        <p>Hecho con amor por Dilan 💌</p>
+        <p class="footer-subtitle">Para la persona más especial del mundo ✨</p>
+    </footer>
+
+    <script src="/Script/prueba.js"></script>
+</body>
+</html>

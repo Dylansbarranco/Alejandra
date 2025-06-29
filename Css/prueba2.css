@@ -1,0 +1,1287 @@
+/* Reset y Variables CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #8b5cf6;
+  --secondary-color: #a855f7;
+  --accent-color: #ec4899;
+  --rose-color: #f472b6;
+  --background-dark: #0f0f23;
+  --background-card: #1a1a2e;
+  --polaroid-bg: #fefefe;
+  --polaroid-shadow: rgba(0, 0, 0, 0.3);
+  --text-primary: #ffffff;
+  --text-secondary: #b8b8d1;
+  --text-dark: #2d2d44;
+  --border-color: #2d2d44;
+  --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  --gradient-secondary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  --gradient-romantic: linear-gradient(135deg, #f472b6 0%, #8b5cf6 50%, #ec4899 100%);
+  --shadow-primary: 0 10px 30px rgba(139, 92, 246, 0.3);
+  --shadow-card: 0 8px 25px rgba(0, 0, 0, 0.4);
+  --shadow-polaroid: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--background-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  background-image: radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(244, 114, 182, 0.1) 0%, transparent 50%);
+}
+
+/* Header Styles */
+.header {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--gradient-secondary);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.header-decoration {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1rem 0;
+}
+
+.header-decoration i {
+  font-size: 1.5rem;
+  opacity: 0.7;
+  animation: float 3s ease-in-out infinite;
+}
+
+.heart-1,
+.note-1 {
+  animation-delay: 0s;
+  color: var(--accent-color);
+}
+.heart-2,
+.note-2 {
+  animation-delay: 1s;
+  color: var(--primary-color);
+}
+.heart-3,
+.note-3 {
+  animation-delay: 2s;
+  color: var(--rose-color);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  background: var(--gradient-romantic);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+  animation: glow 2s ease-in-out infinite alternate;
+  font-family: "Dancing Script", cursive;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  font-style: italic;
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.5));
+  }
+  to {
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.8));
+  }
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Controls Section */
+.controls-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.search-container {
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  background: var(--background-card);
+  border: 1px solid var(--border-color);
+  border-radius: 25px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+}
+
+.filter-container {
+  min-width: 200px;
+}
+
+.artist-filter {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--background-card);
+  border: 1px solid var(--border-color);
+  border-radius: 25px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.artist-filter:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+}
+
+/* Now Playing Section */
+.now-playing {
+  background: var(--gradient-secondary);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-card);
+}
+
+.now-playing-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.song-artwork {
+  width: 60px;
+  height: 60px;
+  background: var(--gradient-romantic);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.song-details h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.song-details p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Player Controls */
+.player-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.control-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.control-btn:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.play-btn {
+  width: 55px;
+  height: 55px;
+  background: var(--gradient-romantic);
+  border: none;
+  font-size: 1.2rem;
+}
+
+.control-btn.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Progress Bar */
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.time {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  min-width: 40px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--border-color);
+  border-radius: 3px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: var(--gradient-romantic);
+  border-radius: 3px;
+  transition: width 0.1s ease;
+}
+
+/* Volume Control */
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.volume-icon {
+  color: var(--text-secondary);
+}
+
+.volume-slider {
+  width: 100px;
+  height: 4px;
+  background: var(--border-color);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Lyrics Section */
+.lyrics-section {
+  margin-top: 1.5rem;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.lyrics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.lyrics-header h4 {
+  color: var(--accent-color);
+  font-family: "Dancing Script", cursive;
+  font-size: 1.3rem;
+}
+
+.close-lyrics {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.close-lyrics:hover {
+  color: var(--accent-color);
+}
+
+.lyrics-content {
+  color: var(--text-primary);
+  line-height: 1.8;
+  font-style: italic;
+  text-align: center;
+  white-space: pre-line;
+}
+
+/* Songs Grid */
+.songs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Polaroid Song Cards */
+.song-card {
+  background: var(--polaroid-bg);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: var(--shadow-polaroid);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  transform: rotate(-2deg);
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.song-card:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.song-card:hover {
+  transform: rotate(0deg) translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.song-card.playing {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 15px 40px rgba(236, 72, 153, 0.5);
+}
+
+.polaroid-image {
+  width: 100%;
+  height: 180px;
+  background: var(--gradient-romantic);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.polaroid-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.song-info {
+  text-align: center;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.song-info h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-family: "Dancing Script", cursive;
+  color: var(--primary-color);
+}
+
+.song-info p {
+  color: var(--text-dark);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.song-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.play-song-btn {
+  background: var(--gradient-romantic);
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.play-song-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+}
+
+.song-duration {
+  color: var(--text-dark);
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.lyrics-btn {
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lyrics-btn:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* Romantic Messages */
+.romantic-message {
+  grid-column: 1 / -1;
+  background: var(--gradient-romantic);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  margin: 1rem 0;
+  box-shadow: var(--shadow-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.romantic-message::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.romantic-message-content {
+  position: relative;
+  z-index: 1;
+}
+
+.romantic-message h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.romantic-message p {
+  font-size: 1.1rem;
+  color: white;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.romantic-message .hearts {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
+  margin-top: 3rem;
+}
+
+.footer-hearts {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.footer-hearts i {
+  color: var(--accent-color);
+  animation: float 2s ease-in-out infinite;
+}
+
+.footer-hearts i:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.footer-hearts i:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.footer-subtitle {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.1rem;
+  color: var(--rose-color);
+  margin-top: 0.5rem;
+}
+
+/* Mensajes Románticos Flotantes */
+.floating-message {
+  position: fixed;
+  z-index: 1000;
+  background: var(--gradient-romantic);
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  max-width: 350px;
+  text-align: center;
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.floating-message.show {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.floating-message.hide {
+  transform: scale(0) rotate(10deg);
+  opacity: 0;
+}
+
+.floating-message-content h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.floating-message-content p {
+  font-size: 1rem;
+  color: white;
+  font-style: italic;
+  line-height: 1.5;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.floating-message .hearts {
+  font-size: 1.3rem;
+  margin: 0.8rem 0;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.floating-message::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd);
+  border-radius: 22px;
+  z-index: -1;
+  animation: rainbow 3s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes rainbow {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.floating-message::after {
+  content: "💕";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 1.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Partículas de corazones flotantes */
+.heart-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  font-size: 1.2rem;
+  color: var(--accent-color);
+  animation: floatUp 3s ease-out forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.5);
+  }
+}
+
+/* Efecto de brillo en el mensaje */
+.floating-message .sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  animation: sparkle 2s infinite;
+}
+
+.sparkle:nth-child(1) {
+  top: 20%;
+  left: 20%;
+  animation-delay: 0s;
+}
+.sparkle:nth-child(2) {
+  top: 30%;
+  right: 25%;
+  animation-delay: 0.5s;
+}
+.sparkle:nth-child(3) {
+  bottom: 25%;
+  left: 30%;
+  animation-delay: 1s;
+}
+.sparkle:nth-child(4) {
+  bottom: 20%;
+  right: 20%;
+  animation-delay: 1.5s;
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Aura Electrónica y Efectos Pro */
+.electronic-aura {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 500;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.electronic-aura.active {
+  opacity: 1;
+}
+
+/* Ondas de sonido expansivas */
+.sound-wave {
+  position: absolute;
+  border: 3px solid;
+  border-radius: 50%;
+  animation: expandWave 2s ease-out infinite;
+}
+
+.sound-wave:nth-child(1) {
+  border-color: rgba(139, 92, 246, 0.8);
+  animation-delay: 0s;
+}
+.sound-wave:nth-child(2) {
+  border-color: rgba(236, 72, 153, 0.7);
+  animation-delay: 0.5s;
+}
+.sound-wave:nth-child(3) {
+  border-color: rgba(0, 255, 255, 0.6);
+  animation-delay: 1s;
+}
+.sound-wave:nth-child(4) {
+  border-color: rgba(255, 0, 255, 0.5);
+  animation-delay: 1.5s;
+}
+
+@keyframes expandWave {
+  0% {
+    width: 60px;
+    height: 60px;
+    opacity: 1;
+    transform: scale(0);
+  }
+  100% {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* Partículas electrónicas flotantes */
+.electronic-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #00ffff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+  animation: floatParticle 4s ease-in-out infinite;
+}
+
+.electronic-particle:nth-child(odd) {
+  background: #ff00ff;
+  box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+}
+
+@keyframes floatParticle {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) scale(0);
+    opacity: 0;
+  }
+  25% {
+    transform: translateY(-30px) translateX(20px) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-15px) scale(1.2);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(25px) translateX(10px) scale(0.8);
+    opacity: 0.6;
+  }
+}
+
+/* Líneas de energía */
+.energy-line {
+  position: absolute;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00ffff, #ff00ff, transparent);
+  animation: energyFlow 3s linear infinite;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.energy-line.vertical {
+  width: 3px;
+  height: 200px;
+  background: linear-gradient(0deg, transparent, #00ffff, #ff00ff, transparent);
+  animation: energyFlowVertical 3s linear infinite;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+@keyframes energyFlow {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  50% {
+    width: 300px;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes energyFlowVertical {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    height: 200px;
+    opacity: 1;
+  }
+  100% {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+/* Visualizador de espectro mejorado */
+.spectrum-visualizer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: 3px;
+  z-index: 501;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+}
+
+.spectrum-visualizer.active {
+  opacity: 1;
+}
+
+.spectrum-bar {
+  width: 5px;
+  background: linear-gradient(to top, #8b5cf6, #ec4899, #00ffff);
+  border-radius: 3px 3px 0 0;
+  animation: spectrumBounce 0.8s ease-in-out infinite alternate;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+  min-height: 5px;
+}
+
+.spectrum-bar:nth-child(2n) {
+  animation-delay: 0.1s;
+  background: linear-gradient(to top, #ec4899, #00ffff, #ff00ff);
+}
+.spectrum-bar:nth-child(3n) {
+  animation-delay: 0.2s;
+  background: linear-gradient(to top, #00ffff, #ff00ff, #8b5cf6);
+}
+
+@keyframes spectrumBounce {
+  0% {
+    height: 15px;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+  }
+  100% {
+    height: 80px;
+    box-shadow: 0 0 25px rgba(139, 92, 246, 1);
+  }
+}
+
+/* Aura del reproductor principal */
+.now-playing.playing {
+  position: relative;
+  overflow: visible;
+}
+
+.now-playing.playing::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  background: linear-gradient(45deg, #8b5cf6, #ec4899, #00ffff, #ff00ff, #8b5cf6);
+  border-radius: 35px;
+  z-index: -1;
+  animation: rotateGradient 4s linear infinite;
+  opacity: 0.6;
+  filter: blur(8px);
+}
+
+.now-playing.playing::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  background: linear-gradient(45deg, rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.4), rgba(0, 255, 255, 0.4));
+  border-radius: 28px;
+  z-index: -1;
+  animation: pulseAura 2s ease-in-out infinite;
+}
+
+@keyframes rotateGradient {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes pulseAura {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.8;
+  }
+}
+
+/* Efectos de neón en botones */
+.control-btn.neon-active {
+  box-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor, 0 0 20px currentColor, inset 0 0 5px
+    rgba(255, 255, 255, 0.2);
+  animation: neonPulse 2s ease-in-out infinite alternate;
+  border-color: currentColor;
+}
+
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor, 0 0 20px currentColor;
+  }
+  100% {
+    box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor, 0 0 40px currentColor;
+  }
+}
+
+/* Lluvia digital tipo Matrix */
+.digital-rain {
+  position: absolute;
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(to bottom, transparent, #00ff00, transparent);
+  animation: digitalFall 3s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes digitalFall {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Efecto de circuito electrónico */
+.circuit-effect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(90deg, transparent 98%, rgba(0, 255, 255, 0.2) 100%),
+    linear-gradient(0deg, transparent 98%, rgba(255, 0, 255, 0.2) 100%);
+  background-size: 60px 60px;
+  animation: circuitFlow 6s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes circuitFlow {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 60px 60px;
+  }
+}
+
+/* Pulso de energía en las tarjetas */
+.song-card.playing::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, #8b5cf6, #ec4899, #00ffff, #8b5cf6);
+  border-radius: 13px;
+  z-index: -1;
+  animation: cardPulse 3s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes cardPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.9;
+  }
+}
+
+/* Sugerencias de búsqueda inteligentes */
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--background-card);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.search-suggestions.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.suggestion-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background: rgba(139, 92, 246, 0.1);
+  transform: translateX(5px);
+}
+
+.suggestion-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.suggestion-icon {
+  color: var(--primary-color);
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+}
+
+.suggestion-text {
+  flex: 1;
+}
+
+.suggestion-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.suggestion-artist {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.suggestion-score {
+  color: var(--accent-color);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(236, 72, 153, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+}
+
+.highlight-match {
+  background: rgba(139, 92, 246, 0.4);
+  color: var(--accent-color);
+  padding: 0 2px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+/* Mejorar el contenedor de búsqueda */
+.search-container {
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Scrollbar personalizado para sugerencias */
+.search-suggestions::-webkit-scrollbar {
+  width: 6px;
+}
+
+.search-suggestions::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.search-suggestions::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 3px;
+}
+
+.search-suggestions::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+/* Animación para las sugerencias */
+.suggestion-item {
+  animation: slideInSuggestion 0.3s ease forwards;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.suggestion-item:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.suggestion-item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.suggestion-item:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.suggestion-item:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.suggestion-item:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+@keyframes slideInSuggestion {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Efecto de brillo en las sugerencias */
+.suggestion-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.suggestion-item:hover::before {
+  left: 100%;
+}
+
+/* Agregar estilo para la selección con teclado */
+.suggestion-item.selected {
+  background: rgba(139, 92, 246, 0.2);
+  transform: translateX(8px);
+}
