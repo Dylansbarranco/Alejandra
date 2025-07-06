@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Amor Infinito Para Ti</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0c0c1e 0%, #1a1a3e 25%, #2d1b69 50%, #1a1a3e 75%, #0c0c1e 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Estrellas animadas */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        /* Galaxia de fondo */
+        .galaxy {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(ellipse at center, 
+                rgba(147, 112, 219, 0.15) 0%, 
+                rgba(75, 0, 130, 0.08) 30%, 
+                transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            animation: rotate 80s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* Contenedor principal */
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInDown 2s ease-out 0.5s forwards;
+        }
+        
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ffd700, #ffb347, #ff69b4, #9370db);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #b19cd9;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+        
+        /* Secciones */
+        .section {
+            max-width: 1000px;
+            margin: 0 auto 4rem auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Mensaje de disculpa */
+        .apology-section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .apology-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #e6e6fa;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Declaración de amor principal */
+        .love-declaration {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 3rem;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 30px;
+            border: 2px solid rgba(255, 105, 180, 0.3);
+        }
+        
+        .main-love-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff69b4, #ffd700, #ff1493, #ffb347);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: loveGlow 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-love-text:hover {
+            transform: scale(1.05);
+        }
+        
+        @keyframes loveGlow {
+            0%, 100% { 
+                background-position: 0% 50%;
+                filter: brightness(1);
+            }
+            50% { 
+                background-position: 100% 50%;
+                filter: brightness(1.3);
+            }
+        }
+        
+        /* Frases Disney */
+        .disney-quotes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .quote-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .quote-card:hover::before {
+            left: 100%;
+        }
+        
+        .quote-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.2);
+            border-color: rgba(255, 105, 180, 0.4);
+        }
+        
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #ffb6c1;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .quote-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .character-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .character-name {
+            font-weight: 600;
+            color: #ffd700;
+            font-size: 1.1rem;
+        }
+        
+        .movie-info {
+            color: #9370db;
+            font-size: 0.95rem;
+        }
+        
+        .timestamp {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Nota personal */
+        .personal-note {
+            background: rgba(255, 192, 203, 0.12);
+            border: 2px solid rgba(255, 192, 203, 0.3);
+            border-radius: 25px;
+            padding: 3rem;
+            text-align: center;
+            margin: 4rem 0;
+            position: relative;
+        }
+        
+        .personal-note::before {
+            content: '💕';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            background: #1a1a3e;
+            padding: 0 1rem;
+        }
+        
+        .note-text {
+            font-size: 1.3rem;
+            color: #ffb6c1;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        /* Nave espacial */
+        .spaceship {
+            position: fixed;
+            width: 80px;
+            height: 40px;
+            background: linear-gradient(45deg, #c0c0c0, #ffffff, #c0c0c0);
+            border-radius: 50% 20px 50% 20px;
+            top: 15%;
+            left: -120px;
+            animation: flyAcross 20s linear infinite;
+            z-index: 5;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .spaceship::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 6px;
+            background: linear-gradient(90deg, #00bfff, #87ceeb, transparent);
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 3px;
+            box-shadow: 0 0 10px #00bfff;
+        }
+        
+        @keyframes flyAcross {
+            0% { left: -120px; top: 15%; }
+            25% { left: 25%; top: 10%; }
+            50% { left: 50%; top: 20%; }
+            75% { left: 75%; top: 8%; }
+            100% { left: calc(100% + 120px); top: 25%; }
+        }
+        
+        /* Estrellas fugaces */
+        .shooting-star {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #ffd700;
+            animation: shootingStar 4s linear infinite;
+            z-index: 5;
+        }
+        
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, #ffd700, #ffb347, transparent);
+            left: -150px;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 10px #ffd700;
+        }
+        
+        @keyframes shootingStar {
+            0% {
+                top: -20px;
+                left: 100%;
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                left: -20px;
+                opacity: 0;
+            }
+        }
+        
+        /* Animaciones de entrada */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .disney-quotes {
+                grid-template-columns: 1fr;
+            }
+            
+            .quote-card {
+                padding: 2rem;
+            }
+            
+            .main-love-text {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Estrellas de fondo -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- Galaxia rotante -->
+    <div class="galaxy"></div>
+    
+    <!-- Nave espacial -->
+    <div class="spaceship"></div>
+    
+    <!-- Estrellas fugaces -->
+    <div class="shooting-star" style="animation-delay: 2s;"></div>
+    <div class="shooting-star" style="animation-delay: 6s;"></div>
+    <div class="shooting-star" style="animation-delay: 10s;"></div>
+    <div class="shooting-star" style="animation-delay: 14s;"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="main-title">Mi Amor Infinito Para Ti</h1>
+            <p class="subtitle">Un mensaje desde las estrellas para la persona más especial de mi universo ✨</p>
+        </div>
+        
+        <!-- Sección de disculpa -->
+        <div class="section apology-section">
+            <h2 class="section-title">Mi Corazón Honesto</h2>
+            <p class="apology-text">Lo que hice no estuvo bien. Investigar tu vida sin tu permiso fue una falta de respeto a tu privacidad.</p>
+            <p class="apology-text">No quiero justificarme, solo pedirte perdón desde un lugar honesto. Estoy trabajando en entender por qué reaccioné así y en no volver a hacerlo.</p>
+            <p class="apology-text">Gracias por hablarlo conmigo y por quedarte. No lo doy por sentado.</p>
+        </div>
+        
+        <!-- Declaración principal de amor -->
+        <div class="section love-declaration">
+            <div class="main-love-text" onclick="createHearts()">
+                ✨ TE AMO ✨
+            </div>
+        </div>
+        
+        <!-- Frases Disney -->
+        <div class="section">
+            <h2 class="section-title">Como en Disney... Así Te Amo</h2>
+            <div class="disney-quotes">
+                <div class="quote-card" onclick="addSparkles(this)">
+                    <div class="quote-text">"Te amo hasta el infinito... y más allá"</div>
+                    <div class="quote-info">
+                        <div class="character-info">
+                            <div class="character-name">Buzz Lightyear</div>
+                            <div class="movie-info">Toy Story (1995)</div>
+                        </div>
+                        <div class="timestamp">Min 73:42</div>
+                    </div>
+                </div>
+                
+                <div class="quote-card" onclick="addSparkles(this)">
+                    <div class="quote-text">"La aventura está ahí fuera"</div>
+                    <div class="quote-info">
+                        <div class="character-info">
+                            <div class="character-name">Ellie Fredricksen</div>
+                            <div class="movie-info">Up (2009)</div>
+                        </div>
+                        <div class="timestamp">Min 12:15</div>
+                    </div>
+                </div>
+                
+                <div class="quote-card" onclick="addSparkles(this)">
+                    <div class="quote-text">"Siempre estaremos juntos"</div>
+                    <div class="quote-info">
+                        <div class="character-info">
+                            <div class="character-name">Simba & Nala</div>
+                            <div class="movie-info">El Rey León (1994)</div>
+                        </div>
+                        <div class="timestamp">Min 45:30</div>
+                    </div>
+                </div>
+                
+                <div class="quote-card" onclick="addSparkles(this)">
+                    <div class="quote-text">"Tú y yo somos un equipo"</div>
+                    <div class="quote-info">
+                        <div class="character-info">
+                            <div class="character-name">Woody</div>
+                            <div class="movie-info">Toy Story 3 (2010)</div>
+                        </div>
+                        <div class="timestamp">Min 89:12</div>
+                    </div>
+                </div>
+                
+                <div class="quote-card" onclick="addSparkles(this)">
+                    <div class="quote-text">"Eres mi lugar feliz"</div>
+                    <div class="quote-info">
+                        <div class="character-info">
+                            <div class="character-name">Joy</div>
+                            <div class="movie-info">Inside Out (2015)</div>
+                        </div>
+                        <div class="timestamp">Min 67:25</div>
+                    </div>
+                </div>
+                
+                <div class="quote-card" onclick="addSparkles(this)">
+                    <div class="quote-text">"El amor verdadero es poner las necesidades de otra persona antes que las tuyas"</div>
+                    <div class="quote-info">
+                        <div class="character-info">
+                            <div class="character-name">Olaf</div>
+                            <div class="movie-info">Frozen (2013)</div>
+                        </div>
+                        <div class="timestamp">Min 78:33</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Nota personal -->
+        <div class="section personal-note">
+            <p class="note-text">Hoy es domingo y el libro está listo para ser escrito, te dejé ya todo cargado.</p>
+            <p class="note-text">Sabes cómo entrar, te amo 💕</p>
+        </div>
+    </div>
+
+    <script>
+        // Generar estrellas aleatorias
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 150;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Animación de scroll para las secciones
+        function animateOnScroll() {
+            const sections = document.querySelectorAll('.section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+        
+        // Crear corazones cuando se hace clic en "TE AMO"
+        function createHearts() {
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '💖';
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = '100%';
+                    heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '1000';
+                    heart.style.animation = 'floatUp 3s ease-out forwards';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 3000);
+                }, i * 200);
+            }
+        }
+        
+        // Añadir destellos a las tarjetas
+        function addSparkles(card) {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.innerHTML = '✨';
+                    sparkle.style.position = 'absolute';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    sparkle.style.pointerEvents = 'none';
+                    sparkle.style.animation = 'sparkleEffect 1s ease-out forwards';
+                    card.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 1000);
+                }, i * 100);
+            }
+        }
+        
+        // CSS para animaciones dinámicas
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUp {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes sparkleEffect {
+                0% {
+                    transform: scale(0) rotate(0deg);
+                    opacity: 1;
+                }
+                50% {
+                    transform: scale(1.5) rotate(180deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(0) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Inicializar efectos
+        createStars();
+        animateOnScroll();
+        
+        // Efecto de cursor estelar mejorado
+        document.addEventListener('mousemove', function(e) {
+            if (Math.random() > 0.95) {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = '✨';
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.zIndex = '1000';
+                sparkle.style.animation = 'sparkleEffect 1s ease-out forwards';
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
