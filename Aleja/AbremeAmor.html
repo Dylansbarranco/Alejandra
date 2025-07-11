@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Amor Entre Las Estrellas ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            overflow-x: hidden;
+            font-family: 'Georgia', serif;
+            cursor: none;
+            min-height: 100vh;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .spaceship {
+            position: fixed;
+            width: 60px;
+            height: 30px;
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            clip-path: polygon(0% 50%, 25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%);
+            animation: float 4s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+            z-index: 2;
+        }
+
+        .spaceship::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 15px solid #74b9ff;
+            animation: engine 0.5s infinite alternate;
+        }
+
+        @keyframes engine {
+            0% { border-right-color: #74b9ff; }
+            100% { border-right-color: #0984e3; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(2deg); }
+            50% { transform: translateY(-10px) rotate(-1deg); }
+            75% { transform: translateY(-15px) rotate(1deg); }
+        }
+
+        .spaceship1 {
+            top: 20%;
+            left: 10%;
+            animation-duration: 3s;
+            animation-delay: 0s;
+        }
+
+        .spaceship2 {
+            top: 60%;
+            right: 15%;
+            animation-duration: 4s;
+            animation-delay: 1s;
+            background: linear-gradient(45deg, #a29bfe, #6c5ce7);
+            box-shadow: 0 0 20px rgba(162, 155, 254, 0.6);
+        }
+
+        .spaceship3 {
+            top: 40%;
+            left: 70%;
+            animation-duration: 3.5s;
+            animation-delay: 2s;
+            background: linear-gradient(45deg, #fd79a8, #e84393);
+            box-shadow: 0 0 20px rgba(253, 121, 168, 0.6);
+        }
+
+        .planet {
+            position: fixed;
+            border-radius: 50%;
+            animation: orbit 20s linear infinite;
+            z-index: 2;
+        }
+
+        .planet1 {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 30% 30%, #ff7675, #d63031);
+            top: 15%;
+            right: 20%;
+            animation-duration: 15s;
+        }
+
+        .planet2 {
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle at 30% 30%, #74b9ff, #0984e3);
+            bottom: 20%;
+            left: 25%;
+            animation-duration: 25s;
+            animation-direction: reverse;
+        }
+
+        @keyframes orbit {
+            0% { transform: rotate(0deg) translateX(50px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+        }
+
+        .shooting-star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: shoot 3s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translateX(-100px) translateY(-100px);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateX(100vw) translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Estilos de la carta mejorados */
+        .letter-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            perspective: 1000px;
+        }
+
+        .letter-envelope {
+            width: 90vw;
+            max-width: 600px;
+            height: 70vh;
+            max-height: 500px;
+            min-height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b9d 100%);
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 30px rgba(255, 107, 157, 0.3);
+            animation: letterAppear 2s ease-out 2s forwards;
+            opacity: 0;
+            transform: scale(0.8);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .letter-envelope:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(255, 107, 157, 0.4);
+        }
+
+        @keyframes letterAppear {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .click-instruction {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.1rem;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInText 1s ease-out 4s forwards;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: instructionPulse 2s ease-in-out infinite 4s;
+        }
+
+        @keyframes instructionPulse {
+            0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+        }
+
+        .letter-envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b9d 100%);
+            border-radius: 15px 15px 0 0;
+            transform-origin: top;
+            z-index: 2;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-bottom: none;
+            transition: transform 1.5s ease-out;
+        }
+
+        .letter-envelope.opened::before {
+            transform: rotateX(-180deg);
+        }
+
+        .letter-paper {
+            position: absolute;
+            top: 8%;
+            left: 8%;
+            right: 8%;
+            bottom: 8%;
+            background: linear-gradient(145deg, #ffeaa7 0%, #fab1a0 20%, #fd79a8 40%, #fdcb6e 60%, #e17055 80%, #a29bfe 100%);
+            background-size: 200% 200%;
+            animation: paperGradient 8s ease infinite;
+            border-radius: 12px;
+            padding: 6%;
+            box-shadow: 
+                inset 0 0 30px rgba(255, 255, 255, 0.3),
+                0 8px 25px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            overflow-y: auto;
+            max-height: none;
+            height: calc(100% - 16%);
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            position: relative;
+            transition: all 1s ease-out;
+        }
+
+        .letter-envelope.opened .letter-paper {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 1s;
+        }
+
+        @keyframes paperGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Decoraciones vintage en las esquinas */
+        .letter-paper::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
+        .letter-paper::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 6px;
+            pointer-events: none;
+        }
+
+        /* Corazón decorativo en el centro */
+        .letter-heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.15);
+            z-index: 0;
+            animation: heartPulse 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.15; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.25; }
+        }
+
+        .letter-title {
+            text-align: center;
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+            font-weight: bold;
+        }
+
+        .letter-content {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-size: 0.85rem;
+            text-align: justify;
+            font-family: 'Georgia', serif;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+            max-height: none;
+            padding-bottom: 20px;
+        }
+
+        .letter-content p {
+            margin-bottom: 12px;
+            opacity: 0;
+            text-indent: 15px;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .letter-content p:first-child {
+            text-indent: 0;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .letter-envelope.opened .letter-content p:nth-child(1) { 
+            opacity: 1; 
+            transition-delay: 2s; 
+        }
+        .letter-envelope.opened .letter-content p:nth-child(2) { 
+            opacity: 1; 
+            transition-delay: 2.3s; 
+        }
+        .letter-envelope.opened .letter-content p:nth-child(3) { 
+            opacity: 1; 
+            transition-delay: 2.6s; 
+        }
+        .letter-envelope.opened .letter-content p:nth-child(4) { 
+            opacity: 1; 
+            transition-delay: 2.9s; 
+        }
+        .letter-envelope.opened .letter-content p:nth-child(5) { 
+            opacity: 1; 
+            transition-delay: 3.2s; 
+        }
+        .letter-envelope.opened .letter-content p:nth-child(6) { 
+            opacity: 1; 
+            transition-delay: 3.5s; 
+        }
+        .letter-envelope.opened .letter-content p:nth-child(7) { 
+            opacity: 1; 
+            transition-delay: 3.8s; 
+        }
+        .letter-envelope.opened .letter-content p:nth-child(8) { 
+            opacity: 1; 
+            transition-delay: 4.1s; 
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 20px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: bold;
+            font-size: 0.9rem;
+            opacity: 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .letter-envelope.opened .signature {
+            opacity: 1;
+            transition-delay: 4.5s;
+        }
+
+        .heart {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.9);
+            animation: heartbeat 1.5s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(255, 107, 157, 0.8);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .close-button {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            opacity: 0;
+            z-index: 101;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .letter-envelope.opened .close-button {
+            opacity: 1;
+            transition-delay: 5s;
+        }
+
+        .close-button:hover {
+            background: linear-gradient(45deg, #c44569, #ff6b9d);
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        /* Decoraciones adicionales */
+        .letter-decoration {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 1.2rem;
+            animation: decorationFloat 4s ease-in-out infinite;
+        }
+
+        .decoration-1 {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .decoration-2 {
+            top: 15%;
+            right: 8%;
+            animation-delay: 1s;
+        }
+
+        .decoration-3 {
+            bottom: 10%;
+            left: 8%;
+            animation-delay: 2s;
+        }
+
+        .decoration-4 {
+            bottom: 15%;
+            right: 5%;
+            animation-delay: 3s;
+        }
+
+        @keyframes decorationFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+            50% { transform: translateY(-10px) rotate(5deg); opacity: 0.4; }
+        }
+
+        /* Responsive mejorado */
+        @media (max-width: 768px) {
+            .letter-envelope {
+                width: 95vw;
+                height: 75vh;
+                max-height: 600px;
+                min-height: 450px;
+            }
+            
+            .letter-title {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+            
+            .letter-content {
+                font-size: 0.8rem;
+                line-height: 1.5;
+            }
+            
+            .letter-heart {
+                font-size: 2.5rem;
+            }
+            
+            .click-instruction {
+                font-size: 1rem;
+                top: -40px;
+            }
+
+            .letter-envelope.opened {
+                width: 98vw;
+                height: 90vh;
+                max-height: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .letter-envelope {
+                width: 98vw;
+                height: 75vh;
+            }
+            
+            .letter-paper {
+                padding: 4%;
+            }
+            
+            .letter-title {
+                font-size: 1.1rem;
+            }
+            
+            .letter-content {
+                font-size: 0.75rem;
+            }
+            
+            .letter-content p {
+                margin-bottom: 10px;
+            }
+            
+            .signature {
+                font-size: 0.8rem;
+                margin-top: 15px;
+            }
+
+            .letter-envelope.opened {
+                width: 99vw;
+                height: 95vh;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .letter-envelope {
+                height: 85vh;
+            }
+        }
+
+        .mouse-trail {
+            position: fixed;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .trail-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #fff, #ff6b9d);
+            border-radius: 50%;
+            animation: trailFade 1s ease-out forwards;
+        }
+
+        @keyframes trailFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        .constellation {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #a29bfe, #6c5ce7);
+            border-radius: 50%;
+            animation: constellationFade 2s ease-out forwards;
+        }
+
+        @keyframes constellationFade {
+            0% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+                box-shadow: 0 0 10px #a29bfe;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2) rotate(360deg);
+                box-shadow: 0 0 20px #a29bfe;
+            }
+        }
+
+        .letter-envelope.opened {
+            width: 95vw;
+            max-width: 700px;
+            height: 85vh;
+            max-height: 600px;
+            transform: translate(-50%, -50%) scale(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <!-- Naves espaciales -->
+    <div class="spaceship spaceship1"></div>
+    <div class="spaceship spaceship2"></div>
+    <div class="spaceship spaceship3"></div>
+    
+    <!-- Planetas -->
+    <div class="planet planet1"></div>
+    <div class="planet planet2"></div>
+    
+    <!-- Estrellas fugaces -->
+    <div class="shooting-star" style="top: 10%; animation-delay: 0s;"></div>
+    <div class="shooting-star" style="top: 30%; animation-delay: 5s;"></div>
+    <div class="shooting-star" style="top: 70%; animation-delay: 10s;"></div>
+    
+    <!-- Carta que se abre al hacer clic -->
+    <div class="letter-container">
+        <div class="click-instruction">✨ Haz clic en la carta para abrirla ✨</div>
+        <div class="letter-envelope" onclick="openLetter()">
+            <button class="close-button" onclick="closeLetter(event)">&times;</button>
+            <div class="letter-paper">
+                <div class="letter-heart">♥</div>
+                <div class="letter-decoration decoration-1">✦</div>
+                <div class="letter-decoration decoration-2">❋</div>
+                <div class="letter-decoration decoration-3">✧</div>
+                <div class="letter-decoration decoration-4">❈</div>
+                
+                <h1 class="letter-title">Para Mi Amor <span class="heart">♥</span></h1>
+                <div class="letter-content">
+                    <p><strong>Mi amor,</strong></p>
+                    
+                    <p>Sé que estos días he estado ausente. No hace falta que lo digas… yo también lo he sentido.</p>
+                    
+                    <p>A veces la vida se llena de tareas, responsabilidades y cansancio, y aunque eso no justifica nada, quiero que sepas que nunca dejaste de estar en mí.</p>
+                    
+                    <p>No quiero que pienses ni por un segundo que mi distancia significa desinterés, que mi silencio es olvido, o que el ruido del mundo ha callado el latido que siento por ti. Porque eso jamás.</p>
+                    
+                    <p>Si algo he aprendido en estos días es que puedo estar lejos en presencia, pero no me acostumbro a estar lejos de ti en alma.</p>
+                    
+                    <p>Tu amor me hace falta, tu voz me hace bien, tu existencia me sostiene. Y si algo fallé, si me perdí entre todo lo que tenía encima, te pido perdón. No como alguien que quiere salir del paso, sino como alguien que quiere volver al paso correcto… contigo.</p>
+                    
+                    <p>Quiero reconectar. Quiero que sepas que tu espacio en mi vida sigue siendo único e irremplazable. Quiero que, aunque no siempre sepa decirlo a tiempo, sientas que mi amor por ti no es de días… es de siempre.</p>
+                    
+                    <p>Gracias por seguir estando. Gracias por sentirme incluso en la ausencia. Gracias por ser tú. Vuelvo. Con más amor. Con más intención. Con más de mí, para ti.</p>
+                </div>
+                <div class="signature">
+                    Con todo mi corazón,<br>
+                    <strong>Dilan</strong> <span class="heart">♥</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let letterOpened = false;
+
+        // Crear estrellas de fondo
+        function createBackgroundStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Abrir carta al hacer clic
+        function openLetter() {
+            if (!letterOpened) {
+                const envelope = document.querySelector('.letter-envelope');
+                const instruction = document.querySelector('.click-instruction');
+                envelope.classList.add('opened');
+                instruction.style.display = 'none';
+                letterOpened = true;
+                
+                // Crear fuegos artificiales cuando se abre
+                setTimeout(() => {
+                    createFireworks();
+                }, 1500);
+            }
+        }
+
+        // Cerrar carta
+        function closeLetter(event) {
+            event.stopPropagation(); // Evitar que se propague al div padre
+            const letterContainer = document.querySelector('.letter-container');
+            letterContainer.style.animation = 'fadeOut 0.5s ease-out forwards';
+            setTimeout(() => {
+                letterContainer.style.display = 'none';
+            }, 500);
+            
+            // Más fuegos artificiales al cerrar
+            setTimeout(createFireworks, 300);
+        }
+
+        // Rastro del mouse
+        document.addEventListener('mousemove', (e) => {
+            // Crear estrella en el rastro
+            const trail = document.createElement('div');
+            trail.className = 'trail-star';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            document.body.appendChild(trail);
+
+            // Cada ciertos movimientos, crear una constelación
+            if (Math.random() < 0.1) {
+                const constellation = document.createElement('div');
+                constellation.className = 'constellation';
+                constellation.style.left = (e.clientX + Math.random() * 40 - 20) + 'px';
+                constellation.style.top = (e.clientY + Math.random() * 40 - 20) + 'px';
+                document.body.appendChild(constellation);
+
+                setTimeout(() => {
+                    constellation.remove();
+                }, 2000);
+            }
+
+            // Limpiar rastro después de 1 segundo
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
+        });
+
+        // Mover naves espaciales ocasionalmente
+        function moveSpaceships() {
+            const spaceships = document.querySelectorAll('.spaceship');
+            spaceships.forEach((ship, index) => {
+                setInterval(() => {
+                    const newTop = Math.random() * 80 + 10;
+                    const newLeft = Math.random() * 80 + 10;
+                    ship.style.transition = 'all 3s ease-in-out';
+                    ship.style.top = newTop + '%';
+                    ship.style.left = newLeft + '%';
+                }, 8000 + index * 2000);
+            });
+        }
+
+        // Crear fuegos artificiales
+        function createFireworks() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const firework = document.createElement('div');
+                    firework.style.position = 'fixed';
+                    firework.style.left = Math.random() * window.innerWidth + 'px';
+                    firework.style.top = Math.random() * window.innerHeight + 'px';
+                    firework.style.width = '8px';
+                    firework.style.height = '8px';
+                    firework.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                    firework.style.borderRadius = '50%';
+                    firework.style.animation = 'constellationFade 2s ease-out forwards';
+                    firework.style.boxShadow = `0 0 20px hsl(${Math.random() * 360}, 100%, 70%)`;
+                    firework.style.zIndex = '1000';
+                    document.body.appendChild(firework);
+
+                    setTimeout(() => {
+                        firework.remove();
+                    }, 2000);
+                }, i * 50);
+            }
+        }
+
+        // Inicializar todo
+        createBackgroundStars();
+        moveSpaceships();
+
+        // Agregar animación de desvanecimiento
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                to {
+                    opacity: 0;
+                    transform: translate(-50%, -50%) scale(0.8);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Cambiar el cursor
+        document.addEventListener('mousemove', (e) => {
+            document.body.style.cursor = 'none';
+        });
+    </script>
+</body>
+</html>
