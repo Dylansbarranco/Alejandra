@@ -115,13 +115,18 @@
                 },
                 {
                     pageIndex: 15,
+                    title: "Espacio, cansancio y amor constante",
+                    content: "Semana de mudanza y mucho cansancio, pero siempre presente con Alejandra a pesar de la distancia. Conversaciones sinceras, apoyo mutuo y una dedicatoria especial de la mamá de Alejandra. Aprendiendo a amar con espacio y constancia.",
+                    keywords: [
+                        "cansancio", "mudanza", "ausencia", "llamadas", "alejandra", "amor constante", "conversaciones", "madrugada", "frases", "estela", "videollamada", "extrañar", "virtudes", "dedicatoria"]
+                },
+                {
+                    pageIndex: 16,
                     title: "Epílogo - Nuestro Capítulo Continúa",
                     content: "epílogo capítulo continúa libro digital fragmento historia mensaje inesperado",
                     keywords: ["epílogo", "capítulo", "continúa", "libro", "digital", "fragmento", "historia"]
                 }
-            ];
-
-            // Inicialización
+            ];        // Inicialización
             totalPagesSpan.textContent = totalPages;
             createGalaxyEffects();
             setupPages();
