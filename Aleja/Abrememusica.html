@@ -3,429 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Música, Tu Espacio ♡</title>
+    <title>100 días contigo ❤️</title>
     <link rel="stylesheet" href="/Css/musica.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Pantalla de contraseña -->
-    <div id="password-screen" class="password-screen">
-        <div class="password-container">
-            <div class="heart-icon">
-                <i class="fas fa-heart"></i>
+    <!-- Fondo de estrellas -->
+    <div class="stars-bg"></div>
+    
+    <!-- Corazones flotantes -->
+    <div class="floating-hearts" id="floating-hearts"></div>
+
+    <!-- Header romántico -->
+    <header class="romantic-header">
+        <h1 class="main-title">100 días contigo, 10 canciones que te dedico con todo mi corazón</h1>
+        <div class="heart-decoration">❤️</div>
+        <p class="subtitle">Cada canción cuenta nuestra historia de amor</p>
+    </header>
+
+    <!-- Container de canciones -->
+    <div class="songs-container">
+        
+        <!-- Canción 1: 100 Años - Ha*Ash ft. Prince Royce -->
+        <div class="song-section">
+            <div class="song-content">
+                <img src="https://i.pinimg.com/736x/b3/97/e7/b397e7b7187b0d1f446e132730e4107b.jpg" alt="100 Años" class="song-image">
+                <div class="song-info">
+                    <h2 class="song-title">100 Años</h2>
+                    <p class="song-artist">Ha*Ash ft. Prince Royce</p>
+                    <div class="song-message">
+                        100 días juntos y siento que han sido 100 años de felicidad. Contigo el tiempo se vuelve eterno y cada momento es especial. Te amo infinitamente. 💯
+                    </div>
+                </div>
+                <button class="play-button" onclick="openPlayer('100 Años - Ha*Ash ft. Prince Royce', 'www.youtube.com/watch?v=I_cJxvTQ6RM&list=RDI_cJxvTQ6RM&start_radio=1')">
+                    <span class="play-icon">▶️</span>
+                    Reproducir
+                </button>
             </div>
-            <h2>Ingresa nuestro código secreto</h2>
-            <input type="password" id="password-input" placeholder="♡ ♡ ♡">
-            <button onclick="checkPassword()">Entrar</button>
-            <div class="stars-bg"></div>
         </div>
+
+        <!-- Canción 2: Perfect - Ed Sheeran -->
+        <div class="song-section">
+            <div class="song-content">
+                <img src="https://i.pinimg.com/736x/a9/ee/04/a9ee0493320c1e66dc4abc8185aeb072.jpg" alt="Perfect" class="song-image">
+                <div class="song-info">
+                    <h2 class="song-title">Perfect</h2>
+                    <p class="song-artist">Ed Sheeran</p>
+                    <div class="song-message">
+                        Eres perfecta tal como eres. Cada defecto tuyo es perfecto para mí. Gracias por ser mi complemento perfecto en esta vida. ✨
+                    </div>
+                </div>
+                <button class="play-button" onclick="openPlayer('Perfect - Ed Sheeran', 'www.youtube.com/watch?v=cNGjD0VG4R8&list=RDcNGjD0VG4R8&start_radio=1')">
+                    <span class="play-icon">▶️</span>
+                    Reproducir
+                </button>
+            </div>
+        </div>
+
+        <!-- Canción 3: Eres - Café Tacvba -->
+        <div class="song-section">
+            <div class="song-content">
+                <img src="https://i.pinimg.com/736x/30/c8/a3/30c8a3f198c52c8a0273bc113b180777.jpg" alt="Eres" class="song-image">
+                <div class="song-info">
+                    <h2 class="song-title">Eres</h2>
+                    <p class="song-artist">Café Tacvba</p>
+                    <div class="song-message">
+                        Eres mi sol en los días grises, mi paz en la tormenta, mi hogar donde quiera que estés. Eres todo lo que necesito para ser feliz. 🌟
+                    </div>
+                </div>
+                <button class="play-button" onclick="openPlayer('Eres - Café Tacvba', 'www.youtube.com/watch?v=98Akpf1ph2o&list=RD98Akpf1ph2o&start_radio=1')">
+                    <span class="play-icon">▶️</span>
+                    Reproducir
+                </button>
+            </div>
+        </div>
+
+        <!-- Canción 4: A Thousand Years - Christina Perri -->
+        <div class="song-section">
+            <div class="song-content">
+                <img src="https://i.pinimg.com/736x/7e/fd/14/7efd145ec97a060e06528ab740f92c07.jpg" alt="A Thousand Years" class="song-image">
+                <div class="song-info">
+                    <h2 class="song-title">A Thousand Years</h2>
+                    <p class="song-artist">Christina Perri</p>
+                    <div class="song-message">
+                        Te he amado por mil años y te amaré por mil años más. Mi amor por ti trasciende el tiempo y el espacio. Eres mi alma gemela. ⭐
+                    </div>
+                </div>
+                <button class="play-button" onclick="openPlayer('A Thousand Years - Christina Perri', 'www.youtube.com/watch?v=qQkJe0zzf9w&list=RDqQkJe0zzf9w&start_radio=1')">
+                    <span class="play-icon">▶️</span>
+                    Reproducir
+                </button>
+            </div>
+        </div>
+
+        <!-- Canción 5: All of Me - John Legend -->
+        <div class="song-section">
+            <div class="song-content">
+                <img src="https://i.pinimg.com/736x/ce/fd/50/cefd50b09a07930da0d7edd0eed60189.jpg" alt="All of Me" class="song-image">
+                <div class="song-info">
+                    <h2 class="song-title">All of Me</h2>
+                    <p class="song-artist">John Legend</p>
+                    <div class="song-message">
+                        Todo de mí te pertenece. Mi corazón, mis sueños, mis miedos, mis alegrías. Contigo soy completo y quiero compartir toda mi vida contigo. 💕
+                    </div>
+                </div>
+                <button class="play-button" onclick="openPlayer('All of Me - John Legend', 'www.youtube.com/watch?v=-N-kXoCPY4A&list=RD-N-kXoCPY4A&start_radio=1')">
+                    <span class="play-icon">▶️</span>
+                    Reproducir
+                </button>
+            </div>
+        </div>
+
+        <!-- Canción 6: Thinking Out Loud - Ed Sheeran -->
+        <div class="song-section">
+            <div class="song-content">
+                <img src="https://i.pinimg.com/736x/83/bf/90/83bf901d6d98f26c3d38f701ac6a32e7.jpg" alt="Thinking Out Loud" class="song-image">
+                <div class="song-info">
+                    <h2 class="song-title">Thinking Out Loud</h2>
+                    <p class="song-artist">Ed Sheeran</p>
+                    <div class="song-message">
+                        Quiero envejecer contigo, cuidarte siempre y amarte en cada etapa de nuestras vidas. Seremos ese amor que dura para toda la vida. 👫
+                    </div>
+                </div>
+                <button class="play-button" onclick="openPlayer('Thinking Out Loud - Ed Sheeran', 'www.youtube.com/watch?v=BZTIsraLp4s&list=RDBZTIsraLp4s&start_radio=1')">
+                    <span class="play-icon">▶️</span>
+                    Reproducir
+                </button>
+            </div>
+        </div>
+
+        <!-- Canción 7: Make You Feel My Love - Adele -->
+        <div class="song-section">
+            <div class="song-content">
+                <img src="https://i.pinimg.com/736x/35/f5/d0/35f5d0aa373d44ca19b1bb8b46ba5f3a.jpg" alt="Make You Feel My Love" class="song-image">
+                <div class="song-info">
+                    <h2 class="song-title">Make You Feel My Love</h2>
+                    <p class="song-artist">Adele</p>
+                    <div class="song-message">
+                        Haría cualquier cosa por verte sonreír. Tu felicidad es mi prioridad y siempre estaré aquí para apoyarte en todo. Eres mi tesoro. 🌟
+                    </div>
+                </div>
+                <button class="play-button" onclick="openPlayer('Make You Feel My Love - Adele', 'www.youtube.com/watch?v=4lK2eAGJvho&list=RD4lK2eAGJvho&start_radio=1')">
+                    <span class="play-icon">▶️</span>
+                    Reproducir
+                </button>
+            </div>
+        </div>
+
+        <!-- Canción 8: At Last - Etta James -->
+        <div class="song-section">
+            <div class="song-content">
+                <img src="https://i.pinimg.com/736x/ef/c5/57/efc557b7082f896dc9e8123cae75893f.jpg" alt="At Last" class="song-image">
+                <div class="song-info">
+                    <h2 class="song-title">At Last</h2>
+                    <p class="song-artist">Etta James</p>
+                    <div class="song-message">
+                        Por fin llegaste a mi vida. Después de tanto esperar, Dios me bendijo contigo. Eres la respuesta a todas mis oraciones. 🙏
+                    </div>
+                </div>
+                <button class="play-button" onclick="openPlayer('At Last - Etta James', 'www.youtube.com/watch?v=xAoWOmazjlM&list=RDxAoWOmazjlM&start_radio=1')">
+                    <span class="play-icon">▶️</span>
+                    Reproducir
+                </button>
+            </div>
+        </div>
+
+        <!-- Canción 9: Better Days - OneRepublic -->
+        <div class="song-section">
+            <div class="song-content">
+                <img src="https://i.pinimg.com/736x/88/13/ba/8813badb51e3135e62f31f1f8bd84ddc.jpg" alt="Better Days" class="song-image">
+                <div class="song-info">
+                    <h2 class="song-title">Better Days</h2>
+                    <p class="song-artist">OneRepublic</p>
+                    <div class="song-message">
+                        Contigo cada día es mejor que el anterior. Eres mi esperanza, mi luz y mi motivación para ser mejor persona cada día. 🌅
+                    </div>
+                </div>
+                <button class="play-button" onclick="openPlayer('Better Days - OneRepublic', 'www.youtube.com/watch?v=YOrMAW4pKuA&list=RDYOrMAW4pKuA&start_radio=1')">
+                    <span class="play-icon">▶️</span>
+                    Reproducir
+                </button>
+            </div>
+        </div>
+
+        <!-- Canción 10: Marry Me - Train -->
+        <div class="song-section">
+            <div class="song-content">
+                <img src="https://i.pinimg.com/736x/6d/58/d8/6d58d86a6d6b152b2cd0789292048321.jpg" alt="Marry Me" class="song-image">
+                <div class="song-info">
+                    <h2 class="song-title">Marry Me</h2>
+                    <p class="song-artist">Train</p>
+                    <div class="song-message">
+                        Cada día elijo amarte de nuevo. Quiero ser tu esposo algún día y construir una familia hermosa contigo. Eres mi para siempre. 💍
+                    </div>
+                </div>
+                <button class="play-button" onclick="openPlayer('Marry Me - Train', 'www.youtube.com/watch?v=JpZHq7Yk2AY&list=RDJpZHq7Yk2AY&start_radio=1')">
+                    <span class="play-icon">▶️</span>
+                    Reproducir
+                </button>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Contenido principal -->
-    <div id="main-content" class="main-content hidden">
-        <!-- Fondo animado -->
-        <div class="animated-bg">
-            <div class="stars"></div>
-            <div class="gradient-overlay"></div>
+    <!-- Modal del reproductor -->
+    <div class="player-modal" id="playerModal">
+        <div class="player-content">
+            <button class="close-button" onclick="closePlayer()">✕</button>
+            <h3 class="player-title" id="playerTitle">Reproduciendo...</h3>
+            <iframe class="youtube-player" id="youtubePlayer" src="/placeholder.svg" frameborder="0" allowfullscreen></iframe>
         </div>
-
-        <!-- Portada -->
-        <header class="hero-section">
-            <div class="hero-content">
-                <h1 class="main-title">Esta es tu música, tu espacio</h1>
-                <p class="subtitle">Te amo, incluso en los silencios</p>
-                <div class="decorative-hearts">
-                    <i class="fas fa-heart"></i>
-                    <i class="fas fa-music"></i>
-                    <i class="fas fa-heart"></i>
-                </div>
-            </div>
-        </header>
-
-        <!-- Navegación de artistas -->
-        <nav class="artists-nav">
-            <div class="nav-container">
-                <button class="artist-btn active" onclick="showArtist('feid')">
-                    <i class="fas fa-birthday-cake"></i> Feid
-                </button>
-                <button class="artist-btn" onclick="showArtist('alvaro')">
-                    <i class="fas fa-fire"></i> Álvaro Díaz
-                </button>
-                <button class="artist-btn" onclick="showArtist('jhayco')">
-                    <i class="fas fa-crown"></i> Jhayco
-                </button>
-                <button class="artist-btn" onclick="showArtist('rels')">
-                    <i class="fas fa-microphone"></i> Rels B
-                </button>
-                <button class="artist-btn" onclick="showArtist('deiv')">
-                    <i class="fas fa-star"></i> Dei V
-                </button>
-                <button class="artist-btn" onclick="showArtist('saiko')">
-                    <i class="fas fa-bolt"></i> Saiko
-                </button>
-                <button class="artist-btn" onclick="showArtist('quevedo')">
-                    <i class="fas fa-gem"></i> Quevedo
-                </button>
-                <button class="artist-btn" onclick="showArtist('donomar')">
-                    <i class="fas fa-king"></i> Don Omar
-                </button>
-                <button class="artist-btn" onclick="showArtist('badbunny')">
-                    <i class="fas fa-rabbit"></i> Bad Bunny
-                </button>
-                <button class="random-btn" onclick="playRandomSong()">
-                    <i class="fas fa-random"></i> Canción Aleatoria
-                </button>
-            </div>
-        </nav>
-
-        <!-- Secciones de artistas -->
-        <main class="content">
-            <!-- Feid -->
-            <section id="feid" class="artist-section active">
-                <div class="artist-header">
-                    <h2><i class="fas fa-birthday-cake"></i> Feid</h2>
-                    <p>Álbum: Feliz Cumpleaños + Más</p>
-                </div>
-                <div class="songs-grid">
-                    <div class="song-card" onclick="playSong('1326099130', 'Feliz Cumpleaños')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Feliz Cumpleaños</h3>
-                        <p>Tu canción especial ♡</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('1683090669', 'LUNA')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>LUNA</h3>
-                        <p>Como nuestra luna</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('FEID_SONG_3', 'PORFA')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>PORFA</h3>
-                        <p>Nuestro reggaetón</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('FEID_SONG_4', 'NORMAL')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>NORMAL</h3>
-                        <p>Nada es normal contigo</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('FEID_SONG_5', 'BUBALU')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>BUBALU</h3>
-                        <p>Para bailar juntos</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('FEID_SONG_6', 'CLASSY 101')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>CLASSY 101</h3>
-                        <p>Eres pura clase</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Álvaro Díaz -->
-            <section id="alvaro" class="artist-section">
-                <div class="artist-header">
-                    <h2><i class="fas fa-fire"></i> Álvaro Díaz</h2>
-                    <p>El flow que te gusta</p>
-                </div>
-                <div class="songs-grid">
-                    <div class="song-card" onclick="playSong('ALVARO_SONG_1', 'Problemón')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Problemón</h3>
-                        <p>Tu problema favorito</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('ALVARO_SONG_2', 'Llori Pari')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Llori Pari</h3>
-                        <p>Para los momentos únicos</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('ALVARO_SONG_3', 'Reina Pepiada')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Reina Pepiada</h3>
-                        <p>Mi reina</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('ALVARO_SONG_4', 'Gatita')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Gatita</h3>
-                        <p>Tu actitud felina</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Jhayco -->
-            <section id="jhayco" class="artist-section">
-                <div class="artist-header">
-                    <h2><i class="fas fa-crown"></i> Jhayco</h2>
-                    <p>El Presidente del género</p>
-                </div>
-                <div class="songs-grid">
-                    <div class="song-card" onclick="playSong('JHAYCO_SONG_1', 'Dakiti')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Dakiti</h3>
-                        <p>Nuestro hit</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('JHAYCO_SONG_2', 'Sensual Bebé')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Sensual Bebé</h3>
-                        <p>Para los momentos íntimos</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('JHAYCO_SONG_3', 'Holanda')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Holanda</h3>
-                        <p>Viajemos juntos</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('JHAYCO_SONG_4', 'Ley Seca')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Ley Seca</h3>
-                        <p>Tu flow favorito</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Rels B -->
-            <section id="rels" class="artist-section">
-                <div class="artist-header">
-                    <h2><i class="fas fa-microphone"></i> Rels B</h2>
-                    <p>El español que conquistó</p>
-                </div>
-                <div class="songs-grid">
-                    <div class="song-card" onclick="playSong('RELS_SONG_1', 'La Prisión')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>La Prisión</h3>
-                        <p>Prisionero de tu amor</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('RELS_SONG_2', 'Buenos Genes')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Buenos Genes</h3>
-                        <p>Tienes los mejores</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('RELS_SONG_3', 'Lejos de Ti')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Lejos de Ti</h3>
-                        <p>Nunca quiero estar lejos</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('RELS_SONG_4', 'Se Apaga')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Se Apaga</h3>
-                        <p>Tu luz nunca se apaga</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Dei V -->
-            <section id="deiv" class="artist-section">
-                <div class="artist-header">
-                    <h2><i class="fas fa-star"></i> Dei V</h2>
-                    <p>El nuevo talento</p>
-                </div>
-                <div class="songs-grid">
-                    <div class="song-card" onclick="playSong('DEIV_SONG_1', 'Hola')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Hola</h3>
-                        <p>Como cuando te conocí</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('DEIV_SONG_2', 'Perdido')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Perdido</h3>
-                        <p>Perdido en tus ojos</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('DEIV_SONG_3', 'Relax')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Relax</h3>
-                        <p>Relajados juntos</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Saiko -->
-            <section id="saiko" class="artist-section">
-                <div class="artist-header">
-                    <h2><i class="fas fa-bolt"></i> Saiko</h2>
-                    <p>Energía pura</p>
-                </div>
-                <div class="songs-grid">
-                    <div class="song-card" onclick="playSong('SAIKO_SONG_1', 'Polaris')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Polaris</h3>
-                        <p>Mi estrella polar</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('SAIKO_SONG_2', 'Colorao')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Colorao</h3>
-                        <p>Colores de nuestro amor</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('SAIKO_SONG_3', 'Badgyal')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Badgyal</h3>
-                        <p>Mi bad girl favorita</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Quevedo -->
-            <section id="quevedo" class="artist-section">
-                <div class="artist-header">
-                    <h2><i class="fas fa-gem"></i> Quevedo</h2>
-                    <p>El canario que vuela alto</p>
-                </div>
-                <div class="songs-grid">
-                    <div class="song-card" onclick="playSong('QUEVEDO_SONG_1', 'Bzrp Music Sessions #52')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Bzrp Music Sessions #52</h3>
-                        <p>El hit mundial</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('QUEVEDO_SONG_2', 'Quédate')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Quédate</h3>
-                        <p>Quédate conmigo</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('QUEVEDO_SONG_3', 'Cayó la Noche')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Cayó la Noche</h3>
-                        <p>Nuestras noches</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('QUEVEDO_SONG_4', 'Columbia')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Columbia</h3>
-                        <p>Viajes imaginarios</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Don Omar -->
-            <section id="donomar" class="artist-section">
-                <div class="artist-header">
-                    <h2><i class="fas fa-king"></i> Don Omar</h2>
-                    <p>El Rey del Reggaetón</p>
-                </div>
-                <div class="songs-grid">
-                    <div class="song-card" onclick="playSong('DONOMAR_SONG_1', 'Danza Kuduro')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Danza Kuduro</h3>
-                        <p>Para bailar sin parar</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('DONOMAR_SONG_2', 'Hasta Que Salga el Sol')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Hasta Que Salga el Sol</h3>
-                        <p>Hasta el amanecer</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('DONOMAR_SONG_3', 'Salió el Sol')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Salió el Sol</h3>
-                        <p>Tú eres mi sol</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('DONOMAR_SONG_4', 'Taboo')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Taboo</h3>
-                        <p>Nuestro secreto</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Bad Bunny -->
-            <section id="badbunny" class="artist-section">
-                <div class="artist-header">
-                    <h2><i class="fas fa-rabbit"></i> Bad Bunny</h2>
-                    <p>El Conejo Malo</p>
-                </div>
-                <div class="songs-grid">
-                    <div class="song-card" onclick="playSong('BADBUNNY_SONG_1', 'Tití Me Preguntó')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Tití Me Preguntó</h3>
-                        <p>Nuestra canción viral</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('BADBUNNY_SONG_2', 'Me Porto Bonito')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Me Porto Bonito</h3>
-                        <p>Siempre te portas bonito</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('BADBUNNY_SONG_3', 'Ojitos Lindos')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Ojitos Lindos</h3>
-                        <p>Tus ojitos lindos</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('BADBUNNY_SONG_4', 'Efecto')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Efecto</h3>
-                        <p>El efecto que tienes en mí</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('BADBUNNY_SONG_5', 'Neverita')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Neverita</h3>
-                        <p>Nuestra nevera de recuerdos</p>
-                    </div>
-                    <div class="song-card" onclick="playSong('BADBUNNY_SONG_6', 'Moscow Mule')">
-                        <div class="song-icon"><i class="fas fa-play"></i></div>
-                        <h3>Moscow Mule</h3>
-                        <p>Para brindar por nosotros</p>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Mensaje romántico musical -->
-        <section class="romantic-message">
-            <div class="message-content">
-                <div class="music-heart">
-                    <i class="fas fa-heart"></i>
-                    <i class="fas fa-music"></i>
-                </div>
-                <h3>Cada canción es un "Te Amo"</h3>
-                <p class="romantic-text">
-                    En cada nota que suena, en cada ritmo que nos mueve, 
-                    hay un pedacito de mi corazón diciéndote cuánto te amo. 
-                    Esta música es nuestra banda sonora, la melodía de lo que somos.
-                </p>
-                <div class="floating-hearts">
-                    <span>♡</span>
-                    <span>♡</span>
-                    <span>♡</span>
-                    <span>♡</span>
-                    <span>♡</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Reproductor -->
-        <div id="player-container" class="player-container hidden">
-            <div class="player-header">
-                <h3 id="current-song">Selecciona una canción</h3>
-                <button class="close-btn" onclick="closePlayer()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="player-wrapper">
-                <iframe id="soundcloud-player" 
-                        width="100%" 
-                        height="166" 
-                        scrolling="no" 
-                        frameborder="no" 
-                        allow="autoplay"
-                        src="">
-                </iframe>
-            </div>
-        </div>
-
-        <!-- Dedicatoria final -->
-        <footer class="dedication">
-            <div class="dedication-content">
-                <div class="letter-icon">
-                    <i class="fas fa-envelope-heart"></i>
-                </div>
-                <h3>Para ti, mi amor</h3>
-                <p class="dedication-text">
-                    Gracias por compartir conmigo hasta los días más difíciles. 
-                    Esta música también es parte de lo que somos. Cada canción 
-                    guarda un pedacito de nosotros, de nuestros momentos, de 
-                    nuestras risas y hasta de nuestras lágrimas. Te amo más 
-                    allá de las palabras, más allá del silencio.
-                </p>
-                <div class="signature">
-                    <p>Con todo mi amor ♡</p>
-                    <div class="decorative-line"></div>
-                </div>
-            </div>
-        </footer>
     </div>
-
-    <script src="/Script/Musica.js"></script>
+    <script src="Musica.js"></script>
 </body>
 </html>
