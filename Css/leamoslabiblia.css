@@ -1,0 +1,891 @@
+/* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colores principales */
+    --primary-color: #8B4513;
+    --secondary-color: #D2691E;
+    --accent-color: #CD853F;
+    --text-color: #2F1B14;
+    --background-color: #FFF8DC;
+    --paper-color: #FFFEF7;
+    --gold-color: #DAA520;
+    --love-color: #DC143C;
+    
+    /* Tipografía */
+    --title-font: 'Playfair Display', serif;
+    --body-font: 'Crimson Text', serif;
+    
+    /* Espaciado */
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    
+    /* Sombras */
+    --shadow-light: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-medium: 0 4px 12px rgba(0,0,0,0.15);
+    --shadow-heavy: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+/* Configuración del cuerpo */
+body {
+    font-family: var(--body-font);
+    background: linear-gradient(135deg, var(--background-color) 0%, #F5F5DC 100%);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Navegación del libro */
+.book-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(139, 69, 19, 0.95);
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: var(--shadow-medium);
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.nav-btn, .control-btn {
+    background: var(--gold-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: var(--body-font);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-light);
+}
+
+.nav-btn:hover, .control-btn:hover {
+    background: #B8860B;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.page-indicator {
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.menu-toggle {
+    background: var(--love-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: var(--body-font);
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: #B22222;
+    transform: scale(1.05);
+}
+
+/* Menú de índice */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-overlay.active {
+    display: flex;
+}
+
+.menu-content {
+    background: var(--paper-color);
+    padding: var(--spacing-xl);
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-heavy);
+}
+
+.menu-content h3 {
+    font-family: var(--title-font);
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.menu-items a {
+    padding: var(--spacing-md);
+    background: var(--background-color);
+    text-decoration: none;
+    color: var(--text-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--gold-color);
+}
+
+.menu-items a:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateX(5px);
+}
+
+.close-menu {
+    width: 100%;
+    margin-top: var(--spacing-lg);
+    background: var(--love-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--body-font);
+    font-size: 16px;
+}
+
+/* Contenedor principal del libro */
+.book-container {
+    margin-top: 80px;
+    padding: var(--spacing-lg);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Páginas del libro */
+.page {
+    display: none;
+    background: var(--paper-color);
+    border-radius: 15px;
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.page.active {
+    display: block;
+    animation: pageIn 0.5s ease-out;
+}
+
+@keyframes pageIn {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--gold-color), var(--love-color), var(--gold-color));
+}
+
+/* Portada */
+.cover-page {
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(135deg, var(--background-color) 0%, #F0E68C 100%);
+    border-radius: 15px;
+}
+
+.cover-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.cover-icon {
+    font-size: 60px;
+    color: var(--love-color);
+    animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.cover-title {
+    font-family: var(--title-font);
+    font-size: 48px;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.cover-subtitle {
+    font-family: var(--title-font);
+    font-size: 32px;
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-xl);
+    font-style: italic;
+}
+
+.cover-details {
+    margin-bottom: var(--spacing-xl);
+}
+
+.cover-year {
+    font-size: 20px;
+    color: var(--text-color);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.cover-books {
+    font-size: 16px;
+    color: var(--accent-color);
+    font-style: italic;
+}
+
+.cover-decoration {
+    margin: var(--spacing-xl) 0;
+}
+
+.hearts {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+}
+
+.hearts i {
+    font-size: 24px;
+    color: var(--love-color);
+}
+
+.cover-footer {
+    margin-top: var(--spacing-xl);
+}
+
+.cover-footer p {
+    margin-bottom: var(--spacing-sm);
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.cover-author {
+    font-family: var(--title-font);
+    font-size: 20px;
+    color: var(--love-color);
+    font-style: italic;
+    font-weight: 600;
+}
+
+/* Página de introducción */
+.intro-page {
+    line-height: 1.8;
+}
+
+.page-title {
+    font-family: var(--title-font);
+    font-size: 36px;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+    border-bottom: 3px solid var(--gold-color);
+    padding-bottom: var(--spacing-md);
+}
+
+.intro-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.intro-section h3 {
+    font-family: var(--title-font);
+    font-size: 24px;
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.intro-section p {
+    font-size: 18px;
+    margin-bottom: var(--spacing-md);
+}
+
+.intro-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.intro-list li {
+    padding: var(--spacing-sm) 0;
+    font-size: 16px;
+}
+
+.intro-list li i {
+    color: var(--love-color);
+    margin-right: var(--spacing-sm);
+    width: 20px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.feature {
+    text-align: center;
+    padding: var(--spacing-md);
+    background: var(--background-color);
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+}
+
+.feature i {
+    font-size: 24px;
+    color: var(--gold-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.proposal {
+    font-size: 20px;
+    font-style: italic;
+    color: var(--secondary-color);
+    text-align: center;
+    padding: var(--spacing-md);
+    background: rgba(218, 165, 32, 0.1);
+    border-radius: 10px;
+    border-left: 5px solid var(--gold-color);
+}
+
+.invitation-box {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--love-color), #FF69B4);
+    color: white;
+    border-radius: 15px;
+    margin-top: var(--spacing-lg);
+    box-shadow: var(--shadow-medium);
+}
+
+.invitation-box i {
+    font-size: 30px;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Página del plan */
+.plan-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.plan-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.stat {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--background-color), #F5F5DC);
+    border-radius: 15px;
+    box-shadow: var(--shadow-light);
+}
+
+.stat i {
+    font-size: 36px;
+    color: var(--gold-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat h3 {
+    font-family: var(--title-font);
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.principle {
+    padding: var(--spacing-lg);
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+    border-top: 4px solid var(--love-color);
+}
+
+.principle i {
+    font-size: 24px;
+    color: var(--love-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.principle h4 {
+    font-family: var(--title-font);
+    font-size: 18px;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.routine-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--background-color);
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+}
+
+.step-number {
+    background: var(--gold-color);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.step-content h4 {
+    font-family: var(--title-font);
+    font-size: 18px;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Páginas de los meses */
+.month-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.month-title {
+    font-family: var(--title-font);
+    font-size: 36px;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.month-theme {
+    text-align: center;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--secondary-color);
+    padding: var(--spacing-md);
+    background: rgba(218, 165, 32, 0.1);
+    border-radius: 10px;
+    border-left: 5px solid var(--gold-color);
+}
+
+.month-overview {
+    background: var(--background-color);
+    padding: var(--spacing-lg);
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+}
+
+.month-overview h3 {
+    font-family: var(--title-font);
+    font-size: 22px;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.weeks-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.week-card {
+    background: white;
+    border-radius: 15px;
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-medium);
+    border-left: 5px solid var(--love-color);
+}
+
+.week-card h4 {
+    font-family: var(--title-font);
+    font-size: 20px;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.reading-plan {
+    background: var(--background-color);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    margin-bottom: var(--spacing-md);
+}
+
+.reading-plan p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.questions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.day-questions {
+    background: rgba(139, 69, 19, 0.05);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    border-top: 3px solid var(--gold-color);
+}
+
+.day-questions h6 {
+    font-family: var(--title-font);
+    font-size: 16px;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.day-questions ul {
+    list-style: none;
+    padding: 0;
+}
+
+.day-questions li {
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+    position: relative;
+    padding-left: 20px;
+}
+
+.day-questions li:before {
+    content: "💭";
+    position: absolute;
+    left: 0;
+    top: var(--spacing-sm);
+}
+
+.daily-questions h5 {
+    font-family: var(--title-font);
+    font-size: 18px;
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.weekly-devotional {
+    background: linear-gradient(135deg, rgba(220, 20, 60, 0.1), rgba(255, 105, 180, 0.1));
+    padding: var(--spacing-lg);
+    border-radius: 10px;
+    margin-top: var(--spacing-lg);
+    border: 2px solid rgba(220, 20, 60, 0.2);
+}
+
+.weekly-devotional h5 {
+    font-family: var(--title-font);
+    font-size: 20px;
+    color: var(--love-color);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.devotional-content p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.8;
+}
+
+.devotional-content strong {
+    color: var(--primary-color);
+}
+
+.month-summary {
+    background: linear-gradient(135deg, var(--gold-color), #DAA520);
+    color: white;
+    padding: var(--spacing-lg);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.month-summary h3 {
+    font-family: var(--title-font);
+    font-size: 22px;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Contraportada */
+.back-cover {
+    background: linear-gradient(135deg, var(--background-color) 0%, #F0E68C 100%);
+    padding: var(--spacing-xl);
+    border-radius: 15px;
+}
+
+.back-title {
+    font-family: var(--title-font);
+    font-size: 36px;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.back-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.achievements {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.achievement {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+}
+
+.achievement i {
+    color: var(--gold-color);
+    font-size: 20px;
+}
+
+.next-steps ul {
+    list-style: none;
+    padding: 0;
+}
+
+.next-steps li {
+    padding: var(--spacing-sm) 0;
+    font-size: 18px;
+}
+
+.love-note {
+    background: linear-gradient(135deg, rgba(220, 20, 60, 0.1), rgba(255, 105, 180, 0.1));
+    padding: var(--spacing-lg);
+    border-radius: 15px;
+    border: 2px solid rgba(220, 20, 60, 0.2);
+}
+
+.love-note h3 {
+    font-family: var(--title-font);
+    font-size: 24px;
+    color: var(--love-color);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.signature {
+    font-family: var(--title-font);
+    font-size: 18px;
+    color: var(--love-color);
+    font-style: italic;
+    text-align: right;
+    margin-top: var(--spacing-lg);
+}
+
+.memory-keeper {
+    background: var(--paper-color);
+    padding: var(--spacing-lg);
+    border-radius: 10px;
+    border: 2px dashed var(--gold-color);
+}
+
+.memory-keeper h3 {
+    font-family: var(--title-font);
+    font-size: 20px;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Controles del libro */
+.book-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    z-index: 1000;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+/* Modo nocturno */
+body.night-mode {
+    --background-color: #2C1810;
+    --paper-color: #3A2317;
+    --text-color: #E6D7C3;
+    --primary-color: #D2691E;
+    --secondary-color: #F4A460;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .book-container {
+        padding: var(--spacing-md);
+        margin-top: 70px;
+    }
+    
+    .page {
+        padding: var(--spacing-md);
+    }
+    
+    .cover-title {
+        font-size: 32px;
+    }
+    
+    .cover-subtitle {
+        font-size: 24px;
+    }
+    
+    .page-title {
+        font-size: 28px;
+    }
+    
+    .questions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .principles-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-controls {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .book-nav {
+        padding: var(--spacing-sm);
+    }
+    
+    .routine-steps .step {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .cover-title {
+        font-size: 24px;
+    }
+    
+    .cover-subtitle {
+        font-size: 18px;
+    }
+    
+    .page-title {
+        font-size: 22px;
+    }
+    
+    .stat {
+        padding: var(--spacing-md);
+    }
+    
+    .stat h3 {
+        font-size: 18px;
+    }
+    
+    .book-controls {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+}
+
+/* Animaciones adicionales */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.week-card {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.feature:hover, .principle:hover, .achievement:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+    transition: all 0.3s ease;
+}
+
+/* Efectos de hover mejorados */
+.nav-btn:active, .control-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-light);
+}
