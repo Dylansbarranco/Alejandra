@@ -126,9 +126,25 @@
                     content: "Un amor de santidad y honor como el de Jacob y Raquel.",
                     keywords: ["montaña", "receta", "Dios", "santidad", "Jacob", "fe", "voluntad"]
                 },
-
                 {
                     pageIndex: 17,
+                    title: "Capítulo XVI - La noche en que elegí ser real",
+                    content: "Semana del 21 al 27 de julio de 2025.",
+                    keywords: [
+                        "capítulo", "real", "honestidad", "confianza", "verdad", "sinceridad", "amor", "alejandra", "julio", "2025", "oración", "paciencia", "sanar", "videollamada"
+                    ]
+                },
+                {
+                    pageIndex: 18,
+                    title: "Capítulo XVII - [Título del capítulo]",
+                    content: "[Aquí va el contenido principal de la página, por ejemplo: resumen, historia, reflexión, etc.]",
+                    keywords: [
+                        // Agrega palabras clave relevantes para la búsqueda, por ejemplo:
+                        "capítulo", "amor", "reflexión", "julio", "2025", "historia"
+                    ]
+                },
+                {
+                    pageIndex: 19,
                     title: "Epílogo - Nuestro Capítulo Continúa",
                     content: "epílogo capítulo continúa libro digital fragmento historia mensaje inesperado",
                     keywords: ["epílogo", "capítulo", "continúa", "libro", "digital", "fragmento", "historia"]
