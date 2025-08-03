@@ -136,11 +136,11 @@
                 },
                 {
                     pageIndex: 18,
-                    title: "Capítulo XVII - [Título del capítulo]",
-                    content: "[Aquí va el contenido principal de la página, por ejemplo: resumen, historia, reflexión, etc.]",
+                    title: "Capítulo XVII - [Creciendo juntos sobre la roca",
+                    content: "Semana del 28 de julio a 03 de agosto",
                     keywords: [
                         // Agrega palabras clave relevantes para la búsqueda, por ejemplo:
-                        "capítulo", "amor", "reflexión", "julio", "2025", "historia"
+                        "roca", "camino", "espiritual", "eterno", "Cristo", "paz"
                     ]
                 },
                 {
