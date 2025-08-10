@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Amor ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 50%, #0f0704 100%);
+            min-height: 100vh;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="24" font-size="24">🐱</text></svg>'), auto;
+            overflow-x: hidden;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff6b9d;
+            font-size: 20px;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        .cat-silhouette {
+            position: fixed;
+            font-size: 40px;
+            color: #333;
+            opacity: 0.3;
+            animation: catWalk 15s infinite linear;
+            z-index: 1;
+        }
+
+        .cat1 { top: 20%; animation-delay: 0s; }
+        .cat2 { top: 60%; animation-delay: 5s; }
+        .cat3 { top: 80%; animation-delay: 10s; }
+
+        @keyframes catWalk {
+            0% { left: -60px; }
+            100% { left: 100vw; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .letter {
+            background: linear-gradient(145deg, #f4f1e8 0%, #e8e0d0 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.8),
+                0 0 0 1px rgba(139,69,19,0.2);
+            position: relative;
+            transform: rotate(-0.5deg);
+            transition: transform 0.3s ease;
+            border: 2px solid #8b4513;
+        }
+
+        .letter:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .letter::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #8b4513, #a0522d, #cd853f);
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #8b4513;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 0 0 10px rgba(139,69,19,0.3); }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 0 0 20px rgba(139,69,19,0.6); }
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b9d, #ff8fab);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255,107,157,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .content {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #2c1810;
+            text-align: justify;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ff6b9d 0%, #ff8fab 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4em;
+        }
+
+        .qr-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            border: 3px dashed #8b4513;
+        }
+
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            background: #f0f0f0;
+            border: 2px solid #8b4513;
+            border-radius: 10px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #666;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qr-placeholder::before {
+            content: '📱';
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 40px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #8b4513;
+        }
+
+        .cat-decoration {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.6;
+            animation: bounce 3s infinite ease-in-out;
+        }
+
+        .cat-decoration:nth-child(1) { top: 10px; left: 20px; animation-delay: 0s; }
+        .cat-decoration:nth-child(2) { top: 20px; right: 30px; animation-delay: 1s; }
+        .cat-decoration:nth-child(3) { bottom: 30px; left: 40px; animation-delay: 2s; }
+        .cat-decoration:nth-child(4) { bottom: 20px; right: 20px; animation-delay: 1.5s; }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .love-counter {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255,107,157,0.1);
+            border-radius: 15px;
+            border: 2px solid #ff6b9d;
+        }
+
+        .counter-number {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ff6b9d;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .footer-cats {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            .letter { padding: 25px; }
+            .title { font-size: 2.5rem; }
+            .content { font-size: 1.1rem; }
+            .qr-placeholder { width: 150px; height: 150px; }
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            font-size: 1.5rem;
+            animation: sparkle 2s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts"></div>
+    
+    <div class="cat-silhouette cat1">🐱</div>
+    <div class="cat-silhouette cat2">🐈‍⬛</div>
+    <div class="cat-silhouette cat3">🐱</div>
+
+    <div class="container">
+        <div class="letter">
+            <div class="cat-decoration">🐈‍⬛</div>
+            <div class="cat-decoration">🐱</div>
+            <div class="cat-decoration">🐈‍⬛</div>
+            <div class="cat-decoration">🐱</div>
+
+            <div class="header">
+                <h1 class="title">Para Mi Amor Eterno</h1>
+                <div class="date-badge">Desde el 13 de Abril • Oficialmente el 15 de Mayo de 2025</div>
+            </div>
+
+            <div class="love-counter">
+                <div class="counter-number" id="monthsCounter">0</div>
+                <p style="font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: #8b4513;">
+                    Meses de puro amor 💕
+                </p>
+            </div>
+
+            <div class="content">
+                <p>Mi querida y hermosa novia,</p>
+                
+                <p>Mientras escribo estas líneas, mi corazón se llena de una calidez que solo tú puedes provocar. Han pasado ya varios meses desde que <span class="highlight">comenzamos esta hermosa historia de amor</span>, y cada día que pasa me enamoro más profundamente de ti.</p>
+
+                <p>Como esos <span class="highlight">gatitos negros que tanto te gustan</span> 🐈‍⬛, tú has llegado a mi vida de manera silenciosa pero poderosa, llenando cada rincón de mi ser con tu amor, tu risa y esa manera tan especial que tienes de ver el mundo.</p>
+
+                <p>Quiero que sepas que estamos comenzando una nueva etapa en nuestras vidas. Es cierto que <span class="highlight">estaré un poco más ocupado con la universidad</span>, pero quiero dejarte algo muy claro: <strong>siempre, SIEMPRE tendré tiempo para ti</strong>. Porque tú no eres solo una parte de mi vida, tú ERES mi vida.</p>
+
+                <p>Cada esfuerzo que hago, cada hora de estudio, cada sacrificio, todo lo hago pensando en nosotros, en <span class="highlight">construir el futuro que disfrutaremos mañana</span>. Sueño con el día en que podamos despertar juntos cada mañana, con nuestros propios gatitos corriendo por la casa, construyendo la familia que tanto anhelamos.</p>
+
+                <p>Mi amor, <span class="highlight">te amo con cada fibra de mi ser</span>. Amo tu sonrisa, amo cómo me miras, amo cómo haces que los días grises se vuelvan coloridos. Y sí, mi vida, <strong>quiero casarme contigo</strong>. Quiero que seas mi esposa, mi compañera de vida, mi todo para siempre.</p>
+
+                <p>Esta página es mi promesa de amor eterno, mi compromiso contigo y con nuestro futuro. Pase lo que pase, estaré aquí, amándote más cada día.</p>
+            </div>
+
+            <div class="qr-section">            
+                <img src="/Img/qr.png" alt="Video" style="width:200px;height:200px;">
+                <p style="font-family: 'Dancing Script', cursive; font-size: 1.3rem; color: #8b4513;">
+                    Un regalo especial para ti 💝
+                </p>
+            </div>
+
+            <div class="signature">
+                Con todo mi amor infinito,<br>
+                Tu futuro esposo 💍
+            </div>
+
+            <div class="footer-cats">
+                🐈‍⬛ 💕 🐱 💕 🐈‍⬛ 💕 🐱 💕 🐈‍⬛
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Crear corazones flotantes
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.getElementById('hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Crear corazones cada 2 segundos
+        setInterval(createHeart, 2000);
+
+        // Contador de meses
+        function updateMonthsCounter() {
+            const startDate = new Date('2025-04-13');
+            const currentDate = new Date();
+            const diffTime = Math.abs(currentDate - startDate);
+            const diffMonths = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 30.44));
+            
+            document.getElementById('monthsCounter').textContent = diffMonths;
+        }
+
+        updateMonthsCounter();
+
+        // Crear destellos al hacer clic
+        document.addEventListener('click', function(e) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = e.clientX + 'px';
+            sparkle.style.top = e.clientY + 'px';
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        });
+
+        // Efecto de escritura
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Animación de entrada
+        window.addEventListener('load', function() {
+            const letter = document.querySelector('.letter');
+            letter.style.opacity = '0';
+            letter.style.transform = 'translateY(50px) rotate(-0.5deg)';
+            letter.style.transition = 'all 1s ease-out';
+            
+            setTimeout(() => {
+                letter.style.opacity = '1';
+                letter.style.transform = 'translateY(0) rotate(-0.5deg)';
+            }, 500);
+        });
+    </script>
+</body>
+</html>

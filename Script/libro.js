@@ -145,6 +145,14 @@
                 },
                 {
                     pageIndex: 19,
+                    title: "Capítulo XVIII - Entre lágrimas y promesas",
+                    content: "Semana difícil, lágrimas, errores y heridas del pasado. Pensamos en terminar, pero oramos y pedimos perdón. Decidimos seguir amándonos y luchar por un hogar con Dios en el centro. Aprendimos que alejarnos de Dios complica la relación, pero volver a Él trae paz y fortaleza.",
+                    keywords: [
+                        "capítulo", "lágrimas", "promesas", "dios", "perdón", "hogar", "familia", "centro", "relación", "oración", "caída", "fortaleza", "semilla", "prueba"
+                    ]
+                },
+                {
+                    pageIndex: 20,
                     title: "Epílogo - Nuestro Capítulo Continúa",
                     content: "epílogo capítulo continúa libro digital fragmento historia mensaje inesperado",
                     keywords: ["epílogo", "capítulo", "continúa", "libro", "digital", "fragmento", "historia"]
