@@ -153,6 +153,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 {
                     pageIndex: 20,
+                    title: "Capítulo XX - Pequeños momentos, gran amor",
+                    content: "Semana del 25 al 31 de agosto. Esta semana no fue extraordinaria, pero cada mensaje, cada llamada y cada sonrisa compartida me recuerdan cuánto te quiero. A veces lo simple es lo más valioso.",
+                    keywords: [
+                        "capítulo", "momentos", "amor", "agosto", "simple", "llamada", "mensaje", "sonrisa", "valioso"
+                    ]
+                },
+                {
+                    pageIndex: 21,
                     title: "Epílogo - Nuestro Capítulo Continúa",
                     content: "epílogo capítulo continúa libro digital fragmento historia mensaje inesperado",
                     keywords: ["epílogo", "capítulo", "continúa", "libro", "digital", "fragmento", "historia"]
