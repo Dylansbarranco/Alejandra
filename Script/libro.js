@@ -151,8 +151,17 @@ document.addEventListener('DOMContentLoaded', function() {
                         "capítulo", "lágrimas", "promesas", "dios", "perdón", "hogar", "familia", "centro", "relación", "oración", "caída", "fortaleza", "semilla", "prueba"
                     ]
                 },
+
                 {
                     pageIndex: 20,
+                    title: "Capítulo XIX - Sostenidos en Cristo",
+                    content: "Semana del 11 al 17 de agosto. Una semana de retos y aprendizajes, donde elegimos seguir juntos y recordar que nuestra fuerza está en Cristo. El amor se reafirma en los momentos difíciles y con Dios en el centro, todo es posible.",
+                    keywords: [
+                        "capítulo", "Cristo", "amor", "fuerza", "retos", "aprendizaje", "agosto", "bendición", "unión", "Dios"
+                    ]
+                },
+                {
+                    pageIndex: 21,
                     title: "Capítulo XX - Pequeños momentos, gran amor",
                     content: "Semana del 25 al 31 de agosto. Esta semana no fue extraordinaria, pero cada mensaje, cada llamada y cada sonrisa compartida me recuerdan cuánto te quiero. A veces lo simple es lo más valioso.",
                     keywords: [
@@ -160,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ]
                 },
                 {
-                    pageIndex: 21,
+                    pageIndex: 22,
                     title: "Epílogo - Nuestro Capítulo Continúa",
                     content: "epílogo capítulo continúa libro digital fragmento historia mensaje inesperado",
                     keywords: ["epílogo", "capítulo", "continúa", "libro", "digital", "fragmento", "historia"]
