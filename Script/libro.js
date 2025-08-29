@@ -1,7 +1,7 @@
-        document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
             // Elementos principales
             const book = document.getElementById('book');
-            const pages = document.querySelectorAll('.page');
+            let pages = Array.from(document.querySelectorAll('.page'));
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             const currentPageSpan = document.getElementById('current-page');
@@ -151,15 +151,9 @@
                         "capítulo", "lágrimas", "promesas", "dios", "perdón", "hogar", "familia", "centro", "relación", "oración", "caída", "fortaleza", "semilla", "prueba"
                     ]
                 },
-                {
-                    pageIndex: 20,
-                    title: "Sostenidos en Cristo.",
-                    content: "Una semana más, creciendo juntos, manteniendonos y perseverando en el amor por el próposito de Dios.",
-                    keywords: ["Cristo", "fortaleza", "unión", "sostiene", "actitudes", "certeza", "errores", "aprendizaje", "paciencia"]
-                },
 
                 {
-                    pageIndex: 21,
+                    pageIndex: 20,
                     title: "Epílogo - Nuestro Capítulo Continúa",
                     content: "epílogo capítulo continúa libro digital fragmento historia mensaje inesperado",
                     keywords: ["epílogo", "capítulo", "continúa", "libro", "digital", "fragmento", "historia"]
@@ -176,21 +170,28 @@
                     searchResults.style.display = 'none';
                     return;
                 }
-
-                const results = searchData.filter(item => {
-                    const searchTerm = query.toLowerCase();
-                    return item.title.toLowerCase().includes(searchTerm) ||
-                           item.content.toLowerCase().includes(searchTerm) ||
-                           item.keywords.some(keyword => keyword.toLowerCase().includes(searchTerm));
-                });
-
+                const searchTerm = query.toLowerCase();
+                let results = [];
+                // Si es un número, buscar por página
+                if (/^\d+$/.test(searchTerm)) {
+                    const pageNum = parseInt(searchTerm, 10);
+                    if (pageNum > 0 && pageNum <= totalPages) {
+                        const item = searchData.find(d => d.pageIndex === pageNum - 1);
+                        if (item) results.push(item);
+                    }
+                } else {
+                    results = searchData.filter(item => {
+                        return item.title.toLowerCase().includes(searchTerm) ||
+                            item.content.toLowerCase().includes(searchTerm) ||
+                            item.keywords.some(keyword => keyword.toLowerCase().includes(searchTerm));
+                    });
+                }
                 displaySearchResults(results, query);
             }
 
             // Mostrar resultados de búsqueda
             function displaySearchResults(results, query) {
                 searchResults.innerHTML = '';
-                
                 if (results.length === 0) {
                     searchResults.innerHTML = '<div class="search-result-item">No se encontraron resultados</div>';
                 } else {
@@ -198,7 +199,7 @@
                         const resultItem = document.createElement('div');
                         resultItem.className = 'search-result-item';
                         resultItem.innerHTML = `
-                            <div class="result-title">${result.title}</div>
+                            <div class="result-title">${result.title} <span style="font-size:12px;color:var(--current-accent);">(Página ${result.pageIndex + 1})</span></div>
                             <div class="result-preview">${highlightText(result.content.substring(0, 100) + '...', query)}</div>
                         `;
                         resultItem.addEventListener('click', () => {
@@ -209,7 +210,6 @@
                         searchResults.appendChild(resultItem);
                     });
                 }
-                
                 searchResults.style.display = 'block';
             }
 
@@ -224,6 +224,7 @@
                 if (pageIndex >= 0 && pageIndex < totalPages && !isAnimating) {
                     currentPage = pageIndex;
                     updatePage();
+                    renderVisiblePages();
                 }
             }
 
@@ -231,14 +232,17 @@
             searchInput.addEventListener('input', function() {
                 performSearch(this.value);
             });
-
             searchButton.addEventListener('click', function() {
                 performSearch(searchInput.value);
             });
-
             searchInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     performSearch(this.value);
+                    // Si hay resultados, ir al primero
+                    const firstResult = searchResults.querySelector('.search-result-item');
+                    if (firstResult && firstResult.textContent !== 'No se encontraron resultados') {
+                        firstResult.click();
+                    }
                 }
             });
 
@@ -425,17 +429,15 @@
                         page.style.transform = 'translateX(100%)';
                     }
                 });
+                renderVisiblePages();
             }
 
             // Actualizar página actual
             function updatePage() {
                 if (isAnimating) return;
-                
                 isAnimating = true;
-                
                 pages.forEach((page, index) => {
                     page.classList.remove('active', 'flipped');
-                    
                     if (index < currentPage) {
                         page.classList.add('flipped');
                         page.style.transform = 'rotateY(-180deg)';
@@ -446,30 +448,28 @@
                         page.style.transform = 'translateX(100%)';
                     }
                 });
-
+                renderVisiblePages();
                 // Actualizar navegación
                 currentPageSpan.textContent = currentPage + 1;
                 prevBtn.disabled = currentPage === 0;
                 nextBtn.disabled = currentPage === totalPages - 1;
-
-                // Agregar animaciones a elementos de la página actual
+                // Animaciones suaves con Intersection Observer
                 setTimeout(() => {
                     const currentPageElement = pages[currentPage];
-                    const animatedElements = currentPageElement.querySelectorAll('h1, h2, p, .quote, .reasons-list li');
-                    
-                    animatedElements.forEach((element, index) => {
-                        element.style.opacity = '0';
-                        element.style.transform = 'translateY(20px)';
-                        
-                        setTimeout(() => {
-                            element.style.transition = 'all 0.6s ease-out';
-                            element.style.opacity = '1';
-                            element.style.transform = 'translateY(0)';
-                        }, index * 100);
-                    });
-                    
+                    observePageElements(currentPageElement);
                     isAnimating = false;
                 }, 500);
+            }
+
+            // Optimización: solo renderizar páginas cercanas
+            function renderVisiblePages() {
+                pages.forEach((page, idx) => {
+                    if (Math.abs(idx - currentPage) <= 1) {
+                        page.style.display = '';
+                    } else {
+                        page.style.display = 'none';
+                    }
+                });
             }
 
             // Event listeners para navegación
@@ -523,6 +523,17 @@
                     75% { transform: translate(-25px, -10px) rotate(270deg); }
                     100% { transform: translate(0, 0) rotate(360deg); }
                 }
+
+                .animate-fade-in {
+                    opacity: 0;
+                    transform: translateY(20px);
+                    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+                }
+
+                .animate-fade-in.appear {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             `;
             document.head.appendChild(style);
 
@@ -540,4 +551,24 @@
                 document.body.style.opacity = '1';
                 updatePage();
             }, 500);
+
+            // Intersection Observer para animaciones suaves
+            const observerOptions = {
+                threshold: 0.2
+            };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            function observePageElements(pageElement) {
+                const animatedElements = pageElement.querySelectorAll('h1, h2, p, .quote, .reasons-list li');
+                animatedElements.forEach(el => {
+                    el.classList.remove('animate-fade-in');
+                    observer.observe(el);
+                });
+            }
         });
