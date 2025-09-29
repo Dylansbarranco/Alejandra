@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Versículos para Aleja - Con Amor, Dilan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #9b59b6 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+            line-height: 1.8;
+            position: relative;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: twinkle 4s ease-in-out infinite alternate;
+            z-index: -2;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        .constellation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .constellation::after {
+            content: '✦ ✧ ★ ☆ ✦ ✧ ★ ☆';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.4);
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .nav-index {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            max-width: 280px;
+            border: 2px solid rgba(155, 89, 182, 0.3);
+        }
+        
+        .nav-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #8e44ad;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .nav-item {
+            display: block;
+            padding: 8px 12px;
+            margin: 5px 0;
+            color: #6c5ce7;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-item:hover {
+            background: rgba(155, 89, 182, 0.1);
+            border-left: 3px solid #8e44ad;
+            transform: translateX(5px);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #8e44ad, #9b59b6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(155, 89, 182, 0.6);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(155, 89, 182, 0.3);
+        }
+        
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #8e44ad;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #636e72;
+            margin-bottom: 20px;
+        }
+        
+        .dedication {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #9b59b6;
+            margin-bottom: 30px;
+        }
+        
+        .love-letter {
+            background: rgba(255, 255, 255, 0.98);
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 3px solid rgba(155, 89, 182, 0.4);
+            position: relative;
+        }
+        
+        .love-letter::before {
+            content: '💜';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            background: white;
+            padding: 0 10px;
+        }
+        
+        .letter-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #8e44ad;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .letter-content {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #2c3e50;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+        
+        .letter-content p {
+            margin-bottom: 20px;
+        }
+        
+        .letter-signature {
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #8e44ad;
+            margin-top: 30px;
+        }
+        
+        .verse-section {
+            background: rgba(255, 255, 255, 0.98);
+            margin: 40px 0;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            border-left: 6px solid #9b59b6;
+            border-top: 1px solid rgba(155, 89, 182, 0.2);
+            scroll-margin-top: 100px;
+        }
+        
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.3rem;
+            color: #8e44ad;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(155, 89, 182, 0.2);
+        }
+        
+        .verse {
+            background: linear-gradient(145deg, #ffffff, #f8f9ff);
+            padding: 18px 22px;
+            margin: 12px 0;
+            border-radius: 12px;
+            border-left: 4px solid #9b59b6;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(155, 89, 182, 0.08);
+            position: relative;
+        }
+        
+        .verse:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(155, 89, 182, 0.15);
+            border-left-width: 6px;
+        }
+        
+        .verse::before {
+            content: '"';
+            position: absolute;
+            top: -5px;
+            left: 8px;
+            font-size: 3rem;
+            color: rgba(155, 89, 182, 0.2);
+            font-family: serif;
+        }
+        
+        .verse-reference {
+            font-weight: 600;
+            color: #8e44ad;
+            font-size: 1rem;
+        }
+        
+        .proposal-section {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(155, 89, 182, 0.3);
+        }
+        
+        .proposal-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #8e44ad;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-yes {
+            background: linear-gradient(45deg, #00b894, #74b9ff);
+            color: white;
+        }
+        
+        .btn-yes:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.4);
+        }
+        
+        .btn-no {
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+            color: white;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+        
+        .btn-no:hover {
+            transform: translateY(-3px);
+        }
+        
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(155, 89, 182, 0.4);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            border: 2px solid rgba(155, 89, 182, 0.3);
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #8e44ad;
+        }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 2.5rem; }
+            .proposal-text { font-size: 2rem; }
+            .buttons-container { flex-direction: column; align-items: center; }
+            .letter-content { font-size: 1.1rem; }
+            .nav-index {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 20px;
+                max-width: 100%;
+            }
+            .container { padding-top: 10px; }
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="constellation"></div>
+    <div class="hearts" id="hearts"></div>
+    
+    <!-- Índice de navegación fijo -->
+    <nav class="nav-index">
+        <div class="nav-title">📖 Índice</div>
+        <a href="#inicio" class="nav-item">💜 Inicio</a>
+        <a href="#carta" class="nav-item">📝 Carta</a>
+        <a href="#amor" class="nav-item">❤️ Amor</a>
+        <a href="#unidad" class="nav-item">🤝 Unidad</a>
+        <a href="#fe" class="nav-item">🙏 Fe</a>
+        <a href="#fidelidad" class="nav-item">💎 Fidelidad</a>
+        <a href="#perdon" class="nav-item">🕊 Perdón</a>
+        <a href="#crecimiento" class="nav-item">🌱 Crecimiento</a>
+        <a href="#futuro" class="nav-item">🌍 Futuro</a>
+        <a href="#gozo" class="nav-item">🌸 Gozo</a>
+        <a href="#matrimonio" class="nav-item">🏡 Matrimonio</a>
+        <a href="#especiales" class="nav-item">💖 Especiales</a>
+        <a href="#propuesta" class="nav-item">💍 Propuesta</a>
+    </nav>
+    
+    <!-- Botón volver arriba -->
+    <button class="back-to-top" onclick="scrollToTop()" title="Volver arriba">↑</button>
+    
+    <div class="container">
+        <div class="header" id="inicio">
+            <h1 class="title">100 Versículos de Amor</h1>
+            <h2 class="subtitle">Una Invitación Especial de Lectura Bíblica</h2>
+            <p class="dedication">Con todo mi amor para Aleja 💜</p>
+        </div>
+
+        <div class="love-letter" id="carta">
+            <h2 class="letter-title">Carta para mi Amada Alejandra</h2>
+            <div class="letter-content">
+                <p>Mi querida Alejandra,</p>
+                
+                <p>Hoy quiero dedicarte estas palabras desde lo más profundo de mi corazón. Eres la mujer más extraordinaria que he conocido, y cada día me sorprendes con tu dedicación, tu amor incondicional y la fortaleza que llevas dentro.</p>
+                
+                <p>Admiro profundamente cómo te entregas por completo a todo lo que haces, especialmente el amor tan puro y sincero que me brindas. Tu dedicación hacia mí no pasa desapercibida; cada gesto, cada palabra de aliento, cada momento que compartes conmigo es un regalo que atesoro en mi alma.</p>
+                
+                <p>Eres fuerte como una guerrera y valiente como una leona. He visto cómo enfrentas los desafíos de la vida con una determinación que me inspira y me hace querer ser mejor persona cada día. Tu valentía no solo se refleja en las grandes batallas, sino también en los pequeños actos de amor diario que haces por nosotros.</p>
+                
+                <p>Por eso, mi amor, quiero invitarte a esta hermosa cita de lectura bíblica. Estos 100 versículos representan mi deseo de crecer contigo en fe, en amor y en propósito. Quiero que caminemos juntos bajo la guía de Dios, fortaleciendo nuestro amor con Su palabra.</p>
+                
+                <p>Eres mi compañera, mi mejor amiga, mi amor verdadero. Gracias por ser la mujer valiente y amorosa que eres. Gracias por elegirme cada día.</p>
+            </div>
+            <div class="letter-signature">
+                Con todo mi amor eterno,<br>
+                Dilan 💜✨
+            </div>
+        </div>
+
+        <div class="verse-section" id="amor">
+            <h3 class="section-title">❤️ Amor verdadero y compromiso</h3>
+            <div class="verse"><span class="verse-reference">1 Corintios 13:4-7</span></div>
+            <div class="verse"><span class="verse-reference">Cantar de los Cantares 8:6-7</span></div>
+            <div class="verse"><span class="verse-reference">1 Juan 4:18-19</span></div>
+            <div class="verse"><span class="verse-reference">Romanos 13:10</span></div>
+            <div class="verse"><span class="verse-reference">Colosenses 3:14</span></div>
+            <div class="verse"><span class="verse-reference">Juan 15:12-13</span></div>
+            <div class="verse"><span class="verse-reference">Efesios 5:25</span></div>
+            <div class="verse"><span class="verse-reference">Efesios 5:28</span></div>
+            <div class="verse"><span class="verse-reference">1 Pedro 4:8</span></div>
+            <div class="verse"><span class="verse-reference">Proverbios 10:12</span></div>
+        </div>
+
+        <div class="verse-section" id="unidad">
+            <h3 class="section-title">🤝 Unidad y compañerismo</h3>
+            <div class="verse"><span class="verse-reference">Eclesiastés 4:9-12</span></div>
+            <div class="verse"><span class="verse-reference">Amós 3:3</span></div>
+            <div class="verse"><span class="verse-reference">Marcos 10:9</span></div>
+            <div class="verse"><span class="verse-reference">Génesis 2:18</span></div>
+            <div class="verse"><span class="verse-reference">Génesis 2:24</span></div>
+            <div class="verse"><span class="verse-reference">Malaquías 2:15</span></div>
+            <div class="verse"><span class="verse-reference">Filipenses 2:2</span></div>
+            <div class="verse"><span class="verse-reference">Filipenses 2:4</span></div>
+            <div class="verse"><span class="verse-reference">Colosenses 3:19</span></div>
+            <div class="verse"><span class="verse-reference">Hebreos 13:4</span></div>
+        </div>
+
+        <div class="verse-section" id="fe">
+            <h3 class="section-title">🙏 Fe y confianza en Dios</h3>
+            <div class="verse"><span class="verse-reference">Salmos 37:4-5</span></div>
+            <div class="verse"><span class="verse-reference">Proverbios 3:5-6</span></div>
+            <div class="verse"><span class="verse-reference">Jeremías 29:11</span></div>
+            <div class="verse"><span class="verse-reference">Isaías 26:3</span></div>
+            <div class="verse"><span class="verse-reference">Mateo 6:33</span></div>
+            <div class="verse"><span class="verse-reference">Filipenses 4:6-7</span></div>
+            <div class="verse"><span class="verse-reference">2 Corintios 5:7</span></div>
+            <div class="verse"><span class="verse-reference">Romanos 8:28</span></div>
+            <div class="verse"><span class="verse-reference">Salmos 127:1</span></div>
+            <div class="verse"><span class="verse-reference">Josué 24:15</span></div>
+        </div>
+
+        <div class="verse-section" id="fidelidad">
+            <h3 class="section-title">💎 Fidelidad y pureza</h3>
+            <div class="verse"><span class="verse-reference">1 Tesalonicenses 4:3-4</span></div>
+            <div class="verse"><span class="verse-reference">Hebreos 13:5</span></div>
+            <div class="verse"><span class="verse-reference">Mateo 5:8</span></div>
+            <div class="verse"><span class="verse-reference">Salmos 119:9</span></div>
+            <div class="verse"><span class="verse-reference">Proverbios 31:10-11</span></div>
+            <div class="verse"><span class="verse-reference">2 Timoteo 2:22</span></div>
+            <div class="verse"><span class="verse-reference">Efesios 5:3</span></div>
+            <div class="verse"><span class="verse-reference">Job 31:1</span></div>
+            <div class="verse"><span class="verse-reference">Apocalipsis 19:7-8</span></div>
+            <div class="verse"><span class="verse-reference">Colosenses 3:5</span></div>
+        </div>
+
+        <div class="verse-section" id="perdon">
+            <h3 class="section-title">🕊 Perdón y paciencia</h3>
+            <div class="verse"><span class="verse-reference">Efesios 4:2</span></div>
+            <div class="verse"><span class="verse-reference">Efesios 4:32</span></div>
+            <div class="verse"><span class="verse-reference">Colosenses 3:13</span></div>
+            <div class="verse"><span class="verse-reference">Mateo 18:21-22</span></div>
+            <div class="verse"><span class="verse-reference">Proverbios 19:11</span></div>
+            <div class="verse"><span class="verse-reference">1 Corintios 13:5</span></div>
+            <div class="verse"><span class="verse-reference">Santiago 1:19-20</span></div>
+            <div class="verse"><span class="verse-reference">Salmos 86:5</span></div>
+            <div class="verse"><span class="verse-reference">Miqueas 7:18-19</span></div>
+            <div class="verse"><span class="verse-reference">Lucas 6:37</span></div>
+        </div>
+
+        <div class="verse-section" id="crecimiento">
+            <h3 class="section-title">🌱 Crecimiento espiritual juntos</h3>
+            <div class="verse"><span class="verse-reference">Colosenses 2:6-7</span></div>
+            <div class="verse"><span class="verse-reference">Hebreos 10:24-25</span></div>
+            <div class="verse"><span class="verse-reference">2 Pedro 3:18</span></div>
+            <div class="verse"><span class="verse-reference">Juan 15:5</span></div>
+            <div class="verse"><span class="verse-reference">Romanos 12:2</span></div>
+            <div class="verse"><span class="verse-reference">Gálatas 5:22-23</span></div>
+            <div class="verse"><span class="verse-reference">Efesios 3:16-17</span></div>
+            <div class="verse"><span class="verse-reference">1 Tesalonicenses 5:11</span></div>
+            <div class="verse"><span class="verse-reference">Salmos 119:105</span></div>
+            <div class="verse"><span class="verse-reference">Mateo 18:20</span></div>
+        </div>
+
+        <div class="verse-section" id="futuro">
+            <h3 class="section-title">🌍 Proyecto de vida y futuro</h3>
+            <div class="verse"><span class="verse-reference">Proverbios 16:3</span></div>
+            <div class="verse"><span class="verse-reference">Proverbios 24:3-4</span></div>
+            <div class="verse"><span class="verse-reference">Isaías 32:18</span></div>
+            <div class="verse"><span class="verse-reference">Isaías 58:11</span></div>
+            <div class="verse"><span class="verse-reference">Jeremías 33:3</span></div>
+            <div class="verse"><span class="verse-reference">Habacuc 2:3</span></div>
+            <div class="verse"><span class="verse-reference">Deuteronomio 28:6</span></div>
+            <div class="verse"><span class="verse-reference">Filipenses 1:6</span></div>
+            <div class="verse"><span class="verse-reference">Romanos 15:13</span></div>
+            <div class="verse"><span class="verse-reference">Apocalipsis 21:4</span></div>
+        </div>
+
+        <div class="verse-section" id="gozo">
+            <h3 class="section-title">🌸 Bendición y gozo</h3>
+            <div class="verse"><span class="verse-reference">Salmos 128:1-2</span></div>
+            <div class="verse"><span class="verse-reference">Salmos 34:8</span></div>
+            <div class="verse"><span class="verse-reference">Salmos 16:11</span></div>
+            <div class="verse"><span class="verse-reference">Proverbios 3:13-15</span></div>
+            <div class="verse"><span class="verse-reference">Isaías 61:10</span></div>
+            <div class="verse"><span class="verse-reference">Sofonías 3:17</span></div>
+            <div class="verse"><span class="verse-reference">Juan 16:22</span></div>
+            <div class="verse"><span class="verse-reference">1 Tesalonicenses 5:16-18</span></div>
+            <div class="verse"><span class="verse-reference">Romanos 12:12</span></div>
+            <div class="verse"><span class="verse-reference">Nehemías 8:10</span></div>
+        </div>
+
+        <div class="verse-section" id="matrimonio">
+            <h3 class="section-title">🏡 Matrimonio y familia</h3>
+            <div class="verse"><span class="verse-reference">Efesios 5:31</span></div>
+            <div class="verse"><span class="verse-reference">Efesios 6:1-4</span></div>
+            <div class="verse"><span class="verse-reference">1 Corintios 7:3-4</span></div>
+            <div class="verse"><span class="verse-reference">1 Corintios 7:10-11</span></div>
+            <div class="verse"><span class="verse-reference">Colosenses 3:18</span></div>
+            <div class="verse"><span class="verse-reference">Proverbios 18:22</span></div>
+            <div class="verse"><span class="verse-reference">Proverbios 12:4</span></div>
+            <div class="verse"><span class="verse-reference">Salmos 127:3-5</span></div>
+            <div class="verse"><span class="verse-reference">Salmos 144:12</span></div>
+            <div class="verse"><span class="verse-reference">Josué 1:9</span></div>
+        </div>
+
+        <div class="verse-section" id="especiales">
+            <h3 class="section-title">💖 Extra para dedicar con ternura</h3>
+            <div class="verse"><span class="verse-reference">Cantar de los Cantares 2:10-13</span></div>
+            <div class="verse"><span class="verse-reference">Cantar de los Cantares 4:7</span></div>
+            <div class="verse"><span class="verse-reference">Cantar de los Cantares 5:16</span></div>
+            <div class="verse"><span class="verse-reference">Rut 1:16-17</span></div>
+            <div class="verse"><span class="verse-reference">Isaías 54:10</span></div>
+            <div class="verse"><span class="verse-reference">Salmos 45:11</span></div>
+            <div class="verse"><span class="verse-reference">Mateo 19:6</span></div>
+            <div class="verse"><span class="verse-reference">Juan 13:34</span></div>
+            <div class="verse"><span class="verse-reference">1 Juan 3:18</span></div>
+            <div class="verse"><span class="verse-reference">Apocalipsis 22:17</span></div>
+        </div>
+
+        <div class="proposal-section" id="propuesta">
+            <p class="proposal-text">Mi querida Aleja,</p>
+            <p class="proposal-text">¿Aceptas leer estos 100 versículos conmigo?</p>
+            <p style="font-size: 1.3rem; color: #636e72; margin: 20px 0;">
+                Una cita especial de lectura bíblica para fortalecer nuestro amor en Cristo
+            </p>
+            
+            <div class="buttons-container">
+                <button class="btn btn-yes" onclick="acceptProposal()">¡Sí, acepto! 💜</button>
+                <button class="btn btn-no" id="noBtn" onclick="moveButton()">No acepto</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p class="signature">Con todo mi amor, Dilan 💜</p>
+            <p style="margin-top: 10px; font-style: italic; color: #636e72;">
+                "Mejor son dos que uno..." - Eclesiastés 4:9
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartSymbols = ['💜', '💕', '✨', '⭐'];
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 6 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        let clickCount = 0;
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            clickCount++;
+            
+            if (clickCount >= 3 && Math.random() > 0.3) {
+                noBtn.innerHTML = '¡Sí acepto! 💕';
+                noBtn.className = 'btn btn-yes';
+                noBtn.onclick = acceptProposal;
+                return;
+            }
+            
+            const container = noBtn.parentElement;
+            const containerRect = container.getBoundingClientRect();
+            
+            const maxX = containerRect.width - noBtn.offsetWidth;
+            const maxY = containerRect.height - noBtn.offsetHeight;
+            
+            const newX = Math.random() * Math.max(0, maxX - 100);
+            const newY = Math.random() * Math.max(0, maxY - 50);
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+            
+            const texts = [
+                'No acepto',
+                '¿Estás segura?',
+                'Piénsalo bien...',
+                'Los versículos son hermosos',
+                'Solo una cita de lectura',
+                'Por favor... 🥺'
+            ];
+            
+            if (Math.random() > 0.7) {
+                noBtn.innerHTML = texts[Math.floor(Math.random() * texts.length)];
+            }
+        }
+
+        function acceptProposal() {
+            for (let i = 0; i < 50; i++) {
+                createConfettiHeart();
+            }
+            
+            const proposal = document.querySelector('.proposal-section');
+            proposal.innerHTML = `
+                <h2 style="font-family: 'Dancing Script', cursive; font-size: 3rem; color: #8e44ad; margin-bottom: 20px;">
+                    ¡Qué alegría! 🎉💜
+                </h2>
+                <p style="font-size: 1.5rem; color: #636e72; margin-bottom: 20px;">
+                    Aleja ha aceptado nuestra cita de lectura bíblica
+                </p>
+                <p style="font-size: 1.2rem; color: #8e44ad;">
+                    Juntos creceremos en amor y fe leyendo la Palabra de Dios
+                </p>
+                <div style="margin-top: 30px; font-size: 2rem;">
+                    💜📖✨🙏💜
+                </div>
+            `;
+        }
+
+        function createConfettiHeart() {
+            const heart = document.createElement('div');
+            const symbols = ['💜', '💕', '✨', '⭐', '🌟'];
+            heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '-50px';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heart.style.zIndex = '1000';
+            heart.style.pointerEvents = 'none';
+            heart.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        window.onload = function() {
+            createHearts();
+        };
+    </script>
+</body>
+</html>
