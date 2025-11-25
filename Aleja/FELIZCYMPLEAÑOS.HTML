@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Amor 🚀💖</title>
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<style>
+    /* Reseteo básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Canvas para las estrellas */
+#star-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  animation: fadeIn 2s ease-in;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+  }
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  40% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Estilos del Astronauta/Foto */
+.astronaut-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+  animation: float 6s ease-in-out infinite;
+}
+
+.astronaut-ring {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  padding: 10px;
+  background: linear-gradient(45deg, #ff00cc, #3333ff);
+  box-shadow: 0 0 30px rgba(255, 0, 204, 0.6);
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid white;
+}
+
+.floating-heart {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  font-size: 2rem;
+  animation: heartbeat 1.5s infinite;
+}
+
+/* Tipografía */
+.main-title {
+  font-family: "Dancing Script", cursive;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, #fff, #ff69b4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+}
+
+/* Tarjeta de Mensaje */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.message-card {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.message-card p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.highlight-text {
+  font-weight: 600;
+  color: #ffd700; /* Dorado */
+}
+
+.love-declaration {
+  font-size: 1.2rem;
+  color: #ff69b4;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+  margin: 1.5rem 0;
+}
+
+.poetic-text {
+  font-style: italic;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Botón */
+.glow-button {
+  background: linear-gradient(45deg, #ff1493, #ff69b4);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: pulse-glow 2s infinite;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.glow-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #ff69b4, #ff1493);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, rgba(20, 20, 40, 0.9), rgba(50, 20, 60, 0.9));
+  padding: 3rem;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  border: 2px solid #ff69b4;
+  transform: scale(0.7);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal.show .modal-content {
+  transform: scale(1);
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #fff;
+}
+
+.big-heart {
+  font-size: 4rem;
+  margin-top: 1rem;
+  animation: heartbeat 1s infinite;
+}
+
+.corner-heart {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 2rem;
+  animation: heartbeat 2s infinite;
+  z-index: 20;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .astronaut-ring {
+    width: 180px;
+    height: 180px;
+  }
+
+  .message-card {
+    padding: 1.5rem;
+  }
+}
+
+</style>
+<body>
+    <canvas id="star-canvas"></canvas>
+
+    <div class="container">
+        <div class="astronaut-container">
+            <!-- AQUÍ VA LA FOTO: Reemplaza src por "img/ella.jpg" -->
+            <div class="astronaut-ring">
+                <img src="https://i.pinimg.com/736x/41/4d/9b/414d9b1c0a7b33d30221db8cb20126a6.jpg" alt="Mi Astronauta Favorita" class="profile-pic" id="profile-img">
+            </div>
+            <div class="floating-heart">❤️</div>
+        </div>
+
+        <h1 class="main-title">Feliz cumpleaños, mi amor 🚀💖</h1>
+
+        <div class="message-card glass-effect">
+            <p class="highlight-text">Gracias por estos días hermosos juntos en Bucaramanga.</p>
+            <p>Gracias por cocinar conmigo, salir, reír, hablar y vivir este primer encuentro.</p>
+            <p class="love-declaration">Te amo con todo mi corazón y quiero una vida entera contigo.</p>
+            <hr class="divider">
+            <!-- Sección de "Más Carreta Romántica" -->
+            <p class="poetic-text">
+                "Si el universo es infinito, entonces mi amor por ti es el universo mismo, expandiéndose a cada segundo."
+            </p>
+            <p class="poetic-text">
+                "No necesito gravedad, porque tu sonrisa es la única fuerza que me mantiene con los pies en la tierra... y la cabeza en las estrellas." 🌠
+            </p>
+        </div>
+
+        <button id="surprise-btn" class="glow-button">Toca aquí, amor ✨</button>
+    </div>
+
+    <!-- Modal (Ventana Emergente) -->
+    <div id="modal" class="modal">
+        <div class="modal-content glass-effect">
+            <span class="close-btn">&times;</span>
+            <h2>Mi Universo Eres Tú 🌌</h2>
+            <p>Eres lo mejor que me ha pasado en este universo.</p>
+            <p>De todas las galaxias existentes, tuve la suerte de coincidir en la tuya.</p>
+            <div class="big-heart">💖</div>
+        </div>
+    </div>
+
+    <div class="corner-heart">❤️</div>
+
+    <script> 
+        document.addEventListener("DOMContentLoaded", () => {
+  // --- LÓGICA DEL CANVAS DE ESTRELLAS ---
+  const canvas = document.getElementById("star-canvas")
+  const ctx = canvas.getContext("2d")
+
+  let width, height
+  let stars = []
+
+  // Ajustar tamaño del canvas
+  function resize() {
+    width = window.innerWidth
+    height = window.innerHeight
+    canvas.width = width
+    canvas.height = height
+    createStars()
+  }
+
+  // Crear estrellas aleatorias
+  function createStars() {
+    stars = []
+    const numStars = Math.floor((width * height) / 1000) // Densidad de estrellas
+
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 2, // Tamaño variado
+        vx: Math.random() * 0.5 - 0.25, // Velocidad horizontal suave
+        vy: Math.random() * 0.5 - 0.25, // Velocidad vertical suave
+        alpha: Math.random(), // Brillo inicial
+        flashSpeed: Math.random() * 0.02 + 0.005,
+      })
+    }
+  }
+
+  // Dibujar y animar estrellas
+  function animate() {
+    ctx.clearRect(0, 0, width, height)
+
+    // Estrellas
+    stars.forEach((star) => {
+      // Movimiento suave
+      star.x += star.vx
+      star.y += star.vy
+
+      // Rebote suave en bordes (o reaparecer)
+      if (star.x < 0) star.x = width
+      if (star.x > width) star.x = 0
+      if (star.y < 0) star.y = height
+      if (star.y > height) star.y = 0
+
+      // Efecto parpadeo
+      star.alpha += star.flashSpeed
+      if (star.alpha > 1 || star.alpha < 0.2) {
+        star.flashSpeed = -star.flashSpeed
+      }
+
+      // Dibujar
+      ctx.beginPath()
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2)
+      ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(star.alpha)})`
+      ctx.fill()
+    })
+
+    // Estrellas fugaces ocasionales
+    if (Math.random() < 0.005) {
+      // 0.5% de probabilidad por frame
+      drawShootingStar()
+    }
+
+    requestAnimationFrame(animate)
+  }
+
+  // Función simple para estrella fugaz (efecto visual extra)
+  function drawShootingStar() {
+    const x = Math.random() * width
+    const y = (Math.random() * height) / 2
+    const length = Math.random() * 100 + 50
+    const angle = Math.PI / 4 // 45 grados
+
+    ctx.beginPath()
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.8)"
+    ctx.lineWidth = 2
+    ctx.moveTo(x, y)
+    ctx.lineTo(x - length, y + length)
+    ctx.stroke()
+
+    // Desvanecimiento rápido
+    setTimeout(() => {
+      // El propio clearRect del animate loop la borrará en el siguiente frame
+    }, 100)
+  }
+
+  window.addEventListener("resize", resize)
+  resize()
+  animate()
+
+  // --- LÓGICA DEL MODAL ---
+  const modal = document.getElementById("modal")
+  const btn = document.getElementById("surprise-btn")
+  const closeBtn = document.querySelector(".close-btn")
+
+  btn.onclick = () => {
+    modal.classList.add("show")
+  }
+
+  closeBtn.onclick = () => {
+    modal.classList.remove("show")
+  }
+
+  window.onclick = (event) => {
+    if (event.target == modal) {
+      modal.classList.remove("show")
+    }
+  }
+})
+
+    </script>
+</body>
+</html>
