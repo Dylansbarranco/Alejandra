@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sigo aquí, pero no estoy bien</title>
+  <link rel="stylesheet" href="../Css/SigoAqui.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖤</text></svg>">
+</head>
+<body>
+
+  <!-- ===== AUDIO ===== -->
+  <audio id="bg-audio" preload="auto">
+    <source src="../Cancion/Daughter - Smother (Español).mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ===== BACKGROUND LAYERS ===== -->
+  <div id="rain-container"></div>
+  <div id="particles-container"></div>
+  <div id="vignette"></div>
+  <div id="ambient-pulse"></div>
+  <div id="noise"></div>
+  <div id="fade-overlay"></div>
+  <div id="progress-bar"></div>
+
+  <!-- ===== START SCREEN ===== -->
+  <div id="start-screen">
+    <div class="headphones-icon">🎧</div>
+    <div class="start-text">Usa audífonos</div>
+    <div class="start-sub">toca para comenzar</div>
+  </div>
+
+  <!-- ===== VERSE CONTAINER ===== -->
+  <div id="verse-container">
+
+    <!-- VERSE 0 — Título -->
+    <div class="verse" id="v0">
+      <p class="big" style="line-height: 1.8;">
+        Sigo aquí,<br>
+        <span style="font-size: 0.6em; color: #9a8aaa; font-weight: 300; letter-spacing: 0.15em;">pero no estoy bien</span>
+      </p>
+    </div>
+
+    <!-- VERSE 1 — Eso es lo único claro -->
+    <div class="verse" id="v1">
+      <p>
+        Sigo aquí.<br>
+        <span class="dim">Eso es lo único claro.</span>
+      </p>
+    </div>
+
+    <!-- VERSE 2 — No porque... -->
+    <div class="verse" id="v2">
+      <p>
+        No porque esté bien,<br>
+        no porque me sienta <span class="tremble">seguro</span>,<br>
+        no porque confíe como antes.
+      </p>
+    </div>
+
+    <!-- VERSE 3 — EKG + Sigo aquí cansado -->
+    <div class="verse" id="v3">
+      <div class="ekg-wrap">
+        <svg class="ekg-svg" viewBox="0 0 300 50" preserveAspectRatio="none">
+          <path class="ekg-path" d="M0 25 L40 25 L50 22 L55 25 L60 8 L65 42 L70 18 L75 25 L90 28 L100 25 L140 25 L150 22 L155 25 L160 8 L165 42 L170 18 L175 25 L190 28 L200 25 L240 25 L250 22 L255 25 L260 10 L265 40 L270 19 L275 25 L290 27 L300 25"/>
+        </svg>
+      </div>
+      <p class="pain" style="margin-top: 20px;">
+        Sigo aquí cansado.
+      </p>
+    </div>
+
+    <!-- VERSE 4 — Cansado de... -->
+    <div class="verse" id="v4">
+      <p>
+        Cansado de <span class="hl">pensar</span>,<br>
+        de <span class="hl">dudar</span>,<br>
+        de preguntarme si soy <span class="tremble pain-word">suficiente</span><br>
+        o si simplemente nunca lo fui.
+      </p>
+    </div>
+
+    <!-- VERSE 5 — typewriter -->
+    <div class="verse" id="v5">
+      <p class="typewriter">
+        ¿Alguna vez fui suficiente?
+      </p>
+    </div>
+
+    <!-- VERSE 6 — He hablado tantas veces -->
+    <div class="verse" id="v6">
+      <p>
+        He hablado tantas veces de lo que me duele<br>
+        que ya no sé decirlo sin sentir<br>
+        <span class="pain-word" style="font-size: 1.9rem;">vergüenza</span>.
+      </p>
+    </div>
+
+    <!-- VERSE 7 — Disculpas que no pesan -->
+    <div class="verse" id="v7">
+      <p>
+        He pedido cambios con la <span class="pain-word">voz rota</span>
+      </p>
+      <p class="whisper" style="margin-top: 18px;">
+        y he recibido disculpas que no pesan,<br>
+        que no dejan huella,<br>
+        que no transforman nada.
+      </p>
+    </div>
+
+    <!-- VERSE 8 — Todo parece depender de mí -->
+    <div class="verse" id="v8">
+      <p class="big">
+        Todo parece depender de mí.
+      </p>
+    </div>
+
+    <!-- VERSE 9 — Repetición -->
+    <div class="verse" id="v9">
+      <div class="rep-block">
+        <div class="rep-line"><span class="rep-prefix">De que yo</span> aguante.</div>
+        <div class="rep-line"><span class="rep-prefix">De que yo</span> entienda.</div>
+        <div class="rep-line"><span class="rep-prefix">De que yo</span> confíe otra vez.</div>
+        <div class="rep-line"><span class="rep-prefix">De que yo</span> no dude.</div>
+      </div>
+    </div>
+
+    <!-- VERSE 10 — Y cuando dudo -->
+    <div class="verse" id="v10">
+      <p>
+        Y cuando dudo,<br>
+        cuando algo me <span class="pain-word">duele</span>,
+      </p>
+      <p class="big pain" style="margin-top: 20px;">
+        parece que el problema<br><span class="tremble">soy yo</span>.
+      </p>
+    </div>
+
+    <!-- VERSE 11 — No me siento -->
+    <div class="verse" id="v11">
+      <p style="line-height: 2.8;">
+        No me siento <span class="pain-word">valorado</span> aquí.<br>
+        No me siento <span class="pain-word">prioridad</span>.<br>
+        No me siento <span class="pain-word">cuidado</span>.
+      </p>
+    </div>
+
+    <!-- VERSE 12 — Algo se rompió -->
+    <div class="verse" id="v12">
+      <p>
+        Ver cómo otros pueden hablar mal de mí<br>
+        sin que eso importe<br>
+        me <span class="tremble pain-word">rompió algo por dentro</span><br>
+        <span class="dim">que no sé cómo volver a armar.</span>
+      </p>
+    </div>
+
+    <!-- VERSE 13 — typewriter -->
+    <div class="verse" id="v13">
+      <p class="typewriter">
+        algo dentro de mí ya no encaja igual...
+      </p>
+    </div>
+
+    <!-- VERSE 14 — No se siente bien -->
+    <div class="verse" id="v14">
+      <p class="big pain">
+        No se siente bien amar así.
+      </p>
+    </div>
+
+    <!-- VERSE 15 — siempre alerta -->
+    <div class="verse" id="v15">
+      <p>
+        No se siente bien estar siempre <span class="hl">alerta</span>,<br>
+        pensando si volverá a pasar,<br>
+        si volveré a enterarme de algo<br>
+        <span style="color: #7a6a8a; font-style: italic; display: inline;">que no debí vivir</span>.
+      </p>
+    </div>
+
+    <!-- VERSE 16 — No puedo seguir -->
+    <div class="verse" id="v16">
+      <p>
+        Sigo aquí, sí.
+      </p>
+      <p class="big" style="margin-top: 20px;">
+        Pero no puedo seguir<br>a distancia.
+      </p>
+    </div>
+
+    <!-- VERSE 17 — Distancia -->
+    <div class="verse" id="v17">
+      <div class="distance-block">
+        <div class="dist-row">
+          <span class="dist-no">Porque la distancia no me da <span class="strike">calma</span>,</span>
+          <span class="dist-yes">me da <span class="pain-word">miedo</span>.</span>
+        </div>
+        <div class="dist-row">
+          <span class="dist-no">No me da <span class="strike">confianza</span>,</span>
+          <span class="dist-yes">me da <span class="pain-word">vueltas en la cabeza</span>.</span>
+        </div>
+        <div class="dist-row">
+          <span class="dist-no">No me da <span class="strike">amor</span>,</span>
+          <span class="dist-yes">me da <span class="pain-word">silencio</span>.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERSE 18 — No es que no quiera -->
+    <div class="verse" id="v18">
+      <p>
+        No es que no quiera intentarlo.
+      </p>
+      <p class="pain" style="margin-top: 24px; font-size: 1.8rem;">
+        Es que intentarlo así<br>
+        <span class="tremble" style="font-size: 2rem;">me está vaciando</span>.
+      </p>
+    </div>
+
+    <!-- VERSE 19 — typewriter -->
+    <div class="verse" id="v19">
+      <p class="typewriter">
+        cada intento me cuesta un pedazo...
+      </p>
+    </div>
+
+    <!-- VERSE 20 — No me voy -->
+    <div class="verse" id="v20">
+      <p>
+        <span class="hl">No me voy,</span><br>
+        pero tampoco estoy completo.
+      </p>
+    </div>
+
+    <!-- VERSE 21 — Final grande -->
+    <div class="verse" id="v21">
+      <p class="big" style="line-height: 2;">
+        Y cada día que pasa<br>
+        siento que amar de esta forma<br>
+        <span class="pain-word" style="font-size: 1.1em;">me cuesta más de lo que tengo.</span>
+      </p>
+    </div>
+
+    <!-- VERSE 22 — Nota final -->
+    <div class="verse" id="v22">
+      <p class="whisper" style="letter-spacing: 0.08em; line-height: 2.2;">
+        — lo escribí porque ya no me alcanzaban<br>
+        las palabras habladas —
+      </p>
+    </div>
+
+    <!-- VERSE 23 — Flatline + fin -->
+    <div class="verse" id="v23">
+      <div class="ekg-wrap" style="max-width: 250px;">
+        <svg class="ekg-svg" viewBox="0 0 300 30" preserveAspectRatio="none" style="height: 30px;">
+          <line class="flatline-path" x1="0" y1="15" x2="300" y2="15"/>
+        </svg>
+      </div>
+      <p style="font-size: 0.85rem; color: #4a3a5a; letter-spacing: 0.8em; margin-top: 30px;">
+        . &nbsp; . &nbsp; .
+      </p>
+    </div>
+
+  </div>
+
+  <script src="../Script/SigoAqui.js"></script>
+</body>
+</html>
