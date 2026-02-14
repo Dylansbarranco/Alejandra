@@ -1,0 +1,759 @@
+/* ===== SAN VALENTÍN - 14 RAZONES PARA AMARTE ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --rosa-profundo: #c2185b;
+    --rosa-medio: #e91e63;
+    --rosa-claro: #f48fb1;
+    --rosa-pastel: #fce4ec;
+    --rojo-amor: #d32f2f;
+    --rojo-oscuro: #8e1b3b;
+    --dorado: #ffd700;
+    --dorado-suave: #ffe082;
+    --blanco-crema: #fff8f0;
+    --texto-oscuro: #3e2723;
+    --texto-medio: #5d4037;
+    --sombra-rosa: rgba(194, 24, 91, 0.3);
+    --sombra-roja: rgba(211, 47, 47, 0.2);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #1a0a10 0%, #2d0a1a 30%, #1a0510 60%, #0d0208 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--blanco-crema);
+    position: relative;
+}
+
+/* ===== FONDO DE ESTRELLAS ===== */
+.stars-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--duration) infinite ease-in-out;
+    opacity: 0;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: var(--max-opacity, 0.8); transform: scale(1); }
+}
+
+/* ===== PÉTALOS FLOTANTES ===== */
+.petals-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+    top: -60px;
+    width: 20px;
+    height: 24px;
+    background: radial-gradient(ellipse at 30% 30%, #ff6b8a, #e91e63, #c2185b);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0;
+    transform-origin: center center;
+    animation: petalFall var(--fall-duration, 8s) var(--fall-delay, 0s) infinite ease-in-out;
+    filter: blur(0.5px);
+    box-shadow: 0 0 6px rgba(233, 30, 99, 0.3);
+}
+
+.petal:nth-child(odd) {
+    background: radial-gradient(ellipse at 30% 30%, #ff8a9e, #f48fb1, #e91e63);
+}
+
+.petal:nth-child(3n) {
+    background: radial-gradient(ellipse at 30% 30%, #ffcdd2, #ef9a9a, #e57373);
+    width: 16px;
+    height: 19px;
+}
+
+@keyframes petalFall {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px) translateX(0) rotate(0deg) scale(0.8);
+    }
+    10% {
+        opacity: 0.9;
+    }
+    25% {
+        transform: translateY(25vh) translateX(30px) rotate(90deg) scale(1);
+    }
+    50% {
+        transform: translateY(50vh) translateX(-20px) rotate(200deg) scale(0.9);
+    }
+    75% {
+        transform: translateY(75vh) translateX(40px) rotate(300deg) scale(1);
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(105vh) translateX(10px) rotate(400deg) scale(0.6);
+    }
+}
+
+/* ===== CORAZONES FLOTANTES ===== */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -40px;
+    font-size: var(--heart-size, 20px);
+    opacity: 0;
+    animation: heartRise var(--rise-duration, 10s) var(--rise-delay, 0s) infinite ease-out;
+    filter: drop-shadow(0 0 6px rgba(255, 105, 135, 0.5));
+}
+
+@keyframes heartRise {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.3) rotate(0deg);
+    }
+    10% {
+        opacity: 0.8;
+        transform: translateY(-10vh) scale(1) rotate(10deg);
+    }
+    50% {
+        transform: translateY(-50vh) scale(0.9) rotate(-10deg);
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-110vh) scale(0.5) rotate(20deg);
+    }
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.main-container {
+    position: relative;
+    z-index: 10;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===== HERO / ENCABEZADO ===== */
+.hero-valentine {
+    text-align: center;
+    padding: 60px 20px 40px;
+    position: relative;
+}
+
+.hero-valentine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(233, 30, 99, 0.15), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.date-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--rosa-profundo), var(--rojo-amor));
+    color: white;
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px var(--sombra-rosa);
+    animation: softPulse 3s infinite ease-in-out;
+}
+
+@keyframes softPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 4px 20px var(--sombra-rosa); }
+    50% { transform: scale(1.05); box-shadow: 0 6px 30px var(--sombra-rosa); }
+}
+
+.hero-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--rosa-claro), var(--dorado), var(--rosa-pastel));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    text-shadow: none;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--rosa-claro);
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+.heart-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.heart-divider .line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rosa-claro), transparent);
+}
+
+.heart-divider .heart-icon {
+    font-size: 1.5rem;
+    color: var(--rosa-medio);
+    animation: heartBeat 1.5s infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.3); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.3); }
+    70% { transform: scale(1); }
+}
+
+/* ===== INTRO ===== */
+.intro-text {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
+}
+
+.intro-text p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(255, 248, 240, 0.85);
+    font-style: italic;
+}
+
+/* ===== GRID DE RAZONES ===== */
+.reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+    margin-bottom: 60px;
+}
+
+/* ===== TARJETA DE RAZÓN ===== */
+.reason-card {
+    position: relative;
+    perspective: 1000px;
+    height: 320px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reason-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reason-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.reason-card.flipped .reason-card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* FRENTE DE LA TARJETA */
+.card-front {
+    background: linear-gradient(145deg, rgba(194, 24, 91, 0.15), rgba(142, 27, 59, 0.25));
+    border: 1px solid rgba(244, 143, 177, 0.2);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.card-front:hover {
+    border-color: rgba(244, 143, 177, 0.5);
+    box-shadow: 0 10px 40px var(--sombra-rosa), inset 0 0 30px rgba(233, 30, 99, 0.05);
+}
+
+.card-number {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--rosa-claro), var(--dorado));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.card-front .card-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    animation: floatEmoji 3s ease-in-out infinite;
+}
+
+@keyframes floatEmoji {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.card-front .card-hint {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--rosa-claro);
+    opacity: 0.8;
+}
+
+.card-front .tap-text {
+    position: absolute;
+    bottom: 20px;
+    font-size: 0.75rem;
+    color: rgba(244, 143, 177, 0.5);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* REVERSO DE LA TARJETA */
+.card-back {
+    background: linear-gradient(145deg, #2d0a1a, #1a0510);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    box-shadow: inset 0 0 40px rgba(194, 24, 91, 0.1);
+}
+
+.card-back .reason-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.card-back .reason-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--dorado);
+    margin-bottom: 15px;
+}
+
+.card-back .reason-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 248, 240, 0.9);
+    font-style: italic;
+}
+
+.card-back .card-number-small {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    color: var(--rosa-claro);
+    opacity: 0.5;
+}
+
+/* ===== MENSAJE FINAL ===== */
+.final-message {
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+}
+
+.final-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(233, 30, 99, 0.1), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.final-card {
+    background: linear-gradient(145deg, rgba(194, 24, 91, 0.12), rgba(142, 27, 59, 0.2));
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 25px;
+    padding: 50px 40px;
+    max-width: 700px;
+    margin: 0 auto;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.final-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--rosa-profundo), var(--dorado), var(--rosa-medio), var(--dorado));
+    background-size: 400% 400%;
+    border-radius: 26px;
+    z-index: -1;
+    animation: borderGlow 6s ease infinite;
+    opacity: 0.3;
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.final-card .final-emoji {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.final-card .final-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--rosa-claro), var(--dorado));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+}
+
+.final-card .final-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: rgba(255, 248, 240, 0.9);
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.final-card .signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: var(--dorado);
+    margin-top: 25px;
+}
+
+/* ===== CONTADOR DE AMOR ===== */
+.love-counter {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.counter-item {
+    text-align: center;
+    padding: 15px 25px;
+    background: rgba(194, 24, 91, 0.1);
+    border: 1px solid rgba(244, 143, 177, 0.15);
+    border-radius: 15px;
+    min-width: 100px;
+}
+
+.counter-number {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dorado);
+    line-height: 1;
+}
+
+.counter-label {
+    font-size: 0.8rem;
+    color: var(--rosa-claro);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+/* ===== FOOTER ===== */
+.valentine-footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid rgba(244, 143, 177, 0.1);
+    margin-top: 40px;
+}
+
+.valentine-footer p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: rgba(255, 248, 240, 0.5);
+    font-size: 0.9rem;
+}
+
+.valentine-footer .footer-heart {
+    font-size: 1.2rem;
+    display: inline-block;
+    animation: heartBeat 1.5s infinite;
+}
+
+/* ===== BOTÓN VOLVER ===== */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--rosa-profundo), var(--rojo-amor));
+    color: white;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--sombra-rosa);
+    margin-top: 30px;
+}
+
+.btn-back:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px var(--sombra-rosa);
+}
+
+/* ===== MÚSICA TOGGLE ===== */
+.music-toggle {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 100;
+    background: linear-gradient(135deg, var(--rosa-profundo), var(--rojo-amor));
+    color: white;
+    border: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px var(--sombra-rosa);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px var(--sombra-rosa);
+}
+
+.music-toggle.playing {
+    animation: musicPulse 1s infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% { box-shadow: 0 4px 20px var(--sombra-rosa); }
+    50% { box-shadow: 0 4px 20px var(--sombra-rosa), 0 0 0 10px rgba(233, 30, 99, 0.1); }
+}
+
+/* ===== ANIMACIÓN DE ENTRADA ===== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== CONFETTI AL ABRIR TODAS ===== */
+.confetti-piece {
+    position: fixed;
+    z-index: 200;
+    pointer-events: none;
+    animation: confettiFall var(--confetti-duration, 3s) var(--confetti-delay, 0s) forwards ease-out;
+}
+
+@keyframes confettiFall {
+    0% {
+        opacity: 1;
+        transform: translateY(-20px) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(var(--confetti-rotation, 720deg));
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .reasons-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .reason-card {
+        height: 280px;
+    }
+
+    .hero-valentine {
+        padding: 40px 15px 30px;
+    }
+
+    .final-card {
+        padding: 35px 25px;
+    }
+
+    .love-counter {
+        gap: 15px;
+    }
+
+    .counter-item {
+        min-width: 80px;
+        padding: 12px 18px;
+    }
+
+    .counter-number {
+        font-size: 2rem;
+    }
+
+    .card-number {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .reasons-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reason-card {
+        height: 300px;
+    }
+
+    .card-back .reason-text {
+        font-size: 0.9rem;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* ===== SCROLL PROGRESS ===== */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rosa-profundo), var(--dorado), var(--rosa-medio));
+    z-index: 1000;
+    transition: width 0.1s ease;
+}
+
+/* ===== SELECCIÓN DE TEXTO ===== */
+::selection {
+    background: var(--rosa-profundo);
+    color: white;
+}
+
+::-moz-selection {
+    background: var(--rosa-profundo);
+    color: white;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a0a10;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--rosa-profundo), var(--rojo-amor));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(var(--rosa-medio), var(--rosa-profundo));
+}
